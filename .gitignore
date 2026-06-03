@@ -17,7 +17,6 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
-TIPE_env/
 
 # Env files
 .env
