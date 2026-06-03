@@ -10,20 +10,27 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy import array, sqrt
 from scipy.optimize import curve_fit
+import math 
 
-
-
+def round_inc (x) :
+    # fonction d'arrondi au supérieur au premier chiffre significatif
+    if x == 0 : 
+        return 0.0
+    else : 
+        odg = int(np.log10(x))
+        return int(1+x*10**-odg)*10**odg
 
 
 # Programme principal
 if __name__ == "__main__":
 
-    display_amp = np.linspace(-18,12,16) # dBm, Delta = 0
-    mesured_amp = array([-41.4,-34.6,-32.3,-30.2,-28.1,-25.6,-23.6,-21.6,-19.6,-17.6,-15.8,-13.9,-13,-12.7,-12.5,-12.5]) # dBm, Delta = .2
-    incoming_amp = display_amp - 2.7 # Delta = .3
-    amplified_amp = mesured_amp + 39.5 # Delta = 1
-    gain = amplified_amp - incoming_amp # Delta = 1
-    mean_gain = np.mean(gain[1:11])
+    display_amp = np.linspace(-18,12,16) # dBm, u = 0
+    mesured_amp = array([-41.4,-34.6,-32.3,-30.2,-28.1,-25.6,-23.6,-21.6,-19.6,-17.6,-15.8,-13.9,-13,-12.7,-12.5,-12.5]) # dBm, u = .2
+    incoming_amp = display_amp - 2.7 # u = .2
+    amplified_amp = mesured_amp + 39.5 # u = .6
+    gain = amplified_amp - incoming_amp # u = .6
+    mean_gain = np.mean(gain[1:11]) # u = .2
+    
 
     fig = plt.figure(figsize=(8,6))
     ax = fig.add_subplot()
