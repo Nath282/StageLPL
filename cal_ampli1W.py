@@ -41,6 +41,16 @@ if __name__ == "__main__":
     ax.set_ylabel('amplitude/gain (dBm/dB)')
     #ax.set_aspect('equal')
     #ax.set_box_aspect(1)
+    ax.grid(True)
+    fig.savefig('/Users/nathanleretif/Library/Mobile Documents/com~apple~CloudDocs/Administratif/ENSL/L3-Physique_25:26/StageLPL/data/cal_ampli1W.png')
+    
+    fig1 = plt.figure(figsize=(8,6))
+    ax1 = fig1.add_subplot()
+    ax1.plot(display_power, ampli_power)
+    ax1.set_xlabel('displayed incoming power')
+    ax1.set_ylabel('signal power after amplification')
+    ax1.set_title('Puissance nécessaire pour 1.3W après amplification')
+    ax1.hlines(31,-16,10,linestyles='--')
+    ax1.grid(True)
 
-    plt.grid(True)
     plt.show()
