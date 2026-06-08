@@ -11,9 +11,6 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 
-
-
-
 # Programme principal
 if __name__ == "__main__":
 
@@ -28,7 +25,7 @@ if __name__ == "__main__":
     def f (z,w0,z0) : 
         zr = np.pi*w0**2/.532
         return w0*np.sqrt( 1 + ((z-z0)*10**4/zr)**2 )
-    guess = [50,10]
+    guess = [20,10]
 
     args, cov = curve_fit(f,z,w,guess)
     z = np.linspace(np.min(z),np.max(z),100)

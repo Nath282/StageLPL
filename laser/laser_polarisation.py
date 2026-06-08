@@ -62,6 +62,8 @@ if __name__ == "__main__":
     t = np.linspace(0,2*pi,100)
     [x,y] = polarisation(t, *args)
     ax2.plot(x,y, label=f'pol')
+    ax2.hlines(0,-1,1,color='black',ls='--')
+    ax2.vlines(0,-1,1,color='black',ls='--')
     ax2.hlines(0,xmin=-.95,xmax=+.95,linewidth=0)
     ax2.set_title('Polarisation')
     ax2.legend()
