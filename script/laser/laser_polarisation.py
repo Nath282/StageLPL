@@ -43,10 +43,10 @@ if __name__ == "__main__":
     fig1 = plt.figure(figsize=(8,6))
     ax1 = fig1.add_subplot()
 
-    ax1.errorbar(theta, r, u_r, u_theta, label='data')
+    ax1.errorbar(theta, r, u_r, u_theta, label='data',ls='')
     theta = np.linspace(65,110,100)
     ax1.plot(theta, Intensity(theta, *args), label='fit')
-    ax1.plot(theta, Intensity(theta, *guess), label='guess')
+    #ax1.plot(theta, Intensity(theta, *guess), label='guess')
     ax1.set_xlabel('Angle du polariseur (degré)')
     ax1.set_ylabel('Ratio de puissance')
     ax1.legend()

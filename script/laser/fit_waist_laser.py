@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     z = np.linspace(np.min(z),np.max(z),100)
     ax.plot(z,waist(z,*args),label='fit')
-    ax.plot(z,waist(z,*guess),label='guess')
+    #ax.plot(z,waist(z,*guess),label='guess')
 
     ax.legend()
     ax.set_xlabel('position (cm)')

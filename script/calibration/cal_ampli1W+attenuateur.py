@@ -12,7 +12,6 @@ from numpy import array, sqrt
 from scipy.optimize import curve_fit
 from Measurement import Measure
 
-
 # Programme principal
 if __name__ == "__main__":
 
@@ -31,15 +30,21 @@ if __name__ == "__main__":
     mes_pow3 = Measure([-18.5,-15.7,-13.3,-11.2,-9.5], sigma=.3)
     amp_pow3 = mes_pow3 + Measure(39.5,.6)
     amp_pow4 = Measure([-15.8,-13.4,-11.3,-9.5,-8.1], sigma=.3) + Measure(39.5,.6)
+    amp_pow5 = Measure([-14.9,-12.6,-10.6,-9,-7.7], sigma=.3) + Measure(39.5,.6)
+    amp_pow6 = Measure([-14.9,-12.6,-10.7,-9,-7.8], sigma=.3) + Measure(39.5,.6)
+
 
 
     fig = plt.figure(figsize=(8,6))
     ax = fig.add_subplot()
     ls = '--'
-    Measure.errorbar(ax,disp_pow,amp_pow,ls=ls,label='data11h30')
-    Measure.errorbar(ax, disp_pow2,amp_pow2, ls=ls, label='data12h')
-    Measure.errorbar(ax, disp_pow3,amp_pow3, ls=ls, label='data13h55')
-    Measure.errorbar(ax, disp_pow3,amp_pow4, ls=ls, label='data15h16')
+    errors = True
+    Measure.errorbar(ax,disp_pow,amp_pow,ls=ls,label='data1', errors=errors)
+    Measure.errorbar(ax, disp_pow2,amp_pow2, ls=ls, label='data12h', errors=errors)
+    Measure.errorbar(ax, disp_pow3,amp_pow3, ls=ls, label='data13h55', errors=errors)
+    Measure.errorbar(ax, disp_pow3,amp_pow4, ls=ls, label='data15h16', errors=errors)
+    Measure.errorbar(ax, disp_pow3,amp_pow5, ls=ls, label='data16h45', errors=errors)
+    Measure.errorbar(ax, disp_pow3,amp_pow6, ls=ls, label='data2', errors=errors)
     secax = ax.secondary_xaxis('top', functions=(lambda x:x-2.7,lambda x:x+2.7))
     
     ax.set_xlabel("amplitude affichée de la source (dBm)")

@@ -1,0 +1,74 @@
+
+% Packages import
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}  % UTF-8 encoding
+\usepackage[english]{babel}
+\usepackage{fancyhdr} % customization of footers and headers
+\usepackage{tabularx} % customization of tables
+\usepackage{comment} % to easily hide multiple lines of code at once with begin{comment} end{comment}
+\usepackage[pdftex, 
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black]
+    {hyperref} % allow for pdf with macro for references, links,...
+
+% définition des marges du document
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{2cm}
+\setlength{\headsep}{0.8cm}
+\setlength{\footskip}{1cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{25cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\hoffset}{-0.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+
+% Definition of first page pagestyle
+\fancypagestyle{FirstPage}{
+  \setlength{\headheight}{90pt}
+  \fancyhf{}
+  \fancyhdrbox[tl]{\includegraphics[width=5cm]{logo/logo_ENSL.pdf}}
+  \fancyhdrbox[tc]{\includegraphics[height=2cm]{logo/logo_LPL.pdf}}
+  \fancyhdrbox[tr]{\includegraphics[width=5cm]{logo/logo_UCBL.pdf}}
+
+
+  \begin{comment}
+  \fancyhead[L]{
+    \parbox{5cm}{
+        \begin{center}
+            \includegraphics[width=5cm]{logo/logo_ENSL.pdf}
+
+            \vspace{10pt}
+            \textit{École normale supérieure de Lyon}
+        \end{center}
+    } }
+    \fancyhead[R]{
+    \parbox{5cm}{
+        \begin{center}
+            \includegraphics[width=5cm]{logo/logo_UCBL.pdf}
+
+            \vspace{1pt}
+            \textit{Université Claude-Bernart Lyon 1}
+        \end{center}
+    } }
+    \fancyhead[C]{
+    \parbox{5cm}{
+        \begin{center}
+            \includegraphics[height=2cm]{logo/logo_LPL.pdf}
+
+        \textit{Laboratoire de physique des Laser}
+        \end{center}
+    } }
+  \end{comment}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  
+
+}
+
+% Definiton of global pagestyle
+\fancypagestyle{MainStyle}{
+    \pagestyle{fancy}
+    \fancyhead{L}{Nathan LE RÉTIF}
+}

@@ -35,7 +35,7 @@ if __name__ == "__main__":
     fig = plt.figure(figsize=(8,6))
     ax = fig.add_subplot()
 
-    ax.errorbar(incoming_amp,amplified_amp,xerr=.3/sqrt(3),yerr=1/sqrt(3),label='signal amplifié',ls='')
+    ax.errorbar(incoming_amp,amplified_amp,xerr=.3/sqrt(3),yerr=1/sqrt(3),label='signal amplifié',ls=':',color='C0')
     ax.errorbar(incoming_amp,gain,xerr=.3/sqrt(3),yerr=1/sqrt(3),label='gain',ls='',color='C1')
     ax.hlines(mean_gain,1.05*np.min(incoming_amp),1.05*np.max(incoming_amp),label=f'gain typique = {mean_gain} dB',ls='--',color='C1')
 

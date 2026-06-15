@@ -3,6 +3,14 @@
 # MacOS Python VS Code common GITIGNORE
 ########
 
+data/*
+documents/*
+figures/*
+eLab/*
+report/figures/*
+report/logo/*
+/report/main.pdf
+
 ## OS
 .DS_Store
 .AppleDouble
@@ -36,5 +44,23 @@ dist/
 # Jupyter
 .ipynb_checkpoints/
 
-# Logs
+# LaTeX
+*.aux
 *.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Minted
+_minted*
+*.pyg
