@@ -10,6 +10,7 @@ eLab/*
 report/figures/*
 report/logo/*
 /report/main.pdf
+/script/data_logger/test_files/*
 
 ## OS
 .DS_Store

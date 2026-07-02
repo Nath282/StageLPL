@@ -25,7 +25,7 @@ if __name__=='__main__' :
 
     rootpath = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/'
     filenames = ['2W.ADE2.csv','2W.ADE.csv']
-    polyfit = False
+    polyfit = True
     gaussian = False
     bessel = False
 
@@ -39,10 +39,13 @@ if __name__=='__main__' :
 
     # Polyfit 
     if polyfit : 
-        p1 = np.polyfit(x1,y1,deg=5)
-        ax.plot(X, np.polyval(p1, X), label='polyfit 1st')
-        p2 = np.polyfit(x2,y2,deg=5)
-        ax.plot(X, np.polyval(p2, X), label='polyfit 2st')
+        p = np.polyfit(x1,y1,deg=5)
+        ax.plot(X, np.polyval(p, X), label='polyfit 1st')
+        f = lambda x,x0,A,B : A*np.polyval(p,(x-x0)*B)
+        guess = [10,.8,1.2]
+        args_pol,_ = curve_fit(f, x2, y2, guess)
+        ax.plot(X, f(X,*guess),label='guess')
+        ax.plot(X, f(X,*args_pol), label='fit')
 
     # Gaussian fit
     if gaussian : 
