@@ -113,8 +113,9 @@ class TC08device :
             self._set_mains(MAIN_REJECTION_MODE)
         else : self.logger.debug("No mains rejection set")
         # Enables all channels
-        thermocouple_types = {chan : ord(type) for chan,type in THERMOCOUPLE_TYPES.items()}.update({0 : ord(' ')})
-        for chan in (ENABLED_CHANNELS + [0]) :
+        thermocouple_types = {chan : ord(type) for chan,type in THERMOCOUPLE_TYPES.items()} # conversion to unicode
+        thermocouple_types.update({0 : ord(' ')}) # add cold junction type
+        for chan in ([0] + ENABLED_CHANNELS) :
             self._set_channel(chan, thermocouple_types[chan])
         # Device final configuration
         self._get_minimum_interval_ms()

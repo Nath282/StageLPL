@@ -1,17 +1,35 @@
 
 @echo off
 :: ------------------------------------------
+
 :: Automated start for measuring temperatures
+
 :: ------------------------------------------
 
-:: Start of grafana agent
-command "grafana pdc agent" /d path/to/pdc/agent /b ./pdc -token "token" -cluster "cluster" -gcloud-hosted-grafana-id "jsp"
+:: Se placer dans le dossier du script
 
-timeout /T 5
+cd /d "%~dp0"
 
-:: Start of influxDB
-command "influxdb" /b influxdb3 serve --node-id node0
+:: Kill InfluxDB and Grafana Agent if they are running
 
-timeout /T 5
+taskkill /IM influxdb3.exe /F >nul 2>&1
 
-python temp_acquisition.py 
+taskkill /IM grafana-agent.exe /F >nul 2>&1
+
+:: Start Grafana PDC Agent
+
+start "" /B cmd /c ^
+
+    "cd /d C:\path\to\pdc\agent && pdc.exe -token token -cluster cluster -gcloud-hosted-grafana-id jsp"
+
+timeout /T 5 /NOBREAK >nul
+
+:: Start InfluxDB
+
+start "" /B influxdb3 serve --node-id node0
+
+timeout /T 5 /NOBREAK >nul
+
+:: Start main program
+
+python main.py

@@ -19,11 +19,13 @@ import logging
 # Data Logger
 ENABLED_CHANNELS = [1, 2]                                   # Defines which channels to enable (1-8)
 THERMOCOUPLE_TYPES = {chan : 'K'                            # Dictionnary of all thermocouple types (default K) 
-                      for chan in ENABLED_CHANNELS}         
+                      for chan in ENABLED_CHANNELS}     
+CHANNEL_LABELS = {1 : "Four bas",
+                  2 : 'Four haut'}    
 MAIN_REJECTION_MODE = 0                                     # used to set mains noise rejection : 0 for 50Hz (UE) ; 1 for 60Hz (North America) ; None to disable
 
 # Interval between measures (s)
-WAITING_TIME = 1                                            # Time between measurement of all channels (due to the script execution time, add ~1s to the actual time)
+WAITING_TIME = 60                                            # Time between measurement of all channels (due to the script execution time, add ~1s to the actual time)
 
 # InfluxDB3
 HOST = 'http://localhost:8181'                              # HTTP address of the port influxDB is listening to 
@@ -48,6 +50,7 @@ logging.basicConfig(
 
 # Create clients for data logger and influxDB
 device = TC08device(logger = logging)
+print("Device opened")
 client = InfluxDBClient3(host=HOST,
                          database=DATABASE,
                          token=TOKEN)
@@ -56,7 +59,7 @@ try:
 
     # Connection to data logger
     device.connect(ENABLED_CHANNELS, THERMOCOUPLE_TYPES, MAIN_REJECTION_MODE)
-    print("Device running, input Ctrl C to stop")
+    print(f"Device running, {WAITING_TIME}s between measurements  \ninput Ctrl C to stop")
 
     # Main loop for data acquisition
     while True : 
@@ -67,7 +70,7 @@ try:
         for chan in ENABLED_CHANNELS : 
             temp = device.get_temp(chan)
             if temp is not None :
-                points.append(Point("temperatures").tag("channel",chan).field("temp",temp).time(datetime.now(timezone.utc)))
+                points.append(Point("temperatures").tag("channel",chan).tag("label",CHANNEL_LABELS[chan]).field("temp",temp).time(datetime.now(timezone.utc)))
 
         # Writing into InfluxDB database
         if len(points) > 0 : 
