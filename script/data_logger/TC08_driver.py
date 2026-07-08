@@ -27,10 +27,11 @@ import logging
 # --------- CORE PROGRAM -----------
 class TC08device :
 
-    def __init__(self, logger : logging, BUFFER_LENGTH=1):
+    def __init__(self, logger : logging, BUFFER_LENGTH=600):
         """
         logger -> logger used to print logs
         BUFFER_LENGTH -> length of the buffers used to measure temperature, I did not found case where it was necessary for it to be more than one 
+        Rmq : A high value of Buffer lentgh is necessary, when set to one the measured temperature get drifted in time by 3min (600 is the value used in examples on the picotech github)
         """
         self.logger = logger
         self.chandle = self._open_unit()

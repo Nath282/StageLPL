@@ -1,22 +1,13 @@
-# List of all necessary dependencies and their version for this project 
-# to install, type in the terminal: pip install -r requirements.txt
+# List of dependencies for the data logger and influxdb
+# the following mentionned versions are not absolute, but they are the one used during the creation of this program and future/past versions may not work the same
 # was created with pip freeze > requirements.txt
 certifi==2026.6.17
-contourpy==1.3.3
-cycler==0.12.1
-fonttools==4.63.0
 influxdb3-python==0.20.0
-kiwisolver==1.5.0
-matplotlib==3.11.0
-numpy==2.5.0
-packaging==26.2
-pandas==3.0.4
+numpy==2.5.1
 picosdk==1.1
-pillow==12.2.0
 pyarrow==24.0.0
-pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 reactivex==4.1.0
 six==1.17.0
-typing_extensions==4.15.0
+typing_extensions==4.16.0
 urllib3==2.7.0
