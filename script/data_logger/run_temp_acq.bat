@@ -12,7 +12,7 @@ timeout /t 1 /nobreak > nul                                                 &:: 
 
 :: GRFANA PDC
 taskkill /f /Im pdc.exe > .\logs\grafana-pdc.log 2>&1                       &:: kill the grafana pdc process (if it exists), scratch the previous log file and write the new logs and errors
-start "" /b ".\pdc-agent_Windows_x86_64\pdc"  -token glc_eyJvIjoiMTgzNjExNSIsIm4iOiJwZGMtbG9mdHlib3h3b29kMjAyNC1kZWZhdWx0LXBkYy01YWM1NGYiLCJrIjoiQk01MDlvNHNoNzQzNloyRVhsbmVLcEk3IiwibSI6eyJyIjoicHJvZC1ldS13ZXN0LTIifX0= -cluster prod-eu-west-2 -gcloud-hosted-grafana-id 1714763 >> .\logs\grafana-pdc.log 2>&1      &:: launch the grafana PDC agent in a hidden auxiliary terminal and write logs/error into the given file
+start "" /b ".\grafana-pdc\pdc.exe"  -token glc_eyJvIjoiMTgzNjExNSIsIm4iOiJwZGMtbG9mdHlib3h3b29kMjAyNC1kZWZhdWx0LXBkYy01YWM1NGYiLCJrIjoiQk01MDlvNHNoNzQzNloyRVhsbmVLcEk3IiwibSI6eyJyIjoicHJvZC1ldS13ZXN0LTIifX0= -cluster prod-eu-west-2 -gcloud-hosted-grafana-id 1714763 >> .\logs\grafana-pdc.log 2>&1      &:: launch the grafana PDC agent in a hidden auxiliary terminal and write logs/error into the given file
 echo Launch of grafana PDC
 
 timeout /t 1 /nobreak > nul                                                 &:: wait 1 second 

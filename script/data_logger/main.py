@@ -15,15 +15,6 @@ import logging
 import argparse
 # ----------------------------------
 
-# ------ ARGUMENT PARSING ----------
-# add flags to be passed to the python file when executed through a terminal to be able to change key parameters without modifying the python file itself
-parser = argparse.ArgumentParser()
-parser.add_argument("-t", "--waitingtime", type=float, default=10, help="time between meausures")
-parser.add_argument("--loglevel", choices=["DEBUG","INFO","WARNING","ERROR","CRITICAL"], default="INFO", help="defines the level of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL) -> set to DEBUG for debugging and INFO otherwise") 
-parser.add_argument("--logfilename", type=str, default="temp_acquisition.log", help="log filename, set to None for logs in console")
-parser.add_argument("--logfilemode", choices=['a','w'], default='a', help="set to 'a' for logs to be added at each execution, set to 'w' for scratching")
-args = parser.parse_args()
-# ----------------------------------
 
 # --------- CONFIGURATION ----------
 # Data Logger
@@ -35,13 +26,25 @@ CHANNEL_LABELS = {1 : "TOP",
                   3 : "LEFT"}   
 MAIN_REJECTION_MODE = 0                                     # used to set mains noise rejection : 0 for 50Hz (UE) ; 1 for 60Hz (North America) ; None to disable
 
-# Interval between measures (s)
-WAITING_TIME = args.waitingtime                             # Time between measurement of all channels (due to the script execution time, add ~1s to the actual time)
+# Default Interval between measures (s)
+default_WAITING_TIME = 10                                   # Time between measurement of all channels (due to the script execution time, add ~1s to the actual time)
 
 # InfluxDB3
 HOST = 'http://localhost:8181'                              # HTTP address of the port influxDB is listening to 
 DATABASE = 'tempDB'                                         # Name of the influxDB database
 TOKEN = 'apiv3_h548YCVAVkjDrOgfgCXOVx4mo73XZVk_dQKbAQQL87VNjD2xeOe0WvZZgtXqfmuUK5mN_vwuegQNMpPjWdjDLQ' # InfluxDB admin token
+# ----------------------------------
+
+
+# ------ ARGUMENT PARSING ----------
+# add flags to be passed to the python file when executed through a terminal to be able to change key parameters without modifying the python file itself
+parser = argparse.ArgumentParser()
+parser.add_argument("-t", "--waitingtime", type=float, default=10, help="time between meausures")
+parser.add_argument("--loglevel", choices=["DEBUG","INFO","WARNING","ERROR","CRITICAL"], default="INFO", help="defines the level of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL) -> set to DEBUG for debugging and INFO otherwise") 
+parser.add_argument("--logfilename", type=str, default=r"logs\temp_acquisition.log", help="log filename, set to None for logs in console")
+parser.add_argument("--logfilemode", choices=['a','w'], default='a', help="set to 'a' for logs to be added at each execution, set to 'w' for scratching")
+args = parser.parse_args()
+WAITING_TIME = args.waitingtime
 # ----------------------------------
 
 
