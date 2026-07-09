@@ -32,7 +32,7 @@ default_WAITING_TIME = 10                                   # Time between measu
 # InfluxDB3
 HOST = 'http://localhost:8181'                              # HTTP address of the port influxDB is listening to 
 DATABASE = 'tempDB'                                         # Name of the influxDB database
-TOKEN = 'apiv3_h548YCVAVkjDrOgfgCXOVx4mo73XZVk_dQKbAQQL87VNjD2xeOe0WvZZgtXqfmuUK5mN_vwuegQNMpPjWdjDLQ' # InfluxDB admin token
+TOKEN = ""                                                  # InfluxDB admin token
 # ----------------------------------
 
 

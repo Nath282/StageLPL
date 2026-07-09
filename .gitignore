@@ -12,7 +12,7 @@ report/logo/*
 /report/main.pdf
 /script/data_logger/test_files/*
 /script/data_logger/user_guide_figures/*
-/script/data_logger/UserGuide.md
+/script/data_logger/token.txt
 
 ## OS
 .DS_Store
