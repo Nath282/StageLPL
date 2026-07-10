@@ -112,7 +112,7 @@ Il devrait afficher cela :
 
         influxdb3 InfluxDB 3 Core, 3.10.0, revision ...
 
-Si ce n'est pas le cas, allez voir la documentation sur leur site https://docs.influxdata.com/influxdb3/core/. Il faut ensuite creer le token admin qui permettra de se connecter à la base de données. Pour cela il faut commencer par lancer influxdb. Pour cela tapez : 
+Si ce n'est pas le cas, allez voir la documentation sur leur [site](https://docs.influxdata.com/influxdb3/core/). Il faut ensuite creer le token admin qui permettra de se connecter à la base de données. Pour cela il faut commencer par lancer influxdb. Pour cela tapez : 
 
         influxdb3 serve --node-id node0 --data-dir C:\path\to\data_logger\ 
 
