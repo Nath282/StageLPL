@@ -20,7 +20,9 @@ if __name__ == "__main__":
 
     ds = DataSet.read_file(rootpath+filename+ext)
     params = ds.metadata['Parameters']
-    inc_pow, diff_eff = ds['RF displayed signal power(dBm)'] + params['RF_correction'], ds[' Diffracted intensity (mW)'] / params['laser intensity']
+    rf_corr = params['Marconi correction'] + params['ampli gain']
+    inc_pow, diff_eff = ds['RF displayed signal power(dBm)'] + rf_corr, ds['Diffracted intensity (mW)'] / params['laser intensity']
+    print(diff_eff.max()*100)
 
     fig = plt.figure(figsize=(8,6))
     gs = fig.add_gridspec(1,1)
@@ -30,11 +32,10 @@ if __name__ == "__main__":
     ax.set_xlabel("Incoming RF power (dBm)")
     ax.set_ylabel("Diffraction efficiency (%)")
     ax.grid(True)
-    ax.set_title('ampli23dB')
+    #ax.set_title('ampli23dB')
 
-    secax = ax.secondary_xaxis('top',functions=(lambda x:x-params['RF_correction'][0].value, lambda x:x+params['RF_correction'][0].value))
+    secax = ax.secondary_xaxis('top',functions=(lambda x:x-rf_corr[0].value, lambda x:x+rf_corr[0].value))
     secax.set_xlabel('displayed RF power (dBm)')
 
-    fig.savefig('/Users/nathanleretif/StageLPL/figures/fig23dB.ADE.png')
     plt.tight_layout()
     plt.show()

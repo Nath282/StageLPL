@@ -9,70 +9,60 @@ Description du fichier
 import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import Measure, DataSet
+from Measurement import Measure as M
 
 
 # Programme principal
 if __name__ == "__main__":
 
-    rootpath = '/Users/nathanleretif/StageLPL/data/'
-    f1,f2,f3,f4,f5 = 'double_pass/FDEm2.DP.csv','double_pass/FDE.DP.csv', 'diffraction_efficiency/2Wm2.FDE.csv', 'diffraction_efficiency/2W.FDE.csv', 'diffraction_efficiency/2Wbis.FDE.csv'
-    plot_optimum_power = True
+    
+    #f1,f2,f3,f4,f5 = 'double_pass/FDEm2.DP.csv','double_pass/FDE.DP.csv', 'diffraction_efficiency/2Wm2.FDE.csv', 'diffraction_efficiency/2W.FDE.csv', 'diffraction_efficiency/2Wbis.FDE.csv'
 
-    fig = plt.figure(figsize=(8,6))
-    gs = fig.add_gridspec(1,1)
-    ax = fig.add_subplot(gs[0])
+    fig1, fig2 = plt.figure(figsize=(8,6)), plt.figure(figsize=(8,6))
+    gs1, gs2 = fig1.add_gridspec(1,1), fig2.add_gridspec(1,1)
+    ax1, ax2 = fig1.add_subplot(gs1[0]), fig2.add_subplot(gs2[0])
 
-    if plot_optimum_power : 
-        fig2 = plt.figure(figsize=(8,6))
-        gs2 = fig2.add_gridspec(1,1)
-        ax2 = fig2.add_subplot(gs2[0])
+    # Double pass data
+    rootpath, ext = '/Users/nathanleretif/StageLPL/data/double_pass/', '.DP.csv'
+    files = {'FDE':'24/06 16h49', 'FDEm2':'24/06 17h06', 'FDEm3':'10/07 17h25'}
+    for filename in files.keys() : 
+        ds = DataSet.read_file(rootpath+filename+ext)
+        try : 
+            freq, I_diff, opt_pow, I_laser = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power'], ds['laser intensity']
+            diff_eff = I_diff/I_laser*100
+        except KeyError : 
+            freq, I_diff, opt_pow = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power']
+            I_laser = ds.metadata['Parameters']['laser intensity']
+            diff_eff = I_diff/I_laser*100
+        M.errorbar(ax1, freq, diff_eff, label='double pass '+files[filename], ls='', marker='s', color='C3')
+        M.errorbar(ax2, freq, opt_pow, label=files[filename], ls='', marker='s')
 
-    # Treatment of file 1
-    ds = DataSet.read_file(rootpath+f1)
-    Freq, I_diff, opt_pow, I_laser = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power'], ds['laser intensity']
-    diff_eff = I_diff/I_laser
-    Measure.errorbar(ax, Freq, diff_eff, label='FDEm2.DP', ls='-', marker='.',color='C0')
-    if plot_optimum_power : Measure.errorbar(ax2, Freq, opt_pow, label='FDEm2.DP', ls='-', marker='.',color='C0')
+    # Single pass data 
+    rootpath, ext = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/', '.FDE.csv'
+    files = {'2W':'single pass squared 16/06', '2Wbis':None, '2Wm2':'single pass squared 19/06'}
+    colors = {'2W':'C4', '2Wbis':'C4', '2Wm2':'C5'}
+    for filename in files.keys() :
+        ds = DataSet.read_file(rootpath+filename+ext)
+        freq, diff_eff, opt_pow = ds['RF displayed frequency'], (ds['Diffracted intensity']/ds.metadata['Parameters']['laser intensity'])**2*100, ds['Optimum displayed diffraction power']
+        M.errorbar(ax1, freq, diff_eff, label=files[filename], color='C0', marker='D', ls='')
+        M.errorbar(ax2, freq, opt_pow, label=files[filename], color=colors[filename], marker='s', ls='')
 
-    # Treatment of file 2
-    ds = DataSet.read_file(rootpath+f2)
-    params = ds.metadata['Parameters']
-    Freq, I_diff, opt_pow, I_laser = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power'], params['laser intensity']
-    diff_eff = I_diff/I_laser
-    Measure.errorbar(ax, Freq, diff_eff, label='FDE.DP', ls='-', marker='.',color='C1')
-    if plot_optimum_power : Measure.errorbar(ax2, Freq, opt_pow, label='FDE.DP', ls='-', marker='.',color='C1')
+    ax1.set_xlim()
+    ax1.set_ylim()
+    ax1.fill_betweenx([-100,200],428-25,428+25,label='AOM labeled bandwidth', color='grey',alpha=.4)
+    ax1.vlines(428,ymin=-100,ymax=200,label='428MHz',color='black',ls='--')
+    ax1.set_xlabel("Frequency (MHz)")
+    ax1.set_ylabel("Double pass diffraction efficiency")
+    ax1.legend()
+    ax1.grid(True)
 
-    # Tretment of file 3
-    ds = DataSet.read_file(rootpath+f3)
-    params = ds.metadata['Parameters']
-    Freq, I_diff, opt_pow, I_laser = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power'], params['laser intensity']
-    diff_eff = (I_diff/I_laser)**2
-    Measure.errorbar(ax, Freq, diff_eff, label='2Wm2.FDE**2', ls='-', marker='.',color='C2')
-    if plot_optimum_power : Measure.errorbar(ax2, Freq, opt_pow, label='2Wm2.FDE', ls='-', marker='.',color='C2')
+    ax2.set_xlim()
+    ax2.set_ylim()
+    ax2.vlines(428,ymin=-20,ymax=0,label='428MHz',color='black',ls='--')
+    ax2.set_xlabel("Frequency (MHz)")
+    ax2.set_ylabel("Optimum RF power (dBm)")
+    ax2.legend()
+    ax2.grid(True)
 
-    # Treatment of file 4,5
-    ds1, ds2 = DataSet.read_file(rootpath+f4), DataSet.read_file(rootpath+f5)
-    params1,params2 = ds1.metadata['Parameters'],ds2.metadata['Parameters']
-    Freq1, I_diff1, opt_pow1, I_laser1 = ds1['RF displayed frequency'], ds1['Diffracted intensity'], ds1['Optimum displayed diffraction power'], params1['laser intensity']
-    diff_eff1 = I_diff1/I_laser1
-    Freq2, I_diff2, opt_pow2, I_laser2 = ds2['RF displayed frequency'], ds2['Diffracted intensity'], ds2['Optimum displayed diffraction power'], params2['laser intensity']
-    diff_eff2 = I_diff2/I_laser2
-    #Measure.errorbar(ax, Freq1, diff_eff1, label='2W.FDE', ls='-', marker='.',color='C5')
-    #Measure.errorbar(ax, Freq2, diff_eff2, ls='-', marker='.',color='C5')
-    if plot_optimum_power : Measure.errorbar(ax2, Freq1, opt_pow1, label='FDEm2.DP', ls='-', marker='.',color='C5')
-    if plot_optimum_power : Measure.errorbar(ax2, Freq2, opt_pow2, ls='-', marker='.',color='C5')
-
-
-    ax.vlines(428,ymin=.25,ymax=.8,color='red',label='428Mhz',ls='--')
-    ax.set_xlabel("Frequency (Mhz)")
-    ax.set_ylabel("Diffraction efficiency (%)")
-    ax.legend()
-    ax.grid(True)
-
-    if plot_optimum_power :  
-        ax2.set_xlabel("Frequency (Mhz)")
-        ax2.set_ylabel("Optimum Diffraction power (dBm)")
-        ax2.legend()
-        ax2.grid(True)
-
+    plt.tight_layout()
     plt.show()

@@ -9,7 +9,8 @@ Description du fichier
 import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import Measure as M
-from pathlib import Path
+from Measurement import DataSet
+
 
 # Paramètres globaux d'affichage
 import matplotlib as mpl
@@ -17,26 +18,25 @@ mpl.rcParams['font.size'] = 16
 mpl.rcParams['lines.linewidth'] = 1.5
 
 if __name__=='__main__' :
-
-    rootPath = Path('/Users/nathanleretif/StageLPL/data/calibration')
-    filenames = ['ampli2W','ampli2Wm2']
-    ext = '.FreqCal.csv'
+    rootpath = '/Users/nathanleretif/StageLPL/data/calibration/'
+    files = {'ampli2W.FreqCal.csv':'15h37','ampli2Wm2.FreqCal.csv':'16h19'}
 
     fig = plt.figure(figsize=(8,6))
     gs = fig.add_gridspec(1,1)
     ax = fig.add_subplot(gs[0])
 
-    for filename in filenames : 
-        metadata,data,_ = M.read_csv(rootPath/(filename+ext),sections=['Time','Parameters'])
-        param = metadata['Parameters']
+    for filename in files.keys() :
+        ds = DataSet.read_file(rootpath+filename,section_delimiters=('--','--,'))
+        params = ds.metadata['Parameters']
+        freq, mes_power = ds['RF frequency'], ds['RF power']
+        rf_pow = mes_power + params['attenuation']
+        M.errorbar(ax, freq, rf_pow, label=files[filename], ls='',marker='s')
 
-        freq = M(data[:,0])
-        rf_corr = M(param['rf_corr'],param['u_rf_corr'])
-        rf_pow = M(data[:,1],.2) + rf_corr
-
-        M.errorbar(ax,freq,rf_pow,ls='--',marker='.',label=metadata['Time']['Start of Measurement'])
-    ax.set_xlabel("RF frequency (Mhz)")
-    ax.set_ylabel("RF power (dBm)")
+    ax.set_ylim()
+    ax.set_xlim()
+    ax.vlines(428,10,40,ls='--',color='black',label='428MHz')
+    ax.set_xlabel("Frequency (MHz)")
+    ax.set_ylabel("RF signal power (dBm)")
     ax.legend()
     ax.grid(True)
 

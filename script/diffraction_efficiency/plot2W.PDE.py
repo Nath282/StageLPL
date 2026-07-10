@@ -22,18 +22,16 @@ if __name__ == "__main__":
 
     ds = DataSet.read_file(rootpath+filename+ext)
     params = ds.metadata['Parameters']
-    laser_intensity = Measure([params['laser intensity (start)'].value,params['laser intensity (end)'].value],type='a')
-    angle, diff_eff = ds['Half waveplate angle'] - params['fast axis angle'], ds['Diffracted intensity (mW)'] / laser_intensity
-    print(ds['Diffracted intensity (mW)'])
+    angle, diff_eff = ds['Half waveplate angle'] - params['fast axis angle'], ds['Diffracted intensity (mW)'] / params['laser intensity']
 
     fig = plt.figure(figsize=(8,6))
     gs = fig.add_gridspec(1,1)
     ax = fig.add_subplot(gs[0])
 
-    Measure.errorbar(ax,angle,diff_eff,ls='',marker='.',color='C0',label='data')
+    Measure.errorbar(ax,angle,diff_eff,ls='',marker='s',color='C0',label='data')
 
     angle = angle.value
-    f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))+B
+    f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))**2+B
     guess = [0,.015,.07,.85]
     args, _ = curve_fit(f,angle,diff_eff.value,p0=guess)
     #ax.plot(angle,f(angle,*guess),label='guess',ls='--',color='C2')
@@ -65,4 +63,4 @@ if __name__ == "__main__":
 
     #fig.savefig('/Users/nathanleretif/StageLPL/figures/fig23dB.ADE.png')
     plt.tight_layout()
-    #plt.show()
+    plt.show()
