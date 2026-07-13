@@ -29,18 +29,18 @@
     \rule[10pt]{8cm}{.5pt} 
     \vspace{.3cm}
 
-    \textbf{\huge New repumping optical system for sodium atoms imagery} % Title
+    \textbf{\huge Nouveau système optique repompeur pour l'imagerie d'atomes de Sodium} % Title
 
     \vspace{.3cm}
     \rule{8cm}{.5pt}
 
     \vspace{1cm}
-    \textbf{Intership Report }
+    \textbf{Rapport de Stage}
 
     Nathan Le Rétif 
 
     \vspace{1cm}
-    \textbf{Supervisor} 
+    \textbf{Encadrant} 
 
     Aurélien Perrin 
 
@@ -52,12 +52,10 @@
   \vspace{1.5cm}
   \noindent
   \textbf{Key words:}
-  \textit{Acousto-optics modulator, double-pass, four-pass, sodium Bose-Einstein condensate, repumping laser beam}
+  \textit{Gaz d'atomes ultrafroids, Imagerie d'atomes de Sodium, Faisceau laser repompeur, Modulateurs Acousto-optiques, Double passage, Quadruple passage}
 
-  \section*{Abstract}
-
-  This intership aimed at building and caracterising a new method to generate a \(1.7\) GHz frequency shift of the \(589\) nm main laser in order to create a repumping beam. When imaging ultracold gases of Sodium atoms, a repumping beam is needed in order to depopulate blackened states which can't be imaged. The goal was to caracterize new methods to generate this \(1.7\) GHz shift using \(428\) MHz Acousto-Optic Modulators (AOM) in double-pass or four-pass configuration instead of the expensive and inefficient \(1.7\) GHz AOM currently used in the experiment. 
-
+  \section*{Résumé}
+  Lors de l'imagerie d'atomes ultrafroids par absorption, certains états d'énergies sont transparents au faisceau d'imagerie et ne permettent donc pas une mesure précise. Une solution pour y remédier est de créer un faisceau repompeur, qui va replacer les atomes dans des états d'énergie utiles à l'imagerie. Pour des atomes de Sodium, il suffit de réaliser un décalage en fréquence de \(1.7\)GHz du faisceau principal à \(589\)nm. C'est dans ce contexte que se plaçait mpn stage, dont le but consistait à caractériser un nouveau montage optique à base de Modulateurs Acousto-Optiques (AOM) à \(428\)MHz pour réaliser ce décalage en fréquence. Quatres passages dans ces AOM sont nécessaires pour réaliser un décalage de \(1.7\)GHz, mon but était donc de caractériser des configurations avec deux AOM en double passage et/ou un seul AOM en quadruple passage. 
 \end{titlepage}
 
 \tableofcontents
@@ -66,14 +64,46 @@
 
 \pagestyle{rapport}
 
-\section*{Acknowledgment}
+\section*{Remerciements}
 
-I would like to sincerely express my gratitude to all the persons who guided and helped me during this internship. I especially want to thank Remy Vatré and Aurélien Perrin for supervising my internship, answering all of my questions and reassuring me when I broke expensive equipment. I also want to thank Helene Perrin who  me this internship and without whom it would have never happen. 
+J'aimerais sincèrement remercier toutes les personnes qui m'ont aidé et guidé pendant ce stage. Je pense tout particulièrement à mes encadrants Rémy Vatré et Aurélien Perrin pour le temps qu'ils m'ont fourni, pour avoir répondu à toutes mes questions et pour m'avoir rassuré quand j'ai cassé du materiel. Je voudrais aussi remercier Hélène Perrin, qui a été mon premier contact dans cette équipe et sans qui ce stage n'aurait pas pu avoir lieu. Et bien sûr j'aimerais remercier l'équipe BEC dans son ensemble, dont chaque personne fait preuve d'une grande gentillesse et bonne humeur, et qui m'ont permis d'avoir passé deux très bon moi avec eux. 
 
 \section{Introduction}
 
+\subsection{Contexte scientifique}
+
+Malgré des prédictions théoriques dès 1925, les condensats de Bose-Einstein n'ont été observée en laboratoire que 70 ans plus tard en 1995. C'est l'avènement du laser dans les années 1960 qui a permis le développement de techniques de refroidissement d'atomes neutres par pression radiative dans les années (pour lesquelles Claude Cohen-Tannoudji, Steven Chu et William D. Phillips ont reçu le prix Nobel en 1997). De nos jours, les ralentisseurs Zeeman et pièges magnéto-optiques permettent de refroidir des gaz de bosons à des temperatures de l'ordre de la centaine de nano-Kelvin. Ces gaz d'atomes ultrafroids forment un outil précieux en métrologie et en simulation quantique, faisant de ce domaine un sujet de recherche majeur de nos jours\cite{ballu_production_2024}. 
+
+Pendant mon stage, j'étais rattaché à l'éxperience Sodium de l'équipe BEC, qui étudie la dynamique hors-équilibre d'un quasi-condensat d'atomes de Sodium unidimensionnel (1D) et dont une vue générale est présenté sur la figure \ref{schema_manip}. Pour ce faire, des cubes de Sodium solides sont chauffées das un four à \(300\)K afin d'être vaporisé et injecté dans une chambre à vide. Le jet d'atomes de sodium est alors envoyé dans un ralentisseur Zeeman, qui utilise la pression de radiation d'un laser se propageant dans la direction opposé aux atomes pour les ralentirs. Cela est rendu possible grâve au fait que le laser soit accordé sur une transition, dites cyclante, de l'atome et qui permet des cycles d'excitations/désexcitations conférant à l'atome une impulsion moyenne dans le sens opposé au laser. Un gradient de champ magnétique permet de controler l'écart entre les niveaux d'énergie et compenser l'effet Doppler afin que le laser reste accordé sur la transition cyclante de l'atome de Sodium. Les atomes arrivent alors dans un piège magnéto-optique (MOT) qui consiste en une chambre éclairé par trois paires de laser contra-propageant dans les trois directions de l'espace et doté de bobines anti-Helmholtz permettant de créer un champ magnétique quadripolaire. Tous ce dispositif permet de créer un condensat de plusieurs centaines de milliers d'atomes de Sodium, qui est alors déplacé grâce à un transport magnétique vers une nouvelle chambre contenant une puce doté de microfils d'or. Ces microfils permettent de crer un champ magnétique comprimant le gaz dans deux directions de l'espace afin d'obtenir le quasi-condensat 1D. 
+\begin{figure}[h]
+  \includegraphics[width=.9\textwidth]{figures/schema_manip.png}
+  \caption{Vue générale de l'expérience, modélisé sur SolidWorks par Thomas Badr et emprunté à\cite{ballu_production_2024}}\label{schema_manip}
+\end{figure}
+L'imagerie est réalisé par absorption, c'est à dire que l'on fait passer un faisceau accordé sur la transition cyclante dans le condensat. Les atomes absorbent alors les photons du faisceau faisant apparaitre une ombre sur la caméra placée derrière, permettant de reconstituer la distribution spatiale du gaz. 
+
+\subsection{Enjeux du stage}
+
+
+
+\subsection{Objectifs}
+
+\section{Montage optique repompeur}
+
+\subsection{Montage expérimental}
+
+\subsection{Résultats}
+
+\section{Logger de températures}
+
+
+
 \newpage
 
-ezjfhz
+ezjfhz\cite{ballu_production_2024} et al.\cite{donley_double-pass_2005} et\cite{lu_four-pass_2017} test 
+
+\newpage
+
+\bibliographystyle{plain}
+\bibliography{biblio}
 
 \end{document}
