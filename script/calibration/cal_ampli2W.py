@@ -42,8 +42,12 @@ if __name__ == "__main__":
     M.errorbar(ax, inc1, gain1, label="gain 11h12", ls='', marker='.',color='C1')
     M.errorbar(ax, inc2, gain2, label="gain 11h39", ls='', marker='x', color='C1')
 
-    mean_gain = M.MonteCarlo(np.mean, gain1[:17], N=100)
-    M.hlines(ax, mean_gain, xmin=-43, xmax=0, label=f"average gain : {mean_gain}",color='r',ls='--')
+    ax.set_xlim()
+    ax.set_ylim()
+
+    mean_gain = M.MonteCarlo(np.mean, gain1[:17], N=500)[0]
+    M.hlines(ax, mean_gain, xmin=-50, xmax=10, label=f"average gain : {mean_gain}",color='C1',ls='-')
+    ax.hlines(31.1,xmin=-50,xmax=10,label='1.3W', color='r')
     
     ax.set_xlabel("Incoming RF power (dBm)")
     ax.set_ylabel("amplified signal power/gain (dBm/dB)")

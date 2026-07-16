@@ -83,7 +83,7 @@ class TC08device :
         t = tc08.usb_tc08_get_minimum_interval_ms(self.chandle)
         if t > 0 : 
             self.logger.debug(f"minimum time interval set at {t} ms")
-            self.minimum_interval_ms = t
+            self.minimum_interval_s = t
         else : 
             self.logger.critical("Unsuccessful minimum interval retrieval")
             raise PicoError("Unsuccessful minimum interval retrieval")

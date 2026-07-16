@@ -7,7 +7,7 @@ Set to run continously until Keyboard Interrupt (Ctrl C)
 """
 
 # --------- PACKAGE IMPORT ---------
-from time import sleep
+from time import sleep, time
 from datetime import datetime, timezone
 from TC08_driver import TC08device
 from influxdb_client_3 import InfluxDBClient3, Point
@@ -73,6 +73,7 @@ try:
     # Main loop for data acquisition
     while True : 
 
+        t0 = time()
         points = []
 
         # Temperature Measurements
@@ -85,9 +86,11 @@ try:
         if len(points) > 0 : 
             client.write(points, DATABASE)
             logging.debug("Export of previous points to influxDB client successful")
+        t1 = time()
 
         # Waiting time before the next measure
-        sleep(WAITING_TIME) 
+        dt = t1-t0
+        sleep( max( WAITING_TIME-dt , device.minimum_interval_s-dt , 0 ) ) 
 
 # Encapsulation of KeyboardInterrupt errors to stop the program
 except KeyboardInterrupt : 

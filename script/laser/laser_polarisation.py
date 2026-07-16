@@ -11,6 +11,10 @@ import numpy as np
 from numpy import array, cos, sin, pi, sqrt, exp
 from scipy.optimize import curve_fit
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
 
 def R(t) : 
     return array([[cos(t),-sin(t)],[sin(t),cos(t)]])
@@ -47,9 +51,10 @@ if __name__ == "__main__":
     theta = np.linspace(65,110,100)
     ax1.plot(theta, Intensity(theta, *args), label='fit')
     #ax1.plot(theta, Intensity(theta, *guess), label='guess')
-    ax1.set_xlabel('Angle du polariseur (degré)')
-    ax1.set_ylabel('Ratio de puissance')
+    ax1.set_xlabel('Half-waveplate angle (degrees)')
+    ax1.set_ylabel('Power ratio (%)')
     ax1.legend()
+    ax1.grid(True)
     
  
     fig2 = plt.figure(figsize=(8,6))
@@ -61,15 +66,15 @@ if __name__ == "__main__":
 
     t = np.linspace(0,2*pi,100)
     [x,y] = polarisation(t, *args)
-    ax2.plot(x,y, label=f'pol')
-    ax2.hlines(0,-1,1,color='black',ls='--')
-    ax2.vlines(0,-1,1,color='black',ls='--')
+    ax2.plot(x,y, label=f'pol', color='green')
+    #ax2.hlines(0,-1,1,color='black',ls='--')
+    #ax2.vlines(0,-1,1,color='black',ls='--')
     ax2.hlines(0,xmin=-.95,xmax=+.95,linewidth=0)
     ax2.set_title('Polarisation')
-    ax2.legend()
+    #ax2.legend()
     ax2.set_aspect('equal')
     
-    plt.grid(True)
+    #plt.grid(True)
     plt.show()
 
 

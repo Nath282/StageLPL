@@ -55,7 +55,9 @@
   \textit{Gaz d'atomes ultrafroids, Imagerie d'atomes de Sodium, Faisceau laser repompeur, Modulateurs Acousto-optiques, Double passage, Quadruple passage}
 
   \section*{Résumé}
-  Lors de l'imagerie d'atomes ultrafroids par absorption, certains états d'énergies sont transparents au faisceau d'imagerie et ne permettent donc pas une mesure précise. Une solution pour y remédier est de créer un faisceau repompeur, qui va replacer les atomes dans des états d'énergie utiles à l'imagerie. Pour des atomes de Sodium, il suffit de réaliser un décalage en fréquence de \(1.7\)GHz du faisceau principal à \(589\)nm. C'est dans ce contexte que se plaçait mpn stage, dont le but consistait à caractériser un nouveau montage optique à base de Modulateurs Acousto-Optiques (AOM) à \(428\)MHz pour réaliser ce décalage en fréquence. Quatres passages dans ces AOM sont nécessaires pour réaliser un décalage de \(1.7\)GHz, mon but était donc de caractériser des configurations avec deux AOM en double passage et/ou un seul AOM en quadruple passage. 
+  Lors de l'imagerie d'atomes ultrafroids par absorption, certains états d'énergies sont transparents au faisceau d'imagerie et ne permettent donc pas une mesure précise. Une solution pour y remédier est de créer un faisceau repompeur, qui va replacer les atomes dans des états d'énergie utiles à l'imagerie. Pour des atomes de Sodium, il suffit de réaliser un décalage en fréquence de \(1.7\)GHz du faisceau principal à \(589\)nm. C'est dans ce contexte que se plaçait mon stage, dont le but consistait à caractériser un nouveau montage optique à base de Modulateurs Acousto-Optiques (AOM) à \(428\)MHz pour réaliser ce décalage en fréquence. Quatres passages dans ces AOM sont nécessaires pour réaliser un décalage de \(1.7\)GHz, mon but était donc de caractériser des configurations avec deux AOM en double passage et/ou un seul AOM en quadruple passage. 
+
+  Pour des raisons tehcniques, je n'ai pas pu venir au bout 
 \end{titlepage}
 
 \tableofcontents
@@ -74,32 +76,173 @@ J'aimerais sincèrement remercier toutes les personnes qui m'ont aidé et guidé
 
 Malgré des prédictions théoriques dès 1925, les condensats de Bose-Einstein n'ont été observée en laboratoire que 70 ans plus tard en 1995. C'est l'avènement du laser dans les années 1960 qui a permis le développement de techniques de refroidissement d'atomes neutres par pression radiative dans les années (pour lesquelles Claude Cohen-Tannoudji, Steven Chu et William D. Phillips ont reçu le prix Nobel en 1997). De nos jours, les ralentisseurs Zeeman et pièges magnéto-optiques permettent de refroidir des gaz de bosons à des temperatures de l'ordre de la centaine de nano-Kelvin. Ces gaz d'atomes ultrafroids forment un outil précieux en métrologie et en simulation quantique, faisant de ce domaine un sujet de recherche majeur de nos jours\cite{ballu_production_2024}. 
 
-Pendant mon stage, j'étais rattaché à l'éxperience Sodium de l'équipe BEC, qui étudie la dynamique hors-équilibre d'un quasi-condensat d'atomes de Sodium unidimensionnel (1D) et dont une vue générale est présenté sur la figure \ref{schema_manip}. Pour ce faire, des cubes de Sodium solides sont chauffées das un four à \(300\)K afin d'être vaporisé et injecté dans une chambre à vide. Le jet d'atomes de sodium est alors envoyé dans un ralentisseur Zeeman, qui utilise la pression de radiation d'un laser se propageant dans la direction opposé aux atomes pour les ralentirs. Cela est rendu possible grâve au fait que le laser soit accordé sur une transition, dites cyclante, de l'atome et qui permet des cycles d'excitations/désexcitations conférant à l'atome une impulsion moyenne dans le sens opposé au laser. Un gradient de champ magnétique permet de controler l'écart entre les niveaux d'énergie et compenser l'effet Doppler afin que le laser reste accordé sur la transition cyclante de l'atome de Sodium. Les atomes arrivent alors dans un piège magnéto-optique (MOT) qui consiste en une chambre éclairé par trois paires de laser contra-propageant dans les trois directions de l'espace et doté de bobines anti-Helmholtz permettant de créer un champ magnétique quadripolaire. Tous ce dispositif permet de créer un condensat de plusieurs centaines de milliers d'atomes de Sodium, qui est alors déplacé grâce à un transport magnétique vers une nouvelle chambre contenant une puce doté de microfils d'or. Ces microfils permettent de crer un champ magnétique comprimant le gaz dans deux directions de l'espace afin d'obtenir le quasi-condensat 1D. 
-\begin{figure}[h]
-  \includegraphics[width=.9\textwidth]{figures/schema_manip.png}
-  \caption{Vue générale de l'expérience, modélisé sur SolidWorks par Thomas Badr et emprunté à\cite{ballu_production_2024}}\label{schema_manip}
+Pendant mon stage, j'étais rattaché à l'éxperience Sodium de l'équipe BEC, qui étudie la dynamique hors-équilibre d'un quasi-condensat d'atomes de Sodium unidimensionnel (1D) et dont une vue générale est présenté sur la figure~\ref{schema_manip}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=8cm]{figures/schema_manip.png}
+  \caption{Vue générale de l'expérience, modélisé sur SolidWorks par Thomas Badr et emprunté à la thèse de Manon\cite{ballu_production_2024}}\label{schema_manip}
 \end{figure}
-L'imagerie est réalisé par absorption, c'est à dire que l'on fait passer un faisceau accordé sur la transition cyclante dans le condensat. Les atomes absorbent alors les photons du faisceau faisant apparaitre une ombre sur la caméra placée derrière, permettant de reconstituer la distribution spatiale du gaz. 
+Pour ce faire, des cubes de Sodium solides sont chauffées das un four à \(300\)K afin d'être vaporisé et injecté dans une chambre à vide. Le jet d'atomes de sodium est alors envoyé dans un ralentisseur Zeeman, qui utilise la pression de radiation d'un laser se propageant dans la direction opposé aux atomes pour les ralentirs. Cela est rendu possible grâve au fait que le laser soit accordé sur une transition, dites cyclante, de l'atome et qui permet des cycles d'excitations/désexcitations conférant à l'atome une impulsion moyenne dans le sens opposé au laser. Un gradient de champ magnétique permet de controler l'écart entre les niveaux d'énergie et compenser l'effet Doppler afin que le laser reste accordé sur la transition cyclante de l'atome de Sodium. Les atomes arrivent alors dans un piège magnéto-optique (MOT) qui consiste en une chambre éclairé par trois paires de laser contra-propageant dans les trois directions de l'espace et doté de bobines anti-Helmholtz permettant de créer un champ magnétique quadripolaire. Tous ce dispositif permet de créer un condensat de plusieurs centaines de milliers d'atomes de Sodium, qui est alors déplacé grâce à un transport magnétique vers une nouvelle chambre contenant une puce doté de microfils d'or. Ces microfils permettent de crer un champ magnétique comprimant le gaz dans deux directions de l'espace afin d'obtenir le quasi-condensat 1D. L'imagerie est réalisé par absorption, c'est à dire que l'on fait passer un faisceau accordé sur la transition cyclante dans le condensat. Les atomes absorbent alors les photons du faisceau faisant apparaitre une ombre sur la caméra placée derrière, permettant de reconstituer la distribution spatiale du gaz. 
 
 \subsection{Enjeux du stage}
 
+La transition choisie en tant que transition cyclante est la raie \(D_2\) du Sodium, dont la structure hyperfine est représenté sur la figure~\ref{hyperfine_structure}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=8cm]{figures/NaLevels_Manon.png}
+  \caption{Structure hyperfine de la transition \(D_2\) du Sodium, schéma emprunté à la thèse de Manon\cite{ballu_production_2024}}\label{hyperfine_structure}
+\end{figure}
+Pour être exact, la transition cyclante est la transition entre les états hyperfins \(f=2 \rightarrow f'=3\) car es règles de selection imposent que les atoms dans l'état \(f'=3\) se désexcite dans l'état \(f=2\), ce qui en fait une transition très stable, adaptées aux cycles d'excitation/désexcitation nécessaires pour refroidir les atomes. Cependant dans de rare cas, les atomes peuvent se deséxciter dans l'état \(f=1\), les rendant alors transparent pour le faisceau d'imagerie réglé sur la transition cyclante. Il faut donc les repomper dans l'état \(f'=2\) pour qu'il puisse retomber dans l'état \(f=2\). C'est le rôle du faisceau repompeur, qui doit être accordé sur la transition \(f=1 \rightarrow f'=2\) ce qui correspond à un décalage de \(1.713\)GHz par rapport à la transition cyclante. Ce décalage est réalisé grâce à un modulateur électro-optique emprunté à un autre laboratoire, mais dont l'efficacité ne dépasse pas quelques pourcents. 
 
+De façon indépendante, un autre enjeu de l'expérience qui se trouvera important pour mon stage est la difficulté d'accès aux valeurs de températures du four. Celui-ci est en effet composé de 3 parties distinctes, chauffées à des températures différentes. Il est muni d'un trio de thermocouples permettant de réaliser un asservissement en température de chaque partie du four afin de maximiser sa stabilité. Il est aussi muni d'un autre trio de thermocouples de contrôle afin de pouvoir mesurer la température dans chaque partie du four. Cependant, actuellement, la seule façon d'avoir accès à ces mesures et de faire le tour de l'expérience et de brancher le bon thermocouple sur un appareil dédié. 
 
 \subsection{Objectifs}
 
+L'objectif principal de ce stage est de caractériser un nouveau montage optique permettant de réaliser le décalage en fréquence de \(1.713\)GHz afin de remplacer le modulateur électro-optique actuel dont l'efficacité est très basse. Le but est d'utiliser à la place des Modulateurs Acousto-Optiques (AOM) de \(428\)MHz qui possède une efficacité bien plus grande (\(>90\% \)) et de réaliser quatre passages du laser. Pour ce faire, deux types de configurations sont enviseagées, soit réaliser deux configurations de type double-passage\cite{donley_double-pass_2005} successives, soit réaliser une configuration en quadruple-passage\cite{lu_four-pass_2017}. L'objectif de ce stage est de réaliser et caractériser dans un premier temps la configuration double double-passage qui semble plus adapté, et si possible le quadruple-passage. 
+
+Cependant pour cause de plusieurs problèmes techniques, je n'ai pas pu venir à bout des objectifs précédents. Sur les dernières semaines de stage, mes encadrants m'ont demandé de configurer un data logger permettant de récupérer et visualiser en temps réel les températures des différentes parties du four. Cela leur permettrait de voir l'évolution des températures du four en temps réel, de stocker les données pour pouvoir comparer l'évolution des températures sur de longues périodes comme une année et à terme de visualiser aussi les températures d'autres composants de l'expérience comme les différentes bobines. L'objectif de récuperer et configurer le driver Python du data logger pour lui permettre d'envoyer ses données sur une base de données InfluxDB (spécialisé dans les données temporelles) et de connecter cette base de donnée à un logiciel de visualisation de métrique appelée Grafana. 
+
+
 \section{Montage optique repompeur}
+
+\subsection{Les Modulateurs Acousto-Optique}
+
+Le montage repose entièrement sur une optique appelée modulateur acousto-optique (abrégé en AOM pour Acousto-Optic Modulator). C'est cette optique qui permet de réaliser un décalage en fréquence de la lumière passant à l'intérieur.
+
+\subsubsection{Fonctionnement}
+
+Il est constitué d'un cristal (dans mon cas du \(TeO_2\)) et d'un transducteur qui permet de transmettre des ondes Radio Fréquences (RF) dans le cristal sous forme d'ondes acoustiques. Les intéractions photons-phonons (l'équivalent des photons dans le cadre d'ondes acoustiques plutôt que des ondes lumineuses) au sein du cristal créent une figure de diffraction dont chaque ordre \(m\) est décalé linéairement en fréquence selon:
+\begin{equation}
+  \nu_m = \nu_{inc} + m*f
+\end{equation}
+où \(\nu_m\) est la fréquence laser de l'ordre de diffraction m, \(\nu_{inc}\) est la fréquence laser incicente et \(f\) est la fréquence RF envoyé au cristal. L'angle entre le faiceau incident et le faisceau diffracté est quand à lui donné par la loi de Bragg\cite{donley_double-pass_2005}:
+\begin{equation}
+  \theta_m \approx \frac{m*\lambda}{n*\Lambda}
+\end{equation}
+valide pour les ordres 0,1,2,3 et -1,-2,-3 où \(\lambda\) est la longueur d'onde de la lumière incidente, \(\Lambda\) est la longueur d'onde acoustique et où \(n\) est l'indice optique du milieu. De plus, en modifiant l'angle entre la lumière incidente et les ondes acoustiques, on peut focaliser la majorité de la lumière diffracté dans un ordre précis. Pour les AOM que j'ai utilisé, il était indiqué que l'efficacité de diffraction dans l'ordre ±\(1\) pouvait atteindre jusqu'à \(92\%\). Ce sont ces caractéristiques qui devraient permettre de réaliser un faisceau repompeur efficace. 
+
+\subsubsection{Montage en double-passage}
+
+Un montage très commun avec les AOM dans les expériences de refroidissement par laser ou de piégage est la configuration double-passage\cite{donley_double-pass_2005}. L'intérêt de cette configuration est qu'elle ne dépend pas de l'angle du faisceau diffracté en sortie de l'AOM grâce à un rétroreflecteur oeil de chat. Le montage est détaillé sur la figure~\ref{AOM_DP}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics{figures/schemaDP.png}
+  \caption{Montage typique d'un AOM en double-passage}\label{AOM_DP}
+\end{figure} 
+Dans cette configuration, le faisceau est censé arriver avec une polarisation linéaire (dans la figure~\ref{AOM_DP} elle est horizontale mais ce n'est pas obligatoire). Cela va permettre de séparer le faisceau entrant et le faisceau sortant et de maximiser l'efficacité de diffraction à travers l'AOM\@. Le montage est composé de différentes parties: 
+\begin{itemize}
+  \item un PBS (Polarising Beam Splitter) qui permet de séparer un faisceau entre ses parties de polarisation verticale et horizontale. Le faisceau entrant, déjà polarisé linéairement, est entièrement transmis mais le faisceau retour, dont la polarisation aura été tourné, sera réfléchi. Cela permet de séparer le faisceau entrant et sortant.
+  \item un télescope de Galilée qui permet d'ajuster le waist du faisceau aux caractéristiques de l'AOM tout en restant compact. Il est constitué d'une lentille convexe suivi d'une lentille concave éloigné d'une distance égale à la somme des focale. Cela permet d'ajuster le waist minimum du faisceau pour optimiser l'efficacité de diffraction, dont la valeur optimum est généralement assez faible (\(150 \mu m\) pour les AOM que j'utilise).
+  \item l'AOM qui doit être placé sur le minimum de waist du faisceau afin d'avoir des faisceaux le plus parallèle possible au sein du cristal 
+  \item un rétroflecteur type oeil de chat qui permet de renvoyer le faisceau au sein de l'AOM quelque soit l'angle du faisceau en sortie de l'AOM\@. Il est constitué d'une lentille placé à égale distance de l'AOM et d'un miroir plan (distance qui doit être égale à la focale de la lentille). 
+  \item une lame \(\lambda/4\) placé au sein du rétroreflecteur permet (vu que le faisceau y passe deux fois) d'agir comme une lame \(\lambda/2\) et de tourner la polarisation de \(90\) degrés pour que le faisceau soit réfléchi sur la PBS en sortie.
+\end{itemize}
+Selon~\cite{donley_double-pass_2005}, cette configuration a permis d'obtenir une efficacité de diffraction de \(75\%\) en double-passage pour une efficacité de \(85\%\) en simple-passage. Cela suggèree que l'efficacité du deuxième passage est plus élevée que celle du premier passage, car si les deux étaient identiques on attendrai l'efficacité de simple-passage au carré, soit \(72\%\). Cette configuration est donc prometteuse pour obtenir une décalage fréquentiel avec une efficacité élevée. Pour réaliser un faisceau repompeur, j'aurai donc à réaliser deux configurations double-passage à la suite pour obtenir les \(1.71\)GHz de décalage. 
 
 \subsection{Montage expérimental}
 
+Le montage complet que j'ai réalisé pour étudier l'AOM en double-passage est schématisé dans la figure~\ref{full_setupDP}
+\begin{figure}[ht]
+  \centering
+  \includegraphics{figures/fullsetupDP.png}
+  \caption{Schéma du montage optique complet}\label{full_setupDP}
+\end{figure}
+Chaque partie du montage et des équipements ont été étudiées et calibrées pour avoir une efficacité de diffraction maximale.
+
+\subsubsection{Laser}
+
+Étant placé dans une salle de test loin de l'expérience, je ne pouvais pas utiliser le laser principal de l'expérience Sodium à \(589\)nm. Les lasers vert étant beaucoup plus commun, c'est ce type de laser à \(532\)nm que j'ai utilisé (SDL-532-XXXT Shangai Dream Lasers Technology). C'est un laser qui possède sa propre alimentation et sur lequel je n'avait aucun controle. En temps normal, son intensité pouvait varier de \(50\) à \(90\)mW et pouvait monter jusqu'à \(150\)mW juste après l'allumage. Malgré une plage d'intensité très large, l'intensité se stabilisait autour de valeurs sur des périodes de temps suffisemment longue pour que je puisse prendre des mesures, avec des fluctuations de l'ordre de \(0.2\)mW. Cependant à plusieurs moments durant le stage le laser commençait à fluctuer et à drifter de façon importante, rendant impossible la prise de mesures. Les mesures d'intensité ont été réalisé avec un puissance-mètre possèdant une précision de \(0.1\)mW (Thorlabs PM100D2).
+
+En ajoutant une lame \(\lambda/2\) suivi d'un PBS (Polarising Beam Splitter) à la suite du laser, j'ai pu mesurer la polarisation du laser en réalisant un fit avec l'intensité des faisceaux sortants du PBS\@. En effet, en mesurant les ratios de puissance transmises et reflechi par le PBS pour différents angles de la lame \(\lambda/2\), j'ai pu réaliser un fit et reconstruire la polarisation du laser comme le montre la figure~\ref{polarisation_laser}.
+\begin{figure}[ht]
+  \centering
+  \subfigure{\includegraphics[width=.49\textwidth]{figures/fit_pol_laser.png}}
+  \subfigure{\includegraphics[width=.49\textwidth]{figures/pol_laser.png}}
+  \caption{Reconstruction de la polarisation du laser par fit}\label{polarisation_laser}
+\end{figure}
+On peut y voir que le faisceau du laser est cohérent et possède une polarisation globale, sous la forme d'une ellipse allongé. Néanmoins ce n'est pas suffisant car l'AOM nécessite d'avoir une polarisation linéaire en entrée. J'ai donc gardé la lame \(\lambda/2\) suivi du PBS car cela me permet d'avoir une polarisation linéaire (verticale car le PBS est utilisé en réflection) très pure pour la suite. De plus, cela me permet de régler la puissance du laser à ma guise en tournant la lame \(\lambda/2\) et donc de baisser la puissance laser (suffisemment élevée pour faire mal aux yeux sans lunettes de protections). 
+
+J'ai aussi pu mesurer le waist du faisceau grâce à une caméra (WincamD LCM) et le logiciel DataRay. En réalisant des mesures du waist à différentes distances du laser, j'ai pu grâce à un fit calculer le waist minimal et sa position. Le fit est montrer à la figure~\ref{fit_waist_laser}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm]{figures/fit_waist_laser.png}
+  \caption{Fit de la mesure du waist du laser en fonction de la distance}\label{fit_waist_laser}
+\end{figure}
+Avec ce fit j'obtiens un waist minimal du laser à \(w_0 = 411(2) \mu\)m, situé à \(7(2)\)cm du laser. Due à la difficulté de faire des mesures précises, les barres d'erreur sont grandes ce qui résultent en un fit assez imprécis. On le retrouve dans les incertitudes, en particulier sur la valeur de \(z_0\) mais c'est surtout la valeur du waist qui est importante, et qui est quand à elle assez précise. 
+
+
+\subsubsection{Alimentation en Radio-Fréquence}
+
+Pour fonctionner, l'AOM a besoin d'être alimenté d'un signal radio de puissance élevée. En effet, pour les AOM que j'utilise à \(532\)nm, la puissance optimal est (d'après le constructeur) \(918\)mW soit \(29.6\)dBm. Cependant la source RF que j'utilise (MARCONI INSTRUMENTS avionics signal generator 2030) ne permet pas de génerer des puissances aussi élevées (jusqu'à \(13\)dBm) donc j'ai eu besoin d'installer un amplificateur de signal entre la source et l'AOM\@, comme on peut le voir sur la Figure~\ref{RFline}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics{figures/RF_line.pdf}
+  \caption{Schéma de l'alimentation en Radio-Fréquence de l'AOM}\label{RFline}
+\end{figure}
+Avant de calibrer les amplificateurs, j'ai d'abord du calibrer la source RF\@. 
+
+\paragraph{Source RF} 
+
+À l'aide d'un analyseur de spectre (Rohde \(\&\) Schwarz FPC 1000), j'ai pu voir que la source avait quelques erreurs de calibration. L'erreur sur la fréquence est négligeable (\(0.02\)MHz à \(428\)MHz alors que l'appareil est supposé avoir jusqu'à \(1\)Hz de résolution) mais pas l'erreur sur la puissance. En mesurant la différence de puissance réelle/affichée pour différente valeurs, j'obtiens la courbe de la Figure~\ref{cal_source_RF}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm, trim={1.5cm 1.5cm 0 0},clip]{figures/cal_sourceRF.png}
+  \caption{Courbe de calibration en puissance de la source RF}\label{cal_source_RF}
+\end{figure}
+En moyenne, la différence de puissance est de \(-2.65(2)\)dB. Les fluctuations de la différence de puissance étant petite, je les ai négligées et ai choisis la valeur moyenne comme correction de la puissance affichée sur la source. De plus, les fluctuations de correction sont pris en compte dans l'incertitude, donc toute l'information n'est pas complètement perdu. 
+
+\paragraph{Attenuateur}
+La puissance du signal en sortie de l'amplificateur est trop élevée pour l'analyseur de spectre, donc j'ai du rajouter un attenuateur pour faire la calibration. J'ai utilisé un attenuateur à \(40\)dB, même si après quelques mesures je me suis rendu compte que l'attenuation reelle était plus proche de \(39.5\)dB. Sachant que cette difference s'attenuait lorsque la puissance du signal incident augmentait, et que je n'ai pu le tester que sur la bande passante de la source (bien inférieure aux puissances sortant des ampli), j'ai supposé que l'attenuation pour les plages de puissance qdes ampli était de \(40\)dB. J'ai tout de même conservé une incertitude élevée à \(0.5\)dB pour en tenir compte par la suite. 
+
+\paragraph{Amplificateur 23dB}
+Le premier amplificateur que j'ai pu utiliser est un petit amplificateur étiqueté à 23dB (Mini-Circuits amplifier ZFL-2500VH+). En connectant la source à l'ampli, l'ampli à l'atténuateur et l'atténuateur à l'analyseur de spectre, j'ai pu obtenir la courbe de calibration de la Figure~\ref{cal_ampli23DB}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={5cm 1.2cm 5cm 2cm},clip]{figures/cal_ampli23dB.png}
+  \caption{Calibration de l'ampli Mini-Circuits à 23dB}\label{cal_ampli23DB}
+\end{figure}
+On peut y voir que le gain typique est plus élevée que prévu (24.7(2) au lieu de 23) mais surtout que l'ampli sature pour des signaux incidents de puissance supérieures à 2dBm. La puissance RF du signal amplifié ne peut pas dépasser 27.5dBm (soit 560mW) ce qui est trop faible pour atteindre une efficacité de diffraction maximale (qui est de 918mW annoncé). J'ai donc dû utiliser un ampli plus puissant. 
+
+\paragraph{Amplificateur 1W}
+Le second amplificateur que j'ai utilisé est un amplificateur 1W de la manip Sodium. Avec le même protocol, j'ai aussi pu réaliser une courbe de calibration, visible sur la figure\ref{cal_ampli1W}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={2cm 1.5cm 0 1cm},clip]{figures/cal_ampli1W.png}
+  \caption{Calibration de l'ampli 1W}\label{cal_ampli1W}
+\end{figure}
+On peut y voir aussi une saturation de l'ampli vers -5dBm mais avec un gain typique bien plus élevée (jusqu'a 39.0(5)dB) qui permet donc d'obtenir des signaux RF de puissance suffisante. On peut aussi y lire un certain nombre de valeurs caractéristiques:
+\begin{itemize}
+  \item pour obtenir un signal de puissance 918mW, il faut que le signal incident ait une puissance de -6.9dBm soit une valeur affichée sur la source de -4.27dBm
+  \item le seuil de puissance à ne pas depasser pour ne pas endommager l'AOM (annoncé à 1.3W par le constructeur) donne une puissance incidente maximale de -6.49dBm soit -3.84dBm affiché sur la source
+\end{itemize}
+Cependant je me suis rendu compte que l'amplificateur disfonctionnait, que à haute puissance il générait des oscillations de puissance qui faisait clignoter la figure de diffraction. Le plus étonnant est que ces oscillations n'étaient pas visibles à l'analyseur de spectre ou à l'oscilloscope donc j'ai dû en changer. 
+
+\paragraph{Amplificateur 2W}
+Le troisième amplificateur que j'ai utilisé est un amplificateur 2W de la manip Sodium. De nouveau, j'ai traçé la courbe de calibration avec le même protocol, qui est visible sur la Figure~\ref{cal_ampli2W}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={2cm 1.5cm 0cm 1cm},clip]{figures/cal_ampli2W.png}
+  \caption{Calibration de l'ampli 2W}\label{cal_ampli2W}
+\end{figure}
+On y voit que l'ampli possède un palier de gain bien plus stable que l'ampli précedent, qui commence à saturer à -10dBm. Étant donné que l'ampli indiquait que la puissance du signal incident ne devait pas dépasser 0dBm et que les puissances obtenues étaient plus que suffisante, je n'ai continué la courbe pour ne pas endommager l'ampli. De nouveau on peut y lire: 
+\begin{itemize}
+  \item la valeur de puissance optimale (théorique): -11.3dBm de puissance incidente soit -9.9dBm affiché sur la source
+  \item la valeur de puissance à ne pas depasser: -9.7dBm incident soit -8.3dBm affiché
+\end{itemize}
+C'est avec cette source que j'ai réalisé la majorité de mes mesures d'efficacité.
+
+
 \subsection{Résultats}
+
+\subsubsection{Caractérisation de l'AOM en simple-passage}
+
+\subsubsection{Carcatérisation de l'AOM en double-passage}
 
 \section{Logger de températures}
 
 
 
-\newpage
 
-ezjfhz\cite{ballu_production_2024} et al.\cite{donley_double-pass_2005} et\cite{lu_four-pass_2017} test 
 
 \newpage
 

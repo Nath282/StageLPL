@@ -8,9 +8,20 @@ Description du fichier
 # Import des librairies
 import matplotlib.pyplot as plt
 import numpy as np
-from Measurement import Measure, DataSet
+from Measurement import DataSet
 from Measurement import Measure as M
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+import matplotlib.colors as cl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
+
+# Colormap setup :
+cmin, cmax = 0,10
+cm = plt.get_cmap('magma')
+cnorm = cl.Normalize(vmin=cmin,vmax=cmax)
+colors = {x : cm(cnorm(x)) for x in range(cmin,cmax+1)}
 
 # Programme principal
 if __name__ == "__main__":
@@ -22,9 +33,21 @@ if __name__ == "__main__":
     gs1, gs2 = fig1.add_gridspec(1,1), fig2.add_gridspec(1,1)
     ax1, ax2 = fig1.add_subplot(gs1[0]), fig2.add_subplot(gs2[0])
 
+    # Single pass data 
+    rootpath, ext = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/', '.FDE.csv'
+    files = {'2W':'single pass squared 16/06', '2Wbis':None, '2Wm2':'single pass squared 19/06'}
+    colorsp = {'2W':7, '2Wbis':7, '2Wm2':8}
+    for filename in files.keys() :
+        ds = DataSet.read_file(rootpath+filename+ext)
+        freq, diff_eff, opt_pow = ds['RF displayed frequency'], (ds['Diffracted intensity']/ds.metadata['Parameters']['laser intensity'])**2*100, ds['Optimum displayed diffraction power']
+        color = colors[colorsp[filename]]
+        M.errorbar(ax1, freq, diff_eff, label=files[filename], color=color, marker='D', ls='')
+        M.errorbar(ax2, freq, opt_pow, label=files[filename], color=color, marker='s', ls='')
+
     # Double pass data
     rootpath, ext = '/Users/nathanleretif/StageLPL/data/double_pass/', '.DP.csv'
     files = {'FDE':'24/06 16h49', 'FDEm2':'24/06 17h06', 'FDEm3':'10/07 17h25'}
+    colordp = {'FDE':2, 'FDEm2':3, 'FDEm3':4}
     for filename in files.keys() : 
         ds = DataSet.read_file(rootpath+filename+ext)
         try : 
@@ -34,18 +57,11 @@ if __name__ == "__main__":
             freq, I_diff, opt_pow = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power']
             I_laser = ds.metadata['Parameters']['laser intensity']
             diff_eff = I_diff/I_laser*100
-        M.errorbar(ax1, freq, diff_eff, label='double pass '+files[filename], ls='', marker='s', color='C3')
-        M.errorbar(ax2, freq, opt_pow, label=files[filename], ls='', marker='s')
+        color = colors[colordp[filename]]
+        M.errorbar(ax1, freq, diff_eff, label='double pass '+files[filename], ls='', marker='s', color=color)
+        M.errorbar(ax2, freq, opt_pow, label=files[filename], ls='', marker='s',color=color)
 
-    # Single pass data 
-    rootpath, ext = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/', '.FDE.csv'
-    files = {'2W':'single pass squared 16/06', '2Wbis':None, '2Wm2':'single pass squared 19/06'}
-    colors = {'2W':'C4', '2Wbis':'C4', '2Wm2':'C5'}
-    for filename in files.keys() :
-        ds = DataSet.read_file(rootpath+filename+ext)
-        freq, diff_eff, opt_pow = ds['RF displayed frequency'], (ds['Diffracted intensity']/ds.metadata['Parameters']['laser intensity'])**2*100, ds['Optimum displayed diffraction power']
-        M.errorbar(ax1, freq, diff_eff, label=files[filename], color='C0', marker='D', ls='')
-        M.errorbar(ax2, freq, opt_pow, label=files[filename], color=colors[filename], marker='s', ls='')
+    
 
     ax1.set_xlim()
     ax1.set_ylim()

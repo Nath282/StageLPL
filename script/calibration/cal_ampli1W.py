@@ -34,7 +34,9 @@ if __name__ == "__main__":
     ax = fig.add_subplot()
     M.errorbar(ax,inc_power,out_pow,label='amplified signal',color='C0',ls='--')
     M.errorbar(ax,inc_power,gain,label='gain',color='C1',ls=':')
-    ax.hlines(31.14,xmin=-20,xmax=8,label='1.3W', color='r')
+    ax.set_xlim()
+    ax.set_ylim()
+    ax.hlines(31.1,xmin=-30,xmax=20,label='1.3W', color='r')
 
     ax.set_xlabel("incoming power (dBm)")
     ax.set_ylabel("amplified power/gain (dBm/dB)")
