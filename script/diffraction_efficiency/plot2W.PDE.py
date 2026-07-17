@@ -12,6 +12,11 @@ from Measurement import Measure, DataSet
 from scipy.stats import linregress
 from scipy.optimize import curve_fit
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
+
 
 # Programme principal
 if __name__ == "__main__":
@@ -30,17 +35,13 @@ if __name__ == "__main__":
 
     Measure.errorbar(ax,angle,diff_eff,ls='',marker='s',color='C0',label='data')
 
-    angle = angle.value
-    f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))**2+B
-    guess = [0,.015,.07,.85]
-    args, _ = curve_fit(f,angle,diff_eff.value,p0=guess)
-    #ax.plot(angle,f(angle,*guess),label='guess',ls='--',color='C2')
-    angle = np.linspace(min(angle),max(angle),200)
-    ax.plot(angle,f(angle,*args),label='fit',ls='-',color='C1')
-    #print(*args)
-    dmin,dmax = np.min(f(angle,*args)),np.max(f(angle,*args))
-    #print(dmin,dmax)
+    f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))+B
+    args = Measure.curve_fit(f, angle, diff_eff, guess=[0,.015,.07,.85], N=100)
     
+    X = np.linspace(angle.min(), angle.max(), 200)
+    ax.plot(X, f(X, *args), label='fit', color='C1')
+    print(*args)
+    print(diff_eff.max()*diff_eff.min())
 
     """
     angle2, diff_eff2 = angle[:9], diff_eff[:9]

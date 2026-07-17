@@ -9,10 +9,15 @@ Description du fichier
 import matplotlib.pyplot as plt
 from Measurement import Measure, DataSet
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
+
 if __name__=='__main__' : 
 
     rootpath = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/'
-    files = {'2W.ADE2.csv':'2th order','2W.ADE.csv':'1st order'}
+    files = {'2W.ADE2.csv':'2th order','2Wm2.ADE.csv':'1st order'}
     #files = {'2W.ADE2.csv':'2th order'}
 
     fig = plt.figure(figsize=(8,6))
@@ -22,8 +27,8 @@ if __name__=='__main__' :
     for filename in files.keys() : 
         ds = DataSet.read_file(rootpath+filename)
         params = ds.metadata['Parameters']
-        disp_pow, diff_eff = ds['RF displayed signal power(dBm)'], ds['Diffracted intensity (mW)'] / params['laser intensity']
-        Measure.errorbar(ax,disp_pow,diff_eff,ls='--',marker='.',label=files[filename])
+        disp_pow, diff_eff = ds['RF displayed signal power(dBm)'], (ds['Diffracted intensity (mW)'] / params['laser intensity'])*100
+        Measure.errorbar(ax,disp_pow,diff_eff,ls='',marker='s',label=files[filename])
         print(f"max diffraction efficiency for {filename} : {diff_eff.max()*100}")
 
     ax.set_xlabel('Displayed RF power (dBm)')

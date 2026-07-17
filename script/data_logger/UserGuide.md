@@ -20,7 +20,7 @@ Les paramètres importants du script sont modifiables dans le fichier main.py et
 - ENABLED_CHANNELS : liste indiquant quelles channels du data logger sont utilisés
 - THERMOCOUPLE_TYPES : dictionnaire indiquant le type des thermocouples associées à chaque channel
 - CHANNEL_LABELS : dictionnaire des label associés à chaque channel, sert à legender le graphique dans grafana
-- WAITING_TIME : temps attendu par le programme entre 2 mesures, il est important de preciser que ce temps ne prend pas en compte le temps nécessaire au programme afin de récuperer les mesures et les exporter vers InfluxDB (ce qui prend à peu près 1s d'après mes test) => le temps reel entre deux mesures est donc ~WAITING_TIME+1s
+- WAITING_TIME : temps 2 mesures, valide seulement si il est supérieur au temps d'exection d'une boucle et à un temps minimal donné par le data logger
 - paramètres de logs (loglevel, logfilename, logfilemode)
 
 Ces deux derniers points peuvent être directement modifié à l'execution du script depuis le terminal en ajoutant les flags correspondant, pour plus d'informations tappez dans le terminal dédié : 

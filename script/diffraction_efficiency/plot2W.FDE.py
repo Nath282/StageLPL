@@ -11,6 +11,11 @@ import numpy as np
 from Measurement import Measure as M
 from Measurement import DataSet 
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
+
 def format_data(ds : DataSet) :
     params = ds.metadata['Parameters']
     Freq, diff_eff, opt_pow = ds['RF displayed frequency'], ds['Diffracted intensity']/params['laser intensity']*100, ds['Optimum displayed diffraction power']
@@ -26,23 +31,23 @@ if __name__ == "__main__":
     fig1, fig2 = plt.figure(figsize=(8,6)), plt.figure(figsize=(8,6))
     gs1, gs2 = fig1.add_gridspec(1,1), fig2.add_gridspec(1,1)
     ax1, ax2 = fig1.add_subplot(gs1[0]), fig2.add_subplot(gs2[0])
-
+    """
     # 2W : 
     ds = DataSet.read_file(rootpath+'2W'+ext)
     freq, diff_eff, opt_pow = format_data(ds)
-    M.errorbar(ax1, freq, diff_eff, label='16/06', color='C0', ls='',marker='s')
+    M.errorbar(ax1, freq, diff_eff, label=f'16/06, max = {diff_eff.max()} %', color='C0', ls='',marker='s')
     M.errorbar(ax2, freq, opt_pow, label='16/06', color='C0', ls=':')
 
     # 2Wbis : 
     ds = DataSet.read_file(rootpath+'2Wbis'+ext)
     freq, diff_eff, opt_pow = format_data(ds)
     M.errorbar(ax1, freq, diff_eff, color='C0', ls='',marker='s')
-    M.errorbar(ax2, freq, opt_pow, color='C0', ls=':')
+    M.errorbar(ax2, freq, opt_pow, color='C0', ls=':')"""
 
     # 2Wm2 : 
     ds = DataSet.read_file(rootpath+'2Wm2'+ext)
     freq, diff_eff, opt_pow = format_data(ds)
-    M.errorbar(ax1, freq, diff_eff, label='19/06', color='C1', ls='',marker='s')
+    M.errorbar(ax1, freq, diff_eff, label=f'max = {diff_eff.max()} %', color='C1', ls='',marker='s')
     M.errorbar(ax2, freq, opt_pow, label='19/06', color='C1', ls=':')
 
     ax1.set_xlim()

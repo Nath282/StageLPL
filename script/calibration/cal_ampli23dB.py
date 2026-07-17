@@ -40,7 +40,7 @@ if __name__ == "__main__":
     ax.legend()
     ax.set_xlabel("amplitude du signal d'entré (dBm)")
     ax.set_ylabel('amplitude/gain (dBm/dB)')
-    ax.set_aspect('equal')
+    #ax.set_aspect('equal')
 
     plt.grid(True)
     plt.show()

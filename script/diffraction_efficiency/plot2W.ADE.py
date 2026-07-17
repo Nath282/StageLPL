@@ -10,11 +10,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import Measure, DataSet
 
+# Paramètres globaux d'affichage
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 16
+mpl.rcParams['lines.linewidth'] = 1.5
+
 # Programme principal
 if __name__ == "__main__":
 
     rootpath = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/'
-    files = {'2W.ADE.csv':"ampli 2W 15/06", '23dB.ADE.csv':'ampli 23dB', '2Wm2.ADE.csv':"ampli 2W 16/06"} # {filename : label}
+    files = {'23dB.ADE.csv':'ampli 23dB', '2Wm2.ADE.csv':"ampli 2W"} # {filename : label}
 
     fig = plt.figure(figsize=(8,6))
     gs = fig.add_gridspec(1,1)
@@ -28,19 +33,22 @@ if __name__ == "__main__":
         else : 
             rf_corr = params['RF_correction']
         inc_pow, diff_eff = ds['RF displayed signal power(dBm)'] + rf_corr, ds['Diffracted intensity (mW)'] / params['laser intensity']
-        Measure.errorbar(ax,inc_pow,diff_eff,ls='--',marker='.',label=files[filename])
+        Measure.errorbar(ax,inc_pow,diff_eff,ls='',marker='s',label=files[filename])
         print(f"max diffraction efficiency for {filename} : {diff_eff.max()*100} at {inc_pow[np.argmax(diff_eff)]}")
         if filename == '2Wm2.ADE.csv' :
             _diff_eff, _inc_pow = diff_eff, inc_pow
 
-    
     ax.set_ylim()
     ax.set_xlim()
     idmax = np.argmax(_diff_eff)
     max_eff = _diff_eff[idmax]
     id = np.argmin(np.abs(_diff_eff-max_eff/np.sqrt(2)))
-    ax.fill_betweenx([-1,2],x1=_inc_pow[id],x2=2*_inc_pow[np.argmax(_diff_eff)]-_inc_pow[id],alpha=.2,label='bandwidth',color='C2')
-    ax.vlines(29.6,-1,2,colors='black',linestyles='--',label="theoritical optimum power")
+    x_max = _inc_pow[np.argmax(_diff_eff)]
+    print(f"diff position maxima exp/th : {x_max-29.6}")
+    bw = 2*(x_max-_inc_pow[id])
+    print(f"bandwidth : {bw} dBm")
+    ax.fill_betweenx([-1,2],x1=x_max-bw/2,x2=x_max+bw/2,alpha=.2,label=f'experimental bandwidth : {bw} dBm',color='C1')
+    ax.vlines(29.6,-1,2,colors='black',linestyles='--',label="theoritical maxima : 918mW")
 
     ax.set_xlabel("incoming RF power (dBm)")
     ax.set_ylabel("diffraction efficiency (%)")
