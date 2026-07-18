@@ -24,56 +24,53 @@ def format_data(ds : DataSet) :
 # Programme principal
 if __name__ == "__main__":
 
-    rootpath = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/'
-    ext = '.FDE.csv'
-    filenames = ['2W','2Wbis','2Wm2']
+    fig = plt.figure(figsize=(8,6))
+    gs = fig.add_gridspec(1,1)
+    ax = fig.add_subplot(gs[0])
 
-    fig1, fig2 = plt.figure(figsize=(8,6)), plt.figure(figsize=(8,6))
-    gs1, gs2 = fig1.add_gridspec(1,1), fig2.add_gridspec(1,1)
-    ax1, ax2 = fig1.add_subplot(gs1[0]), fig2.add_subplot(gs2[0])
+    # Files extracting
+    dir, ext = '/Users/nathanleretif/StageLPL/data/FDE/', '.csv'
+    files = ['SP2', 'SP3', 'SP4']  # ['SP1', 'SP2', 'SP3', 'SP4', 'DP1', 'DP2', 'DP3']
+
+    # Colormap setup :
+    import matplotlib.colors as cl
+    cmin, cmax = 0,len(files)
+    cm = plt.get_cmap('magma')
+    cnorm = cl.Normalize(vmin=cmin,vmax=cmax)
+    colors = [cm(cnorm(x)) for x in range(cmin,cmax)]
+
+    for filename,c in zip(files,colors): 
+        ds = DataSet.read_file(dir+filename+ext)
+        freq, I_diff = ds['RF displayed frequency'], ds['Diffracted intensity']
+        try : 
+            I_laser = ds['laser intensity']
+        except KeyError : 
+            I_laser = ds.metadata['Parameters']['laser intensity']
+        diff_eff = (I_diff/I_laser)*100
+        x_max = freq[diff_eff.argmax()].value
+        #freq -= x_max-428
+        M.errorbar(ax, freq, diff_eff, color=c, label=filename, ls='', marker='s',errors=True)
+
+    ax.set_xlim()
+    ax.set_ylim()
+    ax.fill_betweenx([-100,200],428-25,428+25,label='AOM labeled bandwidth', color='grey',alpha=.4)
+    ax.vlines(428,ymin=-100,ymax=200,label='428MHz',color='black',ls='--')
+    ax.set_xlabel("Frequency (MHz)")
+    ax.set_ylabel("Max Diffraction efficiency (%)")
+    ax.legend()
+    ax.grid(True)
+
+    plt.tight_layout()
+    plt.show()
+
+
     """
-    # 2W : 
-    ds = DataSet.read_file(rootpath+'2W'+ext)
-    freq, diff_eff, opt_pow = format_data(ds)
-    M.errorbar(ax1, freq, diff_eff, label=f'16/06, max = {diff_eff.max()} %', color='C0', ls='',marker='s')
-    M.errorbar(ax2, freq, opt_pow, label='16/06', color='C0', ls=':')
-
-    # 2Wbis : 
-    ds = DataSet.read_file(rootpath+'2Wbis'+ext)
-    freq, diff_eff, opt_pow = format_data(ds)
-    M.errorbar(ax1, freq, diff_eff, color='C0', ls='',marker='s')
-    M.errorbar(ax2, freq, opt_pow, color='C0', ls=':')"""
-
-    # 2Wm2 : 
-    ds = DataSet.read_file(rootpath+'2Wm2'+ext)
-    freq, diff_eff, opt_pow = format_data(ds)
-    M.errorbar(ax1, freq, diff_eff, label=f'max = {diff_eff.max()} %', color='C1', ls='',marker='s')
-    M.errorbar(ax2, freq, opt_pow, label='19/06', color='C1', ls=':')
-
-    ax1.set_xlim()
-    ax1.set_ylim()
-    ax1.fill_betweenx(y=[0,150],x1=428-25,x2=428+25,label="AOM theoritical bandwidth",alpha=.3, color='grey')
-    ax1.vlines(428,-15,150,ls='--',color='black',label='428MHz')
-    ax1.set_xlabel("Frequency (MHz)")
-    ax1.set_ylabel("Diffraction efficiency (%)")
-    ax1.legend()
-    ax1.grid(True)
-
-    ax2.set_xlim()
-    ax2.set_ylim()
-    ax2.vlines(428,-15,5,ls='--',color='black',label='428MHz')
-    ax2.set_xlabel("Frequency (MHz)")
-    ax2.set_ylabel("Optimum RF power")
-    ax2.legend()
-    ax2.grid(True)
-
     # Mesure efficacité 428Mhz Type B : 
     i = np.array([34.1,34.0,33.8,33.6,33.8,33.7,33.1,33.1,32.9,32.9])
     laser = np.array([39.4,39.7,38.7,38.4,38.6,38.9,38.7,38.3,39,37.8])
     print(f"max efficiency ={M(i/laser,unc_type='a')}")
-
-    #plt.tight_layout()
-    plt.show()
+"""
+    
 
 
     

@@ -9,8 +9,7 @@ Mesure de l'efficacité de diffraction en fonction de la polarisation
 import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import Measure, DataSet
-from scipy.stats import linregress
-from scipy.optimize import curve_fit
+
 
 # Paramètres globaux d'affichage
 import matplotlib as mpl
@@ -37,31 +36,16 @@ if __name__ == "__main__":
 
     f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))+B
     args = Measure.curve_fit(f, angle, diff_eff, guess=[0,.015,.07,.85], N=100)
-    
+
     X = np.linspace(angle.min(), angle.max(), 200)
     ax.plot(X, f(X, *args), label='fit', color='C1')
     print(*args)
     print(diff_eff.max()*diff_eff.min())
-
-    """
-    angle2, diff_eff2 = angle[:9], diff_eff[:9]
-    line = linregress(angle2.value,diff_eff2.value)
-    a, b = line.slope, line.intercept
-    print(a,b)
-    diff_double_pass = diff_eff2 * diff_eff2.flip()
-    Measure.errorbar(ax,angle2,diff_eff2,ls='',marker='.',label='single pass')
-    ax.plot(angle2.value, a*angle2.value+b, ls='--', label='fit lineaire')
-    Measure.errorbar(ax,angle2,diff_double_pass,ls='--',marker='.',label='double pass')
-    ax.hlines(.815**2,angle2.min().value,angle2.max().value)
-    """
 
     ax.legend()
     ax.set_xlabel("half waveplate angle")
     ax.set_ylabel("Diffraction efficiency (%)")
     ax.grid(True)
 
-
-
-    #fig.savefig('/Users/nathanleretif/StageLPL/figures/fig23dB.ADE.png')
     plt.tight_layout()
     plt.show()

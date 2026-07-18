@@ -312,7 +312,37 @@ On peut y voir que la courbe bleu correspondant au second ordre est décalé en 
 
 \subsubsection{Caractérisation de l'AOM en double-passage}\label{subsubsec:cAOMDP}
 
+Après avoir réalisé le montage détaillé à la Figure~\ref{fig:full_setupDP}, j'ai pu caractériser l'efficacité de diffraction en double-passage en fonction de la fréuqence RF\@. En suivant le même protocole que pour le simple passage, j'ai pu obtenir la coubre visible sur la Figure~\ref{fig:FDE.DP}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/FDE.DP.png}
+  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF en double passage}\label{fig:FDE.DP}
+\end{figure}
+On peut voir que les courbes ne sont pas centrées sur 428MHz. Ce décalage apparaissant aussi sur d'autres mesures de simple passage réalisés plus tard, je suspecte un problème dans l'alimentation RF qui décale la fréquence du signal envoyé à l'AOM\@. J'imagine que c'est due à un décalage de la source, mais aucune anomalie n'est visible sur l'analyseur de spectre. Néanmoins au vu des symptomes, c'est très peu probable que la fréquence optimale de l'AOM se soit décalé, c'est pourquoi certaines de ces courbes pourront être recentré par la suite. 
+
+J'ai pu atteindre des efficacité de diffraction atteignant jusqu'à 64.6(5)\% en double-passage. Cette valeur est nettement plus basse que les 72.3(4)\% théoriques calculés à la partie~\ref{subsubsec:cAOMSP}. Cependant l'alignement de l'AOM pour réaliser ces courbes est différent, et ne permet pas d'obtenir des efficacités aussi élevées que 86.5(4)\%. Pour pouvoir mieux comparer, j'ai aussi affiché sur la Figure~\ref{fig:FDE.DP_SP} la courbe obtenue en simple passage pour cet alignement. Pour plus de clarté, les courbes ont été recentrées sur 428MHz.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/FDEcentered.DP+SP.png}
+  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF en double passage}\label{fig:FDE.DP_SP}
+\end{figure}
+On peut voir sur la Figure~\ref{fig:FDE.DP_SP} que les courbes obtenues en double-passsage sont très similaire à la courbe de simple passage au carré. Cela signifie qu'il n'y a pas de pertes supplémentaires due au montage propre au double passage, et que tout se passe comme si le faisceau passait dans deux AOM distincts (avec le même alignement). Due à la difficulté de mesurer avec précision l'intensité laser (qui depend fortement de la position et de l'inclinaison du puissance-mètre), les mesures possède des incertitudes trop élevée pour pouvoir identifier si les pertes au second passage sont réellement plus basse que les pertes au premier, comme le suggérait~\cite{donley_double-pass_2005}. En supposant que ,dans le montage en double double-passage pour réaliser le décalage de 1.7GHz, le second double-passage agisse de façon identique au premier, on devrait pouvoir atteindre des efficacités de diffraction de 41.7(6)\%. Cela représenterait une amélioration notable 
+
+Il est aussi important de noter que la puissance du signal RF maximisant l'efficacité de diffraction dépendait fortement de la fréquence, avec des variations jusqu'à 5dB. De plus ces fluctuations ne sont pas forcément constantes, comme on peut le voir sur la Figure~\ref{fig:OptPow}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/OptPow.png}
+  \caption{Optimum displayed RF power for different frequencies}\label{fig:OptPow}
+\end{figure}
+On peut distinguer des oscillations de 360MHz à 440MHz, mais de 440 à 500MHz les mesures deviennent décorrélées. Ces variation sont probablement due à des effets de résonances dans les fils et les différents appareils de l'alimentation RF, mais je n'explique pas la raison pourquoi les mesures deviennent décorrélées au dessus de 500MHz. En pratique, pour l'utilisation du montage, ce n'est pas dérangeant sachant que la fréquence sera fixé à 428MHz et n'en bougera pas. Néanmoins cela peut devenir un problème si l'on veut réaliser des balayages ou des changements de fréquences. 
+
+\subsection{Conclusion}\label{subsec:AOMconcl}
+Au cours de mon stage, j'ai pu caractériser les AOM à 428MHz que j'avais à disposition dans des configurations en simple et double-passage. En simple passage, j'ai pu obtenir jusqu'à 86.5(2)\% d'efficacité de diffraction à 428MHz pour un signal RF de puissance \(29.7(2)\)dBm soit 933mW. J'ai calculé une bande passante en puissance de \(8.4(4)\)dBm, et que l'efficacité de diffraction vaire de quelques pourcents sur la bande passante en fréquence donné par le constructeur (50MHz). En double passage, j'ai pu obtenir jusqu'à 64.6(5)\% d'efficacité de diffraction pour un alignement de l'AOM un peu moins bon. Néanmoins on s'aerçoit qu'aux incertitudes, les mesures obtenues en double-passage et les mesures de simple-passage au carré pour le même alignement coincide relativement bien. Cela signifie qu'il n'y a pas de pertes supplémentaires associées au deuxième passage relativement au passage dans un deuxième AOM\@. Avec ce montage, en supposant que rajouter une deuxième AOM en double-passage génère des pertes identiques, on devrait pouvoir atteindre une efficacité de 41.7(6)\% après avoir décalé le faisceau de 1.7GHz. Cela représenterait une amélioration notable sur l'expérience, où l'efficacité actuelle est de l'orde de quelques pourcents. 
+Néanmoins, due au fait que j'ai cassé un des deux AOM, je n'ai pas pu réaliser le montage complet avec deux double-passages. Une autre possibilté de montage aurait été de réaliser une configuration en quadruple-passage avec un seul AOM, comme présenté dans l'article~\cite{lu_four-pass_2017}, mais faute des pièces nécessaires je n'ai pu non plus réaliser ce montage. C'est pour cette raison que pour la fin de montage, je me suis consacré à la mise en place d'un data logger permettant de suivre en direct l'évolution des températures du four, qui fera l'objet de la partie suivante. 
+
 \section{Logger de températures}\label{sec:datalogger}
+
+
 
 
 

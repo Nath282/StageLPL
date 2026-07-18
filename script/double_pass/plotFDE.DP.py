@@ -10,75 +10,84 @@ import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import DataSet
 from Measurement import Measure as M
+import os
 
 # Paramètres globaux d'affichage
 import matplotlib as mpl
-import matplotlib.colors as cl
 mpl.rcParams['font.size'] = 16
 mpl.rcParams['lines.linewidth'] = 1.5
 
-# Colormap setup :
-cmin, cmax = 0,10
-cm = plt.get_cmap('magma')
-cnorm = cl.Normalize(vmin=cmin,vmax=cmax)
-colors = {x : cm(cnorm(x)) for x in range(cmin,cmax+1)}
 
 # Programme principal
 if __name__ == "__main__":
 
-    
-    #f1,f2,f3,f4,f5 = 'double_pass/FDEm2.DP.csv','double_pass/FDE.DP.csv', 'diffraction_efficiency/2Wm2.FDE.csv', 'diffraction_efficiency/2W.FDE.csv', 'diffraction_efficiency/2Wbis.FDE.csv'
+    fig = plt.figure(figsize=(8,6))
+    gs = fig.add_gridspec(1,1)
+    ax = fig.add_subplot(gs[0])
 
-    fig1, fig2 = plt.figure(figsize=(8,6)), plt.figure(figsize=(8,6))
-    gs1, gs2 = fig1.add_gridspec(1,1), fig2.add_gridspec(1,1)
-    ax1, ax2 = fig1.add_subplot(gs1[0]), fig2.add_subplot(gs2[0])
+    # Files extracting
+    dir, ext = '/Users/nathanleretif/StageLPL/data/FDE/', '.csv'
+    files = ['SP3', 'DP1', 'DP2', 'DP3']  # ['SP1', 'SP2', 'SP3', 'SP4', 'DP1', 'DP2', 'DP3']
 
-    # Single pass data 
-    rootpath, ext = '/Users/nathanleretif/StageLPL/data/diffraction_efficiency/', '.FDE.csv'
-    files = {'2W':'single pass squared 16/06', '2Wbis':None, '2Wm2':'single pass squared 19/06'}
-    colorsp = {'2W':7, '2Wbis':7, '2Wm2':8}
-    for filename in files.keys() :
-        ds = DataSet.read_file(rootpath+filename+ext)
-        freq, diff_eff, opt_pow = ds['RF displayed frequency'], (ds['Diffracted intensity']/ds.metadata['Parameters']['laser intensity'])**2*100, ds['Optimum displayed diffraction power']
-        color = colors[colorsp[filename]]
-        M.errorbar(ax1, freq, diff_eff, label=files[filename], color=color, marker='D', ls='')
-        M.errorbar(ax2, freq, opt_pow, label=files[filename], color=color, marker='s', ls='')
+    # Colormap setup :
+    import matplotlib.colors as cl
+    cmin, cmax = 0,8
+    cm = plt.get_cmap('magma')
+    cnorm = cl.Normalize(vmin=cmin,vmax=cmax)
+    value = [1,4,5,6]
+    colors = [cm(cnorm(x)) for x in value]
 
-    # Double pass data
-    rootpath, ext = '/Users/nathanleretif/StageLPL/data/double_pass/', '.DP.csv'
-    files = {'FDE':'24/06 16h49', 'FDEm2':'24/06 17h06', 'FDEm3':'10/07 17h25'}
-    colordp = {'FDE':2, 'FDEm2':3, 'FDEm3':4}
-    for filename in files.keys() : 
-        ds = DataSet.read_file(rootpath+filename+ext)
+    # Plotting kwargs :
+    files = {'SP3' : {'label':'single pass squared', 'color':cm(cnorm(1)), 'ls':'--'},
+             'DP1' : {'label':'double pass 1', 'color':cm(cnorm(4)), 'ls':''},
+             'DP2' : {'label':'double pass 2', 'color':cm(cnorm(5)), 'ls':''},
+             'DP3' : {'label':'double pass 3', 'color':cm(cnorm(6)), 'ls':''}
+             }
+
+    for filename,kwargs in files.items() : 
+        ds = DataSet.read_file(dir+filename+ext)
+        freq, I_diff = ds['RF displayed frequency'], ds['Diffracted intensity']
         try : 
-            freq, I_diff, opt_pow, I_laser = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power'], ds['laser intensity']
-            diff_eff = I_diff/I_laser*100
+            I_laser = ds['laser intensity']
         except KeyError : 
-            freq, I_diff, opt_pow = ds['RF displayed frequency'], ds['Diffracted intensity'], ds['Optimum displayed diffraction power']
             I_laser = ds.metadata['Parameters']['laser intensity']
-            diff_eff = I_diff/I_laser*100
-        color = colors[colordp[filename]]
-        M.errorbar(ax1, freq, diff_eff, label='double pass '+files[filename], ls='', marker='s', color=color)
-        M.errorbar(ax2, freq, opt_pow, label=files[filename], ls='', marker='s',color=color)
 
-    
+        diff_eff = I_diff/I_laser
+        x_max = freq[diff_eff.argmax()].value
+        if filename == 'SP3' :     
+            freq -= x_max-428+10
+        else : 
+            freq -= x_max-428
+        perm = np.argsort(freq)
+        freq = freq[perm]
+        diff_eff = diff_eff[perm]
 
-    ax1.set_xlim()
-    ax1.set_ylim()
-    ax1.fill_betweenx([-100,200],428-25,428+25,label='AOM labeled bandwidth', color='grey',alpha=.4)
-    ax1.vlines(428,ymin=-100,ymax=200,label='428MHz',color='black',ls='--')
-    ax1.set_xlabel("Frequency (MHz)")
-    ax1.set_ylabel("Double pass diffraction efficiency")
-    ax1.legend()
-    ax1.grid(True)
+        if filename[0:2] == 'SP' :
+            diff_eff = diff_eff**2*100
+        else : 
+            diff_eff = diff_eff*100
 
-    ax2.set_xlim()
-    ax2.set_ylim()
-    ax2.vlines(428,ymin=-20,ymax=0,label='428MHz',color='black',ls='--')
-    ax2.set_xlabel("Frequency (MHz)")
-    ax2.set_ylabel("Optimum RF power (dBm)")
-    ax2.legend()
-    ax2.grid(True)
+        kwargs['label'] = kwargs['label'] + f', max = {diff_eff.max()} %'
+
+        M.errorbar(ax, freq, diff_eff, errors=True, marker='s', **kwargs)
+
+        """f = lambda x,a,b,c : a*x**2 + b*x + c
+        idmax = diff_eff.argmax()
+        bw = 3
+        args = M.curve_fit(f, freq[idmax-bw:idmax+bw], diff_eff[idmax-bw:idmax+bw], guess=[.0001,.0001,.0001], ax=None, N=100)
+        X = np.linspace(freq[idmax-bw],freq[idmax+bw])
+        Y = f(X,*args)
+        ax.plot(X, Y, color=c)"""
+        
+
+    ax.set_xlim()
+    ax.set_ylim()
+    ax.fill_betweenx([-100,200],428-25,428+25,label='AOM labeled bandwidth', color='grey',alpha=.4)
+    ax.vlines(428,ymin=-100,ymax=200,label='428MHz',color='black',ls=':')
+    ax.set_xlabel("Recentered Frequency (MHz)")
+    ax.set_ylabel("Max Diffraction efficiency (%)")
+    ax.legend()
+    ax.grid(True)
 
     plt.tight_layout()
     plt.show()
