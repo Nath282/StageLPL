@@ -1,3 +1,5 @@
+% chktex-file 1
+% chktex-file 13
 \documentclass[12pt, a4paper]{article}
 
 \input{preambule.tex}
@@ -40,9 +42,9 @@
     Nathan Le Rétif 
 
     \vspace{1cm}
-    \textbf{Encadrant} 
+    \textbf{Encadrants} 
 
-    Aurélien Perrin 
+    Rémy Vatré, Aurélien Perrin
 
     Laboratoire de physique des lasers 
 
@@ -51,13 +53,11 @@
 
   \vspace{1.5cm}
   \noindent
-  \textbf{Key words:}
-  \textit{Gaz d'atomes ultrafroids, Imagerie d'atomes de Sodium, Faisceau laser repompeur, Modulateurs Acousto-optiques, Double passage, Quadruple passage}
+  \textbf{Mots-Clés:}
+  \textit{Gaz d'atomes ultrafroids, Imagerie d'atomes de Sodium, Faisceau laser repompeur, Modulateurs Acousto-optiques, Data Logger, Thermocouples}
 
   \section*{Résumé}
-  Lors de l'imagerie d'atomes ultrafroids par absorption, certains états d'énergies sont transparents au faisceau d'imagerie et ne permettent donc pas une mesure précise. Une solution pour y remédier est de créer un faisceau repompeur, qui va replacer les atomes dans des états d'énergie utiles à l'imagerie. Pour des atomes de Sodium, il suffit de réaliser un décalage en fréquence de \(1.7\)GHz du faisceau principal à \(589\)nm. C'est dans ce contexte que se plaçait mon stage, dont le but consistait à caractériser un nouveau montage optique à base de Modulateurs Acousto-Optiques (AOM) à \(428\)MHz pour réaliser ce décalage en fréquence. Quatres passages dans ces AOM sont nécessaires pour réaliser un décalage de \(1.7\)GHz, mon but était donc de caractériser des configurations avec deux AOM en double passage et/ou un seul AOM en quadruple passage. 
-
-  Pour des raisons tehcniques, je n'ai pas pu venir au bout 
+  L'objectif principal de ce stage a été la réalisation et l'optimisation d'un nouveau montage optique permettant de créer un faisceau repompeur pour l'imagerie d'atomes ultrafroids de Sodium. Cela consistait a créer un décalage de 1.713GHz du laser d'imagerie par de multiples passages dans des Modulateurs Acousto-Optiques (AOM) à 428MHz. Cela m'a permis d'aborder en détail l'optimisation de montages optiques et d'apprendre à manipuler des AOM. J'ai pu réaliser une configuratio en double-passage avec une efficacité de diffraction de 64.6(8)\%, ce qui laisse enviseager une efficacité de 42(2)\% pour le montage complet (que je n'ai pas pu réaliser faute de problèmes materiels). C'est pourquoi j'ai passé la fin de mon stage à configurer un data logger permettant de visualiser en direct les températures du four. Cela m'a permis de m'améliorer en automatisation de prises de mesures et d'apprendre à maitriser les logiciels InfluxDB (permettant de stocker les données) et Grafana (permettant de les visualiser).
 \end{titlepage}
 \clearpage
 \pagenumbering{arabic}
@@ -70,50 +70,55 @@
 
 \section*{Remerciements}
 
-J'aimerais sincèrement remercier toutes les personnes qui m'ont aidé et guidé pendant ce stage. Je pense tout particulièrement à mes encadrants Rémy Vatré et Aurélien Perrin pour le temps qu'ils m'ont fourni, pour avoir répondu à toutes mes questions et pour m'avoir rassuré quand j'ai cassé du materiel. Je voudrais aussi remercier Hélène Perrin, qui a été mon premier contact dans cette équipe et sans qui ce stage n'aurait pas pu avoir lieu. Et bien sûr j'aimerais remercier l'équipe BEC dans son ensemble, dont chaque personne fait preuve d'une grande gentillesse et bonne humeur, et qui m'ont permis d'avoir passé deux très bon moi avec eux. 
+J'aimerais sincèrement remercier toutes les personnes qui m'ont aidé et guidé pendant ce stage. Je pense tout particulièrement à mes encadrants Rémy Vatré et Aurélien Perrin pour le temps qu'ils m'ont fourni, pour avoir répondu à toutes mes questions et pour m'avoir rassuré quand j'ai cassé du materiel. Je voudrais aussi remercier Hélène Perrin, qui a été mon premier contact dans cette équipe et sans qui ce stage n'aurait pas pu avoir lieu. Et bien sûr j'aimerais remercier l'équipe BEC dans son ensemble, dont chaque personne fait preuve d'une grande gentillesse et bonne humeur, et qui m'ont permis d'avoir passé un formidable stage avec eux.
 
 \section{Introduction}
 
 \subsection{Contexte scientifique}
 
-Malgré des prédictions théoriques dès 1925, les condensats de Bose-Einstein n'ont été observée en laboratoire que 70 ans plus tard en 1995. C'est l'avènement du laser dans les années 1960 qui a permis le développement de techniques de refroidissement d'atomes neutres par pression radiative dans les années (pour lesquelles Claude Cohen-Tannoudji, Steven Chu et William D. Phillips ont reçu le prix Nobel en 1997). De nos jours, les ralentisseurs Zeeman et pièges magnéto-optiques permettent de refroidir des gaz de bosons à des temperatures de l'ordre de la centaine de nano-Kelvin. Ces gaz d'atomes ultrafroids forment un outil précieux en métrologie et en simulation quantique, faisant de ce domaine un sujet de recherche majeur de nos jours\cite{ballu_production_2024}. 
+Malgré des prédictions théoriques dès 1925, les condensats de Bose-Einstein ne sont observés en laboratoire que 70 ans plus tard grâce à l'avènement du laser. En effet c'est le développement des techniques de refroidissement d'atomes neutres par pression radiative qui ont rendu leur préparation possible. De nos jours, les ralentisseurs Zeeman et pièges magnéto-optiques (MOT) permettent de refroidir des gaz de bosons à des temperatures de l'ordre de la centaine de nano-Kelvin. Ces gaz d'atomes ultrafroids forment un outil précieux en métrologie et en simulation quantique, faisant de ce domaine un sujet de recherche majeur de nos jours\cite{ballu_production_2024}. 
 
-Pendant mon stage, j'étais rattaché à l'éxperience Sodium de l'équipe BEC, qui étudie la dynamique hors-équilibre d'un quasi-condensat d'atomes de Sodium unidimensionnel (1D) et dont une vue générale est présenté sur la figure~\ref{fig:schema_manip}.
+Durant mon stage, je travaillais sur l'expérience Sodium de l'équipe BEC qui étudie la dynamique de quasi-condensat 1D de Sodium. Une vue générale de l'expérience est disponible sur la Figure~\ref{fig:schema_manip}.
 \begin{figure}[ht]
   \centering
   \includegraphics[height=8cm]{figures/schema_manip.png}
-  \caption{Vue générale de l'expérience, modélisé sur SolidWorks par Thomas Badr et emprunté à la thèse de Manon\cite{ballu_production_2024}}\label{fig:schema_manip}
+  \caption{Vue générale de l'expérience Sodium, modélisé sur SolidWorks par Thomas Badr, extrait de~\cite{ballu_production_2024}}\label{fig:schema_manip}
 \end{figure}
-Pour ce faire, des cubes de Sodium solides sont chauffées das un four à \(300\)K afin d'être vaporisé et injecté dans une chambre à vide. Le jet d'atomes de sodium est alors envoyé dans un ralentisseur Zeeman, qui utilise la pression de radiation d'un laser se propageant dans la direction opposé aux atomes pour les ralentirs. Cela est rendu possible grâve au fait que le laser soit accordé sur une transition, dites cyclante, de l'atome et qui permet des cycles d'excitations/désexcitations conférant à l'atome une impulsion moyenne dans le sens opposé au laser. Un gradient de champ magnétique permet de controler l'écart entre les niveaux d'énergie et compenser l'effet Doppler afin que le laser reste accordé sur la transition cyclante de l'atome de Sodium. Les atomes arrivent alors dans un piège magnéto-optique (MOT) qui consiste en une chambre éclairé par trois paires de laser contra-propageant dans les trois directions de l'espace et doté de bobines anti-Helmholtz permettant de créer un champ magnétique quadripolaire. Tous ce dispositif permet de créer un condensat de plusieurs centaines de milliers d'atomes de Sodium, qui est alors déplacé grâce à un transport magnétique vers une nouvelle chambre contenant une puce doté de microfils d'or. Ces microfils permettent de crer un champ magnétique comprimant le gaz dans deux directions de l'espace afin d'obtenir le quasi-condensat 1D. L'imagerie est réalisé par absorption, c'est à dire que l'on fait passer un faisceau accordé sur la transition cyclante dans le condensat. Les atomes absorbent alors les photons du faisceau faisant apparaitre une ombre sur la caméra placée derrière, permettant de reconstituer la distribution spatiale du gaz. 
+La préparation du condensat débute avec la vaporisation de cubes de Sodium dans un four à 300K, gaz qui est alors injecté dans une chambre à vide. Le jet d'atomes de Sodium est envoyé dans un ralentisseur Zeeman, qui utilise la pression radiative d'un laser pour ralentir les atomes.
 
-\subsection{Enjeux du stage}
-
-La transition choisie en tant que transition cyclante est la raie \(D_2\) du Sodium, dont la structure hyperfine est représenté sur la figure~\ref{fig:hyperfine_structure}.
+Pour cela, le laser doit être accordé sur une transition du Sodium qui permet des cycles d'excitation/désexcitation très stable. En effet ce sont ces cycles qui vont conférer à l'atome une impulsion moyenne et le ralentir. Cette transition, appelée transition cyclante, est la transition \(f=2 \rightarrow f'=3\) entre deux niveaux hyperfins de la raie raie \(D_2\) du Sodium. Cette structure est représentée sur la Figure~\ref{fig:hyperfine_structure}.
 \begin{figure}[ht]
   \centering
   \includegraphics[height=8cm]{figures/NaLevels_Manon.png}
   \caption{Structure hyperfine de la transition \(D_2\) du Sodium, schéma emprunté à la thèse de Manon\cite{ballu_production_2024}}\label{fig:hyperfine_structure}
 \end{figure}
-Pour être exact, la transition cyclante est la transition entre les états hyperfins \(f=2 \rightarrow f'=3\) car es règles de selection imposent que les atoms dans l'état \(f'=3\) se désexcite dans l'état \(f=2\), ce qui en fait une transition très stable, adaptées aux cycles d'excitation/désexcitation nécessaires pour refroidir les atomes. Cependant dans de rare cas, les atomes peuvent se deséxciter dans l'état \(f=1\), les rendant alors transparent pour le faisceau d'imagerie réglé sur la transition cyclante. Il faut donc les repomper dans l'état \(f'=2\) pour qu'il puisse retomber dans l'état \(f=2\). C'est le rôle du faisceau repompeur, qui doit être accordé sur la transition \(f=1 \rightarrow f'=2\) ce qui correspond à un décalage de \(1.713\)GHz par rapport à la transition cyclante. Ce décalage est réalisé grâce à un modulateur électro-optique emprunté à un autre laboratoire, mais dont l'efficacité ne dépasse pas quelques pourcents. 
+Le critère de stabilité est vérifié grâce aux règles de selections, qui oblige les atomes dans l'état \(f'=3\) de se désexciter dans l'état \(f=2\).
 
-De façon indépendante, un autre enjeu de l'expérience qui se trouvera important pour mon stage est la difficulté d'accès aux valeurs de températures du four. Celui-ci est en effet composé de 3 parties distinctes, chauffées à des températures différentes. Il est muni d'un trio de thermocouples permettant de réaliser un asservissement en température de chaque partie du four afin de maximiser sa stabilité. Il est aussi muni d'un autre trio de thermocouples de contrôle afin de pouvoir mesurer la température dans chaque partie du four. Cependant, actuellement, la seule façon d'avoir accès à ces mesures et de faire le tour de l'expérience et de brancher le bon thermocouple sur un appareil dédié. 
+Un gradient de champ magnétique permet alors, par effet Zeeman, de compenser l'effet Doppler pour que la laser reste accordé sur toute la longueur du ralentisseur. Les atomes ralentis peuvent alors être piégé dans un Piège Magnéto-Optique (MOT) constitué de 6 lasers contra-propageant et d'un champ magnétique quadripolaire. Ce dispositif permet de refroidir le gaz jusqu'à creer un condensat. Le condensat est alors déplacé grâce à un transport magnétique vers une puce doté de microfils d'or qui va comprimer le condensat dans deux directions. C'est grâce à cette puce que l'on peut générer un gaz quasi unidimensionnel. L'imagerie est réalisé par absorption en envoyant un faisceau laser accordé sur la transition cyclante. Les atomes vont alors absorber les photons du faisceau, et l'ombre produite permet de reconstruire la distribution spatiale du condensat. 
 
-\subsection{Objectifs}
+\subsection{Enjeux du stage}
 
-L'objectif principal de ce stage est de caractériser un nouveau montage optique permettant de réaliser le décalage en fréquence de \(1.713\)GHz afin de remplacer le modulateur électro-optique actuel dont l'efficacité est très basse. Le but est d'utiliser à la place des Modulateurs Acousto-Optiques (AOM) de \(428\)MHz qui possède une efficacité bien plus grande (\(>90\% \)) et de réaliser quatre passages du laser. Pour ce faire, deux types de configurations sont enviseagées, soit réaliser deux configurations de type double-passage\cite{donley_double-pass_2005} successives, soit réaliser une configuration en quadruple-passage\cite{lu_four-pass_2017}. L'objectif de ce stage est de réaliser et caractériser dans un premier temps la configuration double double-passage qui semble plus adapté, et si possible le quadruple-passage. 
+L'enjeu principal de ce stage concerne le faisceau repompeur d'imagerie, qui est actuellement très peu efficace. En effet, le faisceau d'imagerie est accordé sur la transition cyclante \(f=2 \rightarrow f'=3\) (voir le schéma de la Figure~\ref{fig:hyperfine_structure}). Cependant, à la sortie du MOT, les atomes sont dans l'état \(f=1\), transparent à l'imagerie. Il faut donc les repomper dans l'état \(f=2\) avant de les imager. Pour cela, on repompe les atomes dans l'état \(f'=2\) afin qu'ils se désexcite dans l'état \(f=2\). Le faisceau repmopeur doit donc être accordé sur la transition \(f=1 \rightarrow f'=2\), qui est décalé de 1.713GHz de la transition cyclante. Actuellement ce décalage est réalisé par un modulateur électro-optique qui permet de créer ce faisceau repompeur à partir du faisceau d'imagerie, mais il ne possède que quelques pourcents d'efficacité. L'objectif de ce stage est donc de réaliser et optimiser un montage optique en effectuant plusieurs passages dans des Modulateurs Acousto-Optiques (AOM) à 428MHz, dans le but d'obtenir un système optique plus efficace. 
 
-Cependant pour cause de plusieurs problèmes techniques, je n'ai pas pu venir à bout des objectifs précédents. Sur les dernières semaines de stage, mes encadrants m'ont demandé de configurer un data logger permettant de récupérer et visualiser en temps réel les températures des différentes parties du four. Cela leur permettrait de voir l'évolution des températures du four en temps réel, de stocker les données pour pouvoir comparer l'évolution des températures sur de longues périodes comme une année et à terme de visualiser aussi les températures d'autres composants de l'expérience comme les différentes bobines. L'objectif de récuperer et configurer le driver Python du data logger pour lui permettre d'envoyer ses données sur une base de données InfluxDB (spécialisé dans les données temporelles) et de connecter cette base de donnée à un logiciel de visualisation de métrique appelée Grafana. 
+Un autre enjeu de ce stage concerne la difficulté d'accès aux valeurs de températures du four. Celui-ci est en effet composé de 3 parties distinctes, chauffées à des températures différentes. Chaque partie est muni d'un thermocouple d'asservissement, servant à stabiliser la température, et d'un thermocouple de contrôle. Cependant les mesures de ces thermocouples de contrôle ne sont  accessibles qu'en lisant la valeur sur un appareil à l'autre bout de la pièce. De plus l'appareil en question ne peut être branché qu'à un seul thermocouple à la fois. Un objectif secondaire de ce stage est de configurer un data logger permettant de visualiser en direct l'évolution des températures du four depuis les ordinateurs de l'expérience. Cela est d'autant plus utile qu'à terme, des thermocouples de contrôle seront aussi installés sur les différentes bobines de l'expérience.
 
+\subsection{Objectifs du stage}
+
+Comme mentionné dans la partie précedente, l'objectif principal de ce stage consiste en la réalisation et l'optimisation d'un système optique permettant de réaliser un décalage de 1.713GHz d'un laser à l'aide d'AOM de 428MHz. Pour cela, le faisceau laser doit passer quatre fois dans les AOM, qui possèdent une efficacité maximale de 92\% (d'après le fabricant). Le but serait d'utiliser deux AOM à la suite dans des configurations assez commune, dite de double-passage~\cite{donley_double-pass_2005}, qui permet de faire passer le faisceau deux fois le faisceau dans chaque AOM. Si le temps le permet, une autre possibilté serait de réaliser une configuration de quadruple-passage dans un seul AOM~\cite{donley_double-pass_2005}.
+
+Un objectif secondaire de ce stage consiste en la configuration d'un data logger pour la visualisation des températures du four. Le but serait d'utiliser un script Python pour piloter le data logger et récuperer les données, une base de données InfluxDB pour le stockage et le logiciel Grafana pour la visualisation.
 
 \section{Montage optique repompeur}\label{sec:opticsetup}
 
+Dans cette partie, je vais dans un premier temps apporter quelques détails sur le fonctionnement d'un AOM et le principe du montage en double-passage. Je détaillerai ensuite le montage expérimental que j'ai réalisé et comment je l'ai optimisé. Finalement, je présenterai les résultats que j'ai pu obtenir en caractérisant ce montage. 
+
 \subsection{Les Modulateurs Acousto-Optique}\label{subsec:AOM}
 
-Le montage repose entièrement sur une optique appelée modulateur acousto-optique (abrégé en AOM pour Acousto-Optic Modulator). C'est cette optique qui permet de réaliser un décalage en fréquence de la lumière passant à l'intérieur.
+Les Modulateurs Acousto-Optiques (AOM) sont la pièce principale de mon montage. Ce sont eux qui permettent de décaler en fréquence le laser, pour à bout parvenir aux 1.713GHz. 
 
 \subsubsection{Fonctionnement}\label{subsubsec:AOMth}
 
-Il est constitué d'un cristal (dans mon cas du \(TeO_2\)) et d'un transducteur qui permet de transmettre des ondes Radio Fréquences (RF) dans le cristal sous forme d'ondes acoustiques. Les intéractions photons-phonons (l'équivalent des photons dans le cadre d'ondes acoustiques plutôt que des ondes lumineuses) au sein du cristal créent une figure de diffraction dont chaque ordre \(m\) est décalé linéairement en fréquence selon:
+Un AOM est constitué d'un cristal (dans mon cas du \(TeO_2\)) et d'un transducteur qui permet de transmettre des ondes Radio Fréquences (RF) dans le cristal sous forme d'ondes acoustiques. Les intéractions photons-phonons (l'équivalent des photons dans le cadre d'ondes acoustiques plutôt que des ondes lumineuses) au sein du cristal créent une figure de diffraction dont chaque ordre \(m\) est décalé linéairement en fréquence selon:
 \begin{equation}
   \nu_m = \nu_{inc} + m*f
 \end{equation}
@@ -121,7 +126,7 @@ où \(\nu_m\) est la fréquence laser de l'ordre de diffraction m, \(\nu_{inc}\)
 \begin{equation}
   \theta_m \approx \frac{m*\lambda}{n*\Lambda}
 \end{equation}
-valide pour les ordres 0,1,2,3 et -1,-2,-3 où \(\lambda\) est la longueur d'onde de la lumière incidente, \(\Lambda\) est la longueur d'onde acoustique et où \(n\) est l'indice optique du milieu. De plus, en modifiant l'angle entre la lumière incidente et les ondes acoustiques, on peut focaliser la majorité de la lumière diffracté dans un ordre précis. Pour les AOM que j'ai utilisé, il était indiqué que l'efficacité de diffraction dans l'ordre ±\(1\) pouvait atteindre jusqu'à \(92\%\). Ce sont ces caractéristiques qui devraient permettre de réaliser un faisceau repompeur efficace. 
+(approximation valide pour les ordres 0,1,2,3 et -1,-2,-3) où \(\lambda\) est la longueur d'onde de la lumière incidente, \(\Lambda\) est la longueur d'onde acoustique et où \(n\) est l'indice optique du milieu. De plus, en modifiant l'angle entre la lumière incidente et les ondes acoustiques, on peut focaliser la majorité de la lumière diffracté dans un ordre précis. Pour les AOM que j'ai utilisé, il était indiqué que l'efficacité de diffraction dans l'ordre ±\(1\) pouvait atteindre jusqu'à \(92\%\). Ce sont ces caractéristiques qui devraient permettre de réaliser un faisceau repompeur efficace. 
 
 \subsubsection{Montage en double-passage}\label{subsubsec:AOMDP}
 
@@ -326,7 +331,7 @@ J'ai pu atteindre des efficacité de diffraction atteignant jusqu'à 64.6(5)\% e
   \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/FDEcentered.DP+SP.png}
   \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF en double passage}\label{fig:FDE.DP_SP}
 \end{figure}
-On peut voir sur la Figure~\ref{fig:FDE.DP_SP} que les courbes obtenues en double-passsage sont très similaire à la courbe de simple passage au carré. Cela signifie qu'il n'y a pas de pertes supplémentaires due au montage propre au double passage, et que tout se passe comme si le faisceau passait dans deux AOM distincts (avec le même alignement). Due à la difficulté de mesurer avec précision l'intensité laser (qui depend fortement de la position et de l'inclinaison du puissance-mètre), les mesures possède des incertitudes trop élevée pour pouvoir identifier si les pertes au second passage sont réellement plus basse que les pertes au premier, comme le suggérait~\cite{donley_double-pass_2005}. En supposant que ,dans le montage en double double-passage pour réaliser le décalage de 1.7GHz, le second double-passage agisse de façon identique au premier, on devrait pouvoir atteindre des efficacités de diffraction de 41.7(6)\%. Cela représenterait une amélioration notable 
+On peut voir sur la Figure~\ref{fig:FDE.DP_SP} que les courbes obtenues en double-passsage sont très similaire à la courbe de simple passage au carré. Cela signifie qu'il n'y a pas de pertes supplémentaires due au montage propre au double passage, et que tout se passe comme si le faisceau passait dans deux AOM distincts (avec le même alignement). Due à la difficulté de mesurer avec précision l'intensité laser (qui depend fortement de la position et de l'inclinaison du puissance-mètre), les mesures possède des incertitudes trop élevée pour pouvoir identifier si les pertes au second passage sont réellement plus basse que les pertes au premier, comme le suggérait~\cite{donley_double-pass_2005}.
 
 Il est aussi important de noter que la puissance du signal RF maximisant l'efficacité de diffraction dépendait fortement de la fréquence, avec des variations jusqu'à 5dB. De plus ces fluctuations ne sont pas forcément constantes, comme on peut le voir sur la Figure~\ref{fig:OptPow}.
 \begin{figure}[ht]
@@ -337,12 +342,83 @@ Il est aussi important de noter que la puissance du signal RF maximisant l'effic
 On peut distinguer des oscillations de 360MHz à 440MHz, mais de 440 à 500MHz les mesures deviennent décorrélées. Ces variation sont probablement due à des effets de résonances dans les fils et les différents appareils de l'alimentation RF, mais je n'explique pas la raison pourquoi les mesures deviennent décorrélées au dessus de 500MHz. En pratique, pour l'utilisation du montage, ce n'est pas dérangeant sachant que la fréquence sera fixé à 428MHz et n'en bougera pas. Néanmoins cela peut devenir un problème si l'on veut réaliser des balayages ou des changements de fréquences. 
 
 \subsection{Conclusion}\label{subsec:AOMconcl}
-Au cours de mon stage, j'ai pu caractériser les AOM à 428MHz que j'avais à disposition dans des configurations en simple et double-passage. En simple passage, j'ai pu obtenir jusqu'à 86.5(2)\% d'efficacité de diffraction à 428MHz pour un signal RF de puissance \(29.7(2)\)dBm soit 933mW. J'ai calculé une bande passante en puissance de \(8.4(4)\)dBm, et que l'efficacité de diffraction vaire de quelques pourcents sur la bande passante en fréquence donné par le constructeur (50MHz). En double passage, j'ai pu obtenir jusqu'à 64.6(5)\% d'efficacité de diffraction pour un alignement de l'AOM un peu moins bon. Néanmoins on s'aerçoit qu'aux incertitudes, les mesures obtenues en double-passage et les mesures de simple-passage au carré pour le même alignement coincide relativement bien. Cela signifie qu'il n'y a pas de pertes supplémentaires associées au deuxième passage relativement au passage dans un deuxième AOM\@. Avec ce montage, en supposant que rajouter une deuxième AOM en double-passage génère des pertes identiques, on devrait pouvoir atteindre une efficacité de 41.7(6)\% après avoir décalé le faisceau de 1.7GHz. Cela représenterait une amélioration notable sur l'expérience, où l'efficacité actuelle est de l'orde de quelques pourcents. 
-Néanmoins, due au fait que j'ai cassé un des deux AOM, je n'ai pas pu réaliser le montage complet avec deux double-passages. Une autre possibilté de montage aurait été de réaliser une configuration en quadruple-passage avec un seul AOM, comme présenté dans l'article~\cite{lu_four-pass_2017}, mais faute des pièces nécessaires je n'ai pu non plus réaliser ce montage. C'est pour cette raison que pour la fin de montage, je me suis consacré à la mise en place d'un data logger permettant de suivre en direct l'évolution des températures du four, qui fera l'objet de la partie suivante. 
+
+
 
 \section{Logger de températures}\label{sec:datalogger}
 
+Sur l'expérience Sodium, le four est la toute première étape du processus préparant les condensats. Il permet de vaporiser des cubes solides de Sodium afin d'otbenir un gaz d'atome de Sodium. Il est constitué de trois parties chauffées de façon indépendantes dont on peut faire varier la température. Pour être stable dans le temps, chaque partie est muni d'un d'un asservissement en température. Le signal d'asservissement est fourni par un thermocouple, un capteur utilisant la différence de tension généré entre deux fils par une différence de température pour mesurer la température. Pour des raisons de contrôles, chaque partie est aussi munie d'un deuxième thermocouple permettant de contrôler la température hors-asservissement. Cependant, au début de mon stage, le seul moyen d'accéder à cette valeur était de brancher le thermocouple correspondant dans un capteur fait-pour. Cela était très peu pratique car il fallait aller à l'arrière de la manip, et qu'on ne pouvait brancher qu'un seul thermocouple à la fois. De plus, les mesures étaient seulement affiché momentanément, donc on ne pouvait pas visualiser l'évolution sur une journée ou une semaine par exemple. Afin de pouvoir visualiser en direct l'évolution des températures, j'ai configuré un data logger (PicoTech TC-08) pour collecter les données de températures et les exporter dans une base de donnée InfluxDB\@. J'ai alors pu y connecter un logiciel de visualisation appelée Grafan qui accède aux données contenues dans la base et les afficher. Ce fonctionnement est schématisé sur la Figure~\ref{fig:datalogger_scheme}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.95\textwidth]{figures/data_logger_scheme.pdf}
+  \caption{Schéma de fonctionnement de l'affichage des températures}\label{fig:datalogger_scheme}
+\end{figure}
 
+\subsection{Description}
+
+\subsubsection{Data Logger PicoTech TC-08}\label{subsubsec:TC08}
+
+Le data logger que j'ai configuré est le modèle TC-08 de l'entreprise PicoTechnology. Il possède huit canaux, permettant de brancher jusqu'à huit thermocouples et est capable de réaliser jusqu'à 10 mesures par secondes. Il vient avec un driver permettant sa gestion à l'aide d'un script Python. Ce driver se présente sous la forme d'une bibliothèque logicielle (un ensemble de fonctions pré-compilées en C) qui permettent de piloter l'appareil. Pour utiliser ces fonctions, un package Python permet de wrapper ces fonctions à un objet Python suos forme de méthodes. Cela signifie qu'en pratique, on dispose d'un objet Python (une instance de classe) auquelle sont associées des méthodes qui permettent d'appeler les fonctions de la bibliothèque logicielle et de piloter l'appareil. De cette façon, on va pouvoir piloter le data logger grâce à un script Python.
+
+\subsubsection{InfluxDB}
+
+InfluxDB est une un type de base de donnée spécialisant dans le traitement et le stockage de données temporelles (où tout point est associé à une date spécifique). C'est ce qui va permettre de stocker les données de températures, y compris sur des durées longues. Pour cela j'ai utilisé la version InfluxDB3-Core qui correspond à la dernière version de Influxdb qui est installé localement sur l'ordinateur. Un package permet alors de générer un client Python permettant d'intéragir avec la base de donnée locale, notamment d'exporter des données. C'est grâce à ce package que je vais pouvoir exporter les données de températures vers la base de données.
+
+\subsubsection{Grafana}
+
+Grafana est un logiciel de visualisation de données. Dans notre cas, il va permettre d'accéder aux données stockées dans InfluxDB et de les visualiser. J'ai choisi d'utiliser la version Cloud de Grafana pour qu'il soit possible de voir l'évolution des températures du four à distance. Cependant pour que la version Cloud de Grafana puisse accéder à la base de donnée locale, j'ai eu besoin d'installer un agent PDC (Private Datasource Connect) sur l'ordinateur pour qu'il puisse faire le lien entre les deux. Grafana permet alors de visualiser en direct les données dans une belle interface, pratique et hautement customisable.
+
+\subsection{Fonctionnement}
+
+\subsubsection{Script d'extraction et exportation des données}
+
+La collecte des données et l'exportation vers la base de donnée InfluxDB est centralisé dans un script Python, dont le fonctionnement est résumé en pseudo-code ci dessous.
+
+\begin{algorithm}[ht]
+  \DontPrintSemicolon\SetAlgoLined
+  Initialisation de TC08Device\;
+  Initialisation du client InfluxDB\;
+  \While{True}{
+      \ForEach{channel \textbf{in} \texttt{ENABLED\_CHANNELS}}{
+          $temp \gets \mathrm{TC08Device.get\_temperature(channel)}$\;
+          $\mathrm{Points.append}(temp)$\;
+          }
+      $\mathrm{InfluxClient.write}(Points)$\;
+      $\mathrm{Sleep}(\texttt{WAITING\_TIME})$\;
+  }
+  Fermeture de TC08Device\;
+  Fermeture du client InfluxDB\;
+  \caption{Main.py}
+\end{algorithm}
+
+Il est possible de modifier les différents canaux qui sont reliés à un thermocouple en modifiant la variable \texttt{ENABLED\_CHANNELS} et de modifier le temps entre deux mesures avec la variable \texttt{WAITING\_TIME}. Le client InfluxDB est crée grace au package influxdb3-python. Cependant l'utilisation du driver python du data logger TC-08 était très peu clair, notamment due au fait que les fonctions de la librairie logicielle sont nativement écrites en \texttt{C} et que plusieurs étapes sont nécessaires pour initialiser l'appareil. Pour ces raisons, j'ai créé une classe Python qui encapsule le fonctionnement du driver, permettant de beaucoup simplifier son utilisation. Cette classe permet aussi d'encapsuler la gestion des erreurs et des logs pour clarifier les erreurs et faciliter le debuggage. 
+
+\subsubsection{Visualisation avec Grafana}
+
+Pour visualiser les données avec Grafana, il faut lancer l'agent Grafana-PDC installé sur l'ordinateur puis configurer la connection entre Grafana Cloud et la base de donnée Influx. Une fois cela fait, il est possible d'acceder et de visualiser les données grâce à des requêtes SQL\@. 
+
+\subsubsection{Automatisation avec un fichier batch}
+
+Afin d'automatiser le processus, j'ai développé un script batch (un type de fichier permettant d'executer des commandes dans un terminal sur Windows) permettant de démarrer InfluxDB, l'agent Grafana PDC et de lancer le script python main.py. De plus, je l'ai ajouté au planificateur de tâche Windows de tel sorte qu'il soit executé automatiquement au démarrage de l'ordinateur. Pour être précis, le script lance InfluxDB et l'agent Grafana PDC sur des terminaux dédiés et cachés. Les logs de chacun sont récupérés et stockées dans des fichiers dédiées. Le script Python, quand à lui, est executé dans un terminal visible de tel sorte à ce qu'il puisse être démarré et éteint manuellement afin de pouvoir modifier certains paramètres sans tout éteindre. 
+
+\subsection{Résultats}
+
+Après avoir tout installé et configuré sur les ordinateurs de l'expérience, j'ai pu mettre le programme en marche et vérifier que tout marchait bien. J'ai quand même eu quelques problèmes de connexion entre Grafana et InfluxDB, mais après les avoir réglé tout marchait bien. Depuis, le data logger tourne en quasi-continu et permet de visualiser les températures du four. Deux aperçus de ce que l'on peut voir sur Grafana est visible sur la Figure~\ref{fig:grafana}.
+\begin{figure}[ht]
+  \centering
+  \subfigure{\includegraphics[width=.49\textwidth]{figures/GrafanaScreenshot1.png}}
+  \subfigure{\includegraphics[width=.49\textwidth]{figures/GrafanaScreenshot2.png}}
+  \caption{Exemple d'affichage avec Grafana}\label{fig:grafana}
+\end{figure}
+Le premier aperçu est une vue sur 12h alors que le four est n'était pas allumé. On peut y voir les oscillations due à la climatisation. Le deuxième est vue sur 2 jours, alors que le four était allumé pendant la journée et éteint la nuit. 
+
+\section{Conclusion}
+
+Au cours de mon stage, j'ai pu caractériser les AOM à 428MHz que j'avais à disposition dans des configurations en simple et double-passage. En simple passage, j'ai pu obtenir jusqu'à 86.5(2)\% d'efficacité de diffraction à 428MHz pour un signal RF de puissance \(29.7(2)\)dBm soit 933mW. J'ai calculé une bande passante en puissance de \(8.4(4)\)dBm, et que l'efficacité de diffraction vaire de quelques pourcents sur la bande passante en fréquence donné par le constructeur (50MHz). En double passage, j'ai pu obtenir jusqu'à 64.6(5)\% d'efficacité de diffraction pour un alignement de l'AOM un peu moins bon. Néanmoins on s'aerçoit qu'aux incertitudes, les mesures obtenues en double-passage et les mesures de simple-passage au carré pour le même alignement coincide relativement bien. Cela signifie qu'il n'y a pas de pertes supplémentaires associées au deuxième passage relativement au passage dans un deuxième AOM\@. Avec ce montage, en supposant que rajouter une deuxième AOM en double-passage génère des pertes identiques, on devrait pouvoir atteindre une efficacité de 41.7(6)\% après avoir décalé le faisceau de 1.7GHz. Cela représenterait une amélioration notable sur l'expérience, où l'efficacité actuelle est de l'orde de quelques pourcents. 
+
+Néanmoins, due au fait que j'ai cassé un des deux AOM, je n'ai pas pu réaliser le montage complet avec deux double-passages. Une autre possibilté de montage aurait été de réaliser une configuration en quadruple-passage avec un seul AOM, comme présenté dans l'article~\cite{lu_four-pass_2017}, mais faute des pièces nécessaires je n'ai pu non plus réaliser ce montage. 
+
+C'est pour cette raison que pour la fin du stage, je me suis consacré à la mise en place d'un data logger permettant de suivre en direct l'évolution des températures du four, En effet j'ai pu mettre au point un processus permettant de récuperer, stocker et afficher les valeurs de températures des différentes parties du four à l'aide d'un data logger (PicoTech TC-08). La récupération des données est réalisé grâce à un script Python et le driver du data logger. Le stocakge est réalisé par une base de donnée InfluxDB spécialisé dans les données temporelles. La visualisation est réalisé grâce au logiciel Grafana qui accède à la base de donnée pour afficher les mesures. Le tout est automatisé par l'intermédiaire d'un fichier batch qui permet de faire tourner le processus en continu. Ce processus est aussi facilement modifiable de telle sorte que l'on puisse rajouter des appareils de mesure. Par exemple, pendant que je rédigeai mon rapport, mon encadrant a pu y inclure les données d'un capteur Arduino mesurant la température et l'humidité de la pièce. Il devrait aussi permettre, à terme, d'afficher les températures des différentes bobines de l'expérience. De plus tout cela est accessible à distance vie le Cloud Grafana tant que l'ordinateur de l'expérience est allumé. 
 
 
 

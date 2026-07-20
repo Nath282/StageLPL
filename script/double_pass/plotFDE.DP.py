@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # Files extracting
     dir, ext = '/Users/nathanleretif/StageLPL/data/FDE/', '.csv'
-    files = ['SP3', 'DP1', 'DP2', 'DP3']  # ['SP1', 'SP2', 'SP3', 'SP4', 'DP1', 'DP2', 'DP3']
+    files = ['SP3', 'DP1', 'DP2', 'DP3']  # ['SP1', 'SP2', 'SP3', 'SP4', 'DP1', 'DP2', 'DP3'] 
 
     # Colormap setup :
     import matplotlib.colors as cl
