@@ -1,0 +1,20 @@
+je ne sais pas exactement ce que je dois mettre dans le resumé. tu me dis de mettre au present mais jsp si c'est vraiment une bonne idée pour certaines phrases.
+
+pour les citations notamment au début dans l'introduction, je n'arrive pas à savoir comment et à quelle fréquence en mettre. J'en avais pas assez mis dans la v1, mais ça me parait beaucoup de citer (en plus la même source la majorité du temps) à chaque phrase. 
+
+sous la puce est ce qu'on condense d'abord le gaz pour former un condensat, puis on le piège pour passer en 1D où les deux sont ils fait en même temps et à aucune étape le gaz ne forme un vrai condensat ? 
+
+est ce que je dois déplacer la partie 2.1 plus théorique/etat de l'art sur les AOM dans les enjeux ? ça me parait beaucoup pour une introduction mais jsp. J'avais fait la partie 2.1.2 pour introduire un peu la configuration double-passage mais c'ets vrai que c'est assez confondu avec ce que j'ai fait. est ce que je devrai donc parler des AOM en general , du double passage en general dans les enjeux et dans ce cas là faire juste une partie 2.1 sur mes AOMs?
+
+concernant le debut de la page 16 quand je dit qu'il y a de grosses incertitudes due au protocol. jsp trop quoi dire parce que oui le puissance-mètre doit être centrée et normal au laser, mais en pratique j'ai remarqué que même des petites variations pouvait provoquer des fluctuations non négligeables. Sur des mesures ou j'était constemment en train de bouger le puissance-mètre pour monitorer la puissance du laser en temps reel (à cause des fluctuations), c'est difficilement reproductible donc j'ai quand même de grosses variations. 
+
+concernant les fluctuations de la puissance RF optimale avec la fréquence, tu dis de ne pas trop tourner ça négativement parce que c'est facilement réglable avec la figure 19. Sauf que sur la partie 440-500MHz, je n'ai aucun pattern qui se distingue entre les differentes series de mesures donc jsp comment àa pourrait être regle. C'est ce que je voulais dire par fluctuations non constante, ça donne l'impression que c'est des fluctuations qui évoluent dans le temps donc jsp comment on pourrait les regler. 
+
+bande passante en puissance, j'avais fait ça pour tirer quelque chose des courbes 
+
+pas grave les legendes des figures en anglais ? 
+
+comment est ce que tu fais ça pour la correction ? je trouve ça vraiment pas mal et jsp comment faire 
+
+specified
+

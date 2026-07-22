@@ -6,15 +6,9 @@ Description du fichier
 """
 
 # Import des librairies
-import matplotlib.pyplot as plt
 import numpy as np
-from numpy import array, sqrt
 from Measurement import Measure as M
-
-# Paramètres globaux d'affichage
-import matplotlib as mpl
-mpl.rcParams['font.size'] = 16
-mpl.rcParams['lines.linewidth'] = 1.5
+from Plotting import Axes 
 
 # Programme principal
 if __name__ == "__main__":
@@ -28,19 +22,11 @@ if __name__ == "__main__":
     gain = amp_pow-inc_pow
     typ_gain = gain[1:11].mean()
     
-    fig = plt.figure(figsize=(8,6))
-    ax = fig.add_subplot()
-
+    ax = Axes()
     M.errorbar(ax, inc_pow, amp_pow, label='amplified signal', ls=':')
     M.errorbar(ax, inc_pow, gain, label='gain', ls='')
-    ax.set_xlim()
-    ax.set_ylim()
+    ax.set_lims()
     M.hlines(ax, typ_gain, -30, 30, label=f'gain typique = {typ_gain} dB',ls='--',color='C1')
-
-    ax.legend()
-    ax.set_xlabel("amplitude du signal d'entré (dBm)")
-    ax.set_ylabel('amplitude/gain (dBm/dB)')
-    #ax.set_aspect('equal')
-
-    plt.grid(True)
-    plt.show()
+    ax.set_labels("amplitude du signal d'entré (dBm)", 'amplitude/gain (dBm/dB)')
+    ax.save('cal_ampli23dB')
+    Axes.show()

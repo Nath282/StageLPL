@@ -6,15 +6,9 @@ Description du fichier
 """
 
 # Import des librairies
-import matplotlib.pyplot as plt
 import numpy as np
 from Measurement import Measure as M
-
-# Paramètres globaux d'affichage
-import matplotlib as mpl
-mpl.rcParams['font.size'] = 16
-mpl.rcParams['lines.linewidth'] = 1.5
-
+from Plotting import Axes
 
 # Programme principal
 if __name__ == "__main__":
@@ -32,9 +26,7 @@ if __name__ == "__main__":
     inc2, out2 = dis_pow2 + marc_corr, mes_pow2 + att_corr
     gain2 = out2 - inc2
 
-    fig = plt.figure(figsize=(8,6))
-    gs = fig.add_gridspec(1,1)
-    ax = fig.add_subplot(gs[0])
+    ax = Axes()
 
     M.errorbar(ax, inc1, out1, label="amplified signal power 11h12", ls=':',marker='.', color='C0')
     M.errorbar(ax, inc2, out2, label="amplified signal power 11h39", ls='-',marker='x', color='C0')
@@ -42,20 +34,16 @@ if __name__ == "__main__":
     M.errorbar(ax, inc1, gain1, label="gain 11h12", ls='', marker='.',color='C1')
     M.errorbar(ax, inc2, gain2, label="gain 11h39", ls='', marker='x', color='C1')
 
-    ax.set_xlim()
-    ax.set_ylim()
-
-    mean_gain = M.MonteCarlo(np.mean, gain1[:17], N=500)[0]
+    ax.set_lims()
+    mean_gain = M.MonteCarlo(np.mean, gain1[:17], N=500)
     M.hlines(ax, mean_gain, xmin=-50, xmax=10, label=f"average gain : {mean_gain}",color='C1',ls='-')
     ax.hlines(31.1,xmin=-50,xmax=10,label='1.3W', color='r')
     
     ax.set_xlabel("Incoming RF power (dBm)")
     ax.set_ylabel("amplified signal power/gain (dBm/dB)")
-    ax.legend()
-    ax.grid(True)
 
     secax = ax.secondary_xaxis('top', functions=(lambda x:x-marc_corr.value, lambda x:x+marc_corr.value))
     secax.set_xlabel("displayed incoming power (dBm)")
 
-    plt.tight_layout()
-    plt.show()
+    ax.save('cal_ampli2W')
+    Axes.show()
