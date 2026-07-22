@@ -22,7 +22,7 @@ if __name__ == "__main__":
     M.errorbar(ax,mes_pow,diff,ls=':',label='experimental data')
     ax.set_lims()
     avg = diff.mean()
-    M.hlines(ax,avg,-5,20,label=f"mean = {avg} dB",color='red')
+    M.hlines(ax,avg,-5,20,label=f"mean = {avg} dB",color='red',alpha=.1)
     ax.set_labels('Mesured power (dBm)', 'Power difference (dB)')
     ax.save('cal_Markoni')
     Axes.show()

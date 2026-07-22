@@ -31,7 +31,7 @@ if __name__ == "__main__":
     M.errorbar(ax,inc_power,out_pow,label='amplified signal',color='C0',ls='--')
     M.errorbar(ax,inc_power,gain,label='gain',color='C1',ls=':')
     ax.set_lims()
-    ax.hlines(31.1,xmin=-30,xmax=20,label='1.3W', color='r')
+    ax.hlines(31.1,xmin=-30,xmax=20,label='AOM specified limit power (31.14dBm)', color='r')
     ax.set_labels("incoming power (dBm)", "amplified power/gain (dBm/dB)")
 
     secax = ax.secondary_xaxis('top', functions=(lambda x:x-marconi_corr.value, lambda x:x+marconi_corr.value))

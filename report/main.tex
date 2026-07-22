@@ -90,7 +90,7 @@ La préparation du condensat débute avec l'insertion de cubes solides de Sodium
 \begin{figure}[ht]
   \centering
   \includegraphics[height=8cm]{figures/NaLevels_Manon.png}
-  \caption{Structure hyperfine de la transition \(D_2\) du Sodium, tiré de~\cite{ballu_production_2024}}\label{fig:hyperfine_structure}
+  \caption{Structure hyperfine de la transition \(D_2\) du Sodium, avec le détail des transitions sur lesquelles sont accordées chacun des laser de l'expérience, tiré de~\cite{ballu_production_2024}}\label{fig:hyperfine_structure}
 \end{figure}
 Les règles de selection confère le caractère cyclant à cette transition, car les atomes dans l'état \(f'=3\) ne peuvent se désexciter que dans l'état \(f=2\).
 
@@ -132,7 +132,7 @@ Une utilisation très courante des AOM dans les expériences de refroidissement 
 \begin{figure}[ht]
   \centering
   \includegraphics{figures/schemaDP.png}
-  \caption{Montage typique d'un AOM en double-passage}\label{fig:AOM_DP}
+  \caption{Montage typique d'un AOM en configuration double-passage}\label{fig:AOM_DP}
 \end{figure} 
 Le faisceau polarisé linéairement (horizontalement sur le schéma) passe alors dans les différentes parties du système optique:
 \begin{itemize}
@@ -150,7 +150,7 @@ Le montage complet que j'ai réalisé pour étudier l'AOM en double-passage est 
 \begin{figure}[ht]
   \centering
   \includegraphics{figures/fullsetupDP.png}
-  \caption{Schéma du montage optique complet}\label{fig:full_setupDP}
+  \caption{Système optique complet}\label{fig:full_setupDP}
 \end{figure}
 Chaque partie du montage et des équipements ont été étudiées et calibrées pour avoir une efficacité de diffraction maximale.
 
@@ -158,29 +158,37 @@ Chaque partie du montage et des équipements ont été étudiées et calibrées 
 
 Étant placé dans une salle de test loin de l'expérience, je ne pouvais pas utiliser le laser principal de l'expérience Sodium à \(589\)nm. Les lasers vert étant beaucoup plus commun, c'est ce type de laser à \(532\)nm que j'ai utilisé (SDL-532-XXXT Shangai Dream Lasers Technology). C'est un laser qui possède sa propre alimentation et sur lequel je n'avait aucun controle. En temps normal, son intensité pouvait varier de \(50\) à \(90\)mW et pouvait monter jusqu'à \(150\)mW juste après l'allumage. Malgré une plage d'intensité très large, l'intensité se stabilisait autour de valeurs sur des périodes de temps suffisemment longue pour que je puisse prendre des mesures, avec des fluctuations de l'ordre de \(0.2\)mW. Cependant à plusieurs moments durant le stage le laser commençait à fluctuer et à drifter de façon importante, rendant impossible la prise de mesures. Les mesures d'intensité ont été réalisé avec un puissance-mètre possèdant une précision de \(0.1\)mW (Thorlabs PM100D2).
 
-En ajoutant une lame \(\lambda/2\) suivi d'un PBS (Polarising Beam Splitter) à la suite du laser, j'ai pu mesurer la polarisation du laser en réalisant un fit avec l'intensité des faisceaux sortants du PBS\@. En effet, en mesurant les ratios de puissance transmises et reflechi par le PBS pour différents angles de la lame \(\lambda/2\), j'ai pu réaliser un fit et reconstruire la polarisation du laser comme le montre la figure~\ref{fig:polarisation_laser}.
+En ajoutant une lame \(\lambda/2\) suivi d'un PBS (Polarising Beam Splitter) à la suite du laser, j'ai pu mesurer la polarisation du laser en réalisant un fit avec l'intensité des faisceaux sortants du PBS\@. En effet, en mesurant les ratios de puissance transmises et reflechi par le PBS pour différents angles de la lame \(\lambda/2\), j'ai pu réaliser un fit avec la fonction~\ref{eq:fit_pol} et reconstruire la polarisation du laser comme le montre la figure~\ref{fig:polarisation_laser}.
+\begin{equation}
+  f : x \mapsto 
+\end{equation}
 \begin{figure}[ht]
   \centering
-  \begin{subfigure}{0.49\textwidth}
+  \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/fit_pol_laser.pdf}
-    \caption{Fit}\label{fig:fitpol}
+    \caption{Fit entre, d'une part, le rapport d'intensité des polarisations horizontales et verticales, et d'autre part l'angle (relatif à l'axe rapide) de la lame quart-d'onde}\label{fig:fitpol}
   \end{subfigure}
-  \begin{subfigure}{0.49\textwidth}
+  \hfil
+  \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/pol_laser.pdf}
-    \caption{Polarisation}\label{fig:pol}
+    \caption{Visualisation de la polarisation du faisceau laser reconstruite à partir du fit~\ref{fig:fitpol}}\label{fig:pol}
   \end{subfigure}
+  \caption{Reconstruction de la polarisation du laser}
 \end{figure}
 On peut y voir que le faisceau du laser est cohérent et possède une polarisation globale, sous la forme d'une ellipse allongé. Néanmoins ce n'est pas suffisant car l'AOM nécessite d'avoir une polarisation linéaire en entrée. J'ai donc gardé la lame \(\lambda/2\) suivi du PBS car cela me permet d'avoir une polarisation linéaire (verticale car le PBS est utilisé en réflection) très pure pour la suite. De plus, cela me permet de régler la puissance du laser à ma guise en tournant la lame \(\lambda/2\) et donc de baisser la puissance laser (suffisemment élevée pour faire mal aux yeux sans lunettes de protections). 
 
-J'ai aussi pu mesurer le waist du faisceau grâce à une caméra (WincamD LCM) et le logiciel DataRay. En réalisant des mesures du waist à différentes distances du laser, j'ai pu grâce à un fit calculer le waist minimal et sa position. Le fit est montrer à la figure~\ref{fig:fit_waist_laser}
+J'ai aussi pu mesurer le waist du faisceau grâce à une caméra (WincamD LCM) et le logiciel DataRay. En réalisant des mesures du waist à différentes distances du laser, j'ai pu grâce à un fit avec l'expression~\ref{eq:gaussian_waist} théorique d'un faisceau gaussien calculer le waist minimal et sa position. La courbe obtenue est visible sur la figure~\ref{fig:fit_waist_laser}.
+\begin{equation}\label{eq:gaussian_waist}
+  w(z) = w_0 \sqrt{1+\frac{z^2}{z_0^2}}
+\end{equation}
 \begin{figure}[ht]
   \centering
   \includegraphics[height=7cm]{figures/fit_waist_laser.pdf}
-  \caption{Fit de la mesure du waist du laser en fonction de la distance}\label{fig:fit_waist_laser}
+  \caption{Fit de différentes valeurs de waist du faisceau laser avec l'expression théorique du waist d'un faisceau gaussien explicité à la relation~\ref{eq:gaussian_waist}}\label{fig:fit_waist_laser}
 \end{figure}
-Avec ce fit j'obtiens un waist minimal du laser à \(w_0 = 411(2) \mu\)m, situé à \(7(2)\)cm du laser. Due à la difficulté de faire des mesures précises, les barres d'erreur sont grandes ce qui résultent en un fit assez imprécis. On le retrouve dans les incertitudes, en particulier sur la valeur de \(z_0\) mais c'est surtout la valeur du waist qui est importante, et qui est quand à elle assez précise. 
+Avec ce fit j'obtiens un waist minimal du laser à \(w_0 = 411(2) \mathrm{\mu m}\), situé à \(7(2)\)cm du laser. Due à la difficulté de faire des mesures précises, les barres d'erreur sont grandes ce qui résultent en un fit assez imprécis. On le retrouve dans les incertitudes, en particulier sur la valeur de \(z_0\) mais c'est surtout la valeur du waist qui est importante, et qui est quand à elle assez précise. 
 
 \subsubsection{Lunette astronomique}\label{subsubsec:telescope}
 
@@ -200,8 +208,8 @@ Avant de calibrer les amplificateurs, j'ai d'abord du calibrer la source RF\@.
 À l'aide d'un analyseur de spectre (Rohde \(\&\) Schwarz FPC 1000), j'ai pu voir que la source avait quelques erreurs de calibration. L'erreur sur la fréquence est négligeable (\(0.02\)MHz à \(428\)MHz alors que l'appareil est supposé avoir jusqu'à \(1\)Hz de résolution) mais pas l'erreur sur la puissance. En mesurant la différence de puissance réelle/affichée pour différente valeurs, j'obtiens la courbe de la Figure~\ref{fig:cal_Markoni}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm, trim={1.5cm 1.5cm 0 0},clip]{figures/cal_Markoni.pdf}
-  \caption{Courbe de calibration en puissance de la source RF}\label{fig:cal_Markoni}
+  \includegraphics[height=7cm, trim={5cm 2cm 0 0},clip]{figures/cal_Markoni.pdf}
+  \caption{Courbe de calibration en puissance de la source RF. La courbe bleu correspond à la différence entre la puissance affichée et la puissance réelle. La droite rouge correspond à la moyenne de cette différence, autrement dit la correction à apporter pour calculer la puissance réelle. La zone rouge correspond à l'incertitude sur cette moyenne (mean \(\pm\) sigma).}\label{fig:cal_Markoni}
 \end{figure}
 En moyenne, la différence de puissance est de \(-2.65(2)\)dB. Les fluctuations de la différence de puissance étant petite, je les ai négligées et ai choisis la valeur moyenne comme correction de la puissance affichée sur la source. De plus, les fluctuations de correction sont pris en compte dans l'incertitude, donc toute l'information n'est pas complètement perdu. 
 
@@ -212,8 +220,8 @@ La puissance du signal en sortie de l'amplificateur est trop élevée pour l'ana
 Le premier amplificateur que j'ai pu utiliser est un petit amplificateur étiqueté à 23dB (Mini-Circuits amplifier ZFL-2500VH+). En connectant la source à l'ampli, l'ampli à l'atténuateur et l'atténuateur à l'analyseur de spectre, j'ai pu obtenir la courbe de calibration de la Figure~\ref{fig:cal_ampli23DB}
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={5cm 1.2cm 5cm 2cm},clip]{figures/cal_ampli23dB.pdf}
-  \caption{Calibration de l'ampli Mini-Circuits à 23dB}\label{fig:cal_ampli23DB}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 1.5cm},clip]{figures/cal_ampli23dB.pdf}
+  \caption{Calibration de l'amplificateur Mini-Circuits à 23dB. La courbe bleu correspond à la puissance du signal amplifié et son gain en orange, le tout en fonction de la puissance du signal d'entrée. La droite orange correspond au gain maximal moyen (moyenne sur toutes les valeurs du palier).}\label{fig:cal_ampli23DB}
 \end{figure}
 On peut y voir que le gain typique est plus élevée que prévu (24.7(2) au lieu de 23) mais surtout que l'ampli sature pour des signaux incidents de puissance supérieures à 2dBm. La puissance RF du signal amplifié ne peut pas dépasser 27.5dBm (soit 560mW) ce qui est trop faible pour atteindre une efficacité de diffraction maximale (qui est de 918mW annoncé). J'ai donc dû utiliser un ampli plus puissant. 
 
@@ -221,8 +229,8 @@ On peut y voir que le gain typique est plus élevée que prévu (24.7(2) au lieu
 Le second amplificateur que j'ai utilisé est un amplificateur 1W de la manip Sodium. Avec le même protocol, j'ai aussi pu réaliser une courbe de calibration, visible sur la figure\ref{fig:cal_ampli1W}
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1.5cm 0 1cm},clip]{figures/cal_ampli1W.pdf}
-  \caption{Calibration de l'ampli 1W}\label{fig:cal_ampli1W}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 0cm},clip]{figures/cal_ampli1W.pdf}
+  \caption{Calibration de l'amplificateur 1W. Voir la Figure~\ref{fig:cal_ampli23DB} pour le code couleur. La courbe rouge indique la limite de puissance à ne pas dépasser pour ne pas endommager les AOM. L'échelle supérieure de l'axe des abscisses correspond à la puissance affichée sur l'amplificateur.}\label{fig:cal_ampli1W}
 \end{figure}
 On peut y voir aussi une saturation de l'ampli vers -5dBm mais avec un gain typique bien plus élevée (jusqu'a \(39.0(5)\)dB) qui permet donc d'obtenir des signaux RF de puissance suffisante. On peut aussi y lire un certain nombre de valeurs caractéristiques:
 \begin{itemize}
@@ -235,8 +243,8 @@ Cependant je me suis rendu compte que l'amplificateur disfonctionnait, que à ha
 Le troisième amplificateur que j'ai utilisé est un amplificateur 2W de la manip Sodium. De nouveau, j'ai traçé la courbe de calibration avec le même protocol, qui est visible sur la Figure~\ref{fig:cal_ampli2W}
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1.5cm 0cm 1cm},clip]{figures/cal_ampli2W.pdf}
-  \caption{Calibration de l'ampli 2W}\label{fig:cal_ampli2W}
+  \includegraphics[height=7cm]{figures/cal_ampli2W.pdf}
+  \caption{Calibration de l'ampli 2W. Le code couleur et légendes sont exactement les mêmes que pour les Figures~\ref{fig:cal_ampli23DB} et~\ref{fig:cal_ampli1W}.}\label{fig:cal_ampli2W}
 \end{figure}
 On y voit que l'ampli possède un palier de gain bien plus stable que l'ampli précedent, qui commence à saturer à -10dBm. Étant donné que l'ampli indiquait que la puissance du signal incident ne devait pas dépasser 0dBm et que les puissances obtenues étaient plus que suffisante, je n'ai continué la courbe pour ne pas endommager l'ampli. De nouveau on peut y lire: 
 \begin{itemize}
@@ -281,8 +289,8 @@ Avec ce montage et différent protocoles, j'ai pu caractériser le comportement 
 En mesurant la puissance diffracté pour différentes valeurs de puissance du signal RF, j'ai pu obtenir la courbe de la Figure~\ref{fig:PDE.SP}: 
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1.5cm 0cm 1cm},clip]{figures/PDE.SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF}\label{fig:PDE.SP}
+  \includegraphics[height=7cm]{figures/PDE.SP.pdf}
+  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF. La courbe bleu correspond aux données mesurés avec l'amplificateur à 23dB et la courbe orange avec l'amplificateur à 2W.}\label{fig:PDE.SP}
 \end{figure}
 On peut y voir que malgré les différences d'amplificateur, les courbes se superposent bien. L'ampli 23dB saturant à haute amplitude, je n'ai pas pu avoir la suite de la courbe. La bande passante de l'AOM vaut alors \(8.4(4)\)dBm (calculé aux points ou l'efficacité de diffraction valait l'efficacité maximale divisé par \(\sqrt{2}\) en supposant la courbe symétrique). 
 
@@ -292,7 +300,7 @@ On peut aussi voir que le maxima est très bien aligné sur la valeur théorique
 Pour mesurer le comportement fréquentiel de l'efficacité de diffraction, je fixais d'abord la valeur de fréquence RF sur la source, puis j'augmentais petit à petit la puissance du signal RF jusqu'à obtenir le maximum d'efficacité, et ce pour chaque point. En effet la puissance optimale dépend sensiblement de la fréquence, avec des variations jusqu'à 5dB donc elle doit être identifié à chaque mesure. Ce protocole m'a permis d'obtenir la courbe de la Figure~\ref{fig:FDE.SP}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 3cm 2cm},clip]{figures/FDE.SP.pdf}
+  \includegraphics[height=7cm,trim={0 0 0 1cm},clip]{figures/FDE.SP.pdf}
   \caption{Caractérisation de l'efficacité de diffraction en fonction de la fréquence radio}\label{fig:FDE.SP}
 \end{figure}
 On peut y voir que le maximum d'efficacité de diffraction est bien centré à 428MHz, et que l'efficacité de diffraction ne varie pas de plus de quelques pourcents pour des variations de fréquences de l'ordre de la dizaine de MHz. Concernant la bande passante théorique donnée par le constructeur, je n'ai pas reussi à determiner à quoi correspondait elle correspondait. 

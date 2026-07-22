@@ -9,7 +9,7 @@ figures/*
 eLab/*
 report/figures/*
 report/logo/*
-/report/main.pdf
+#/report/main.pdf
 /script/data_logger/test_files/*
 /script/data_logger/user_guide_figures/*
 /script/data_logger/token.txt

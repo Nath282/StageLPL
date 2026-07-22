@@ -28,16 +28,16 @@ if __name__ == "__main__":
 
     ax = Axes()
 
-    M.errorbar(ax, inc1, out1, label="amplified signal power 11h12", ls=':',marker='.', color='C0')
-    M.errorbar(ax, inc2, out2, label="amplified signal power 11h39", ls='-',marker='x', color='C0')
+    M.errorbar(ax, inc1, out1, label="amplified signal power", ls='',marker='s', color='C0')
+    #M.errorbar(ax, inc2, out2, ls='',marker='s', color='C0')
 
-    M.errorbar(ax, inc1, gain1, label="gain 11h12", ls='', marker='.',color='C1')
-    M.errorbar(ax, inc2, gain2, label="gain 11h39", ls='', marker='x', color='C1')
+    M.errorbar(ax, inc1, gain1, label="gain", ls='', marker='s',color='C1')
+    #M.errorbar(ax, inc2, gain2, ls='', marker='s', color='C1')
 
     ax.set_lims()
     mean_gain = M.MonteCarlo(np.mean, gain1[:17], N=500)
-    M.hlines(ax, mean_gain, xmin=-50, xmax=10, label=f"average gain : {mean_gain}",color='C1',ls='-')
-    ax.hlines(31.1,xmin=-50,xmax=10,label='1.3W', color='r')
+    M.hlines(ax, mean_gain, xmin=-50, xmax=10, label=f"average gain : {mean_gain} dB",color='C1',ls='--')
+    ax.hlines(31.1,xmin=-50,xmax=10,label='AOM specified limit power (31.14dBm)', color='r')
     
     ax.set_xlabel("Incoming RF power (dBm)")
     ax.set_ylabel("amplified signal power/gain (dBm/dB)")

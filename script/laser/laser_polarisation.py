@@ -9,7 +9,6 @@ Description du fichier
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy import array, cos, sin, pi, sqrt, exp
-from scipy.optimize import curve_fit
 from Plotting import Axes
 from Measurement import Measure as M 
 
@@ -47,7 +46,7 @@ if __name__ == "__main__":
     ax2 = Axes()
     t = np.linspace(0,2*pi,100)
     [x,y] = polarisation(t, *args)
-    ax2.plot(x,y, label='polarisation', color='green')
+    ax2.plot(x,y, color='green')
     ax2.hlines(0,xmin=-.95,xmax=+.95,linewidth=0)
     #ax2.set_title('Polarisation')
     ax2.set_aspect('equal')

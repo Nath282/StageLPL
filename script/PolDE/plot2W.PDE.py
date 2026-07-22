@@ -25,7 +25,7 @@ if __name__ == "__main__":
     Measure.errorbar(ax,angle,diff_eff,ls='',marker='s',color='C0',label='data')
 
     f = lambda x,x0,A,w,B : A*np.cos(w*(x-x0))+B
-    args = Measure.curve_fit(f, angle, diff_eff, guess=[0,.015,.03,.85], N=100, ax=ax, plot_fit_unc=False)
+    args = Measure.curve_fit(f, angle, diff_eff, guess=[0,.015,.03,.85], N=100, ax=ax, plot_fit_unc=False, plot_guess=False)
     print(*args)
     print(diff_eff.max()*diff_eff.min())
     ax.set_labels("Polarisation angle (degrees)", "Diffraction efficiency (%)")

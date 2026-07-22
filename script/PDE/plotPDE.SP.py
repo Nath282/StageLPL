@@ -24,12 +24,12 @@ if __name__ == "__main__":
             rf_corr = params['Marconi correction'] + params['ampli gain']
         else : 
             rf_corr = params['RF_correction']
-        inc_pow, diff_eff = ds['RF displayed signal power(dBm)'] + rf_corr, ds['Diffracted intensity (mW)'] / params['laser intensity']
+        inc_pow, diff_eff = ds['RF displayed signal power'] + rf_corr, ds['Diffracted intensity'] / params['laser intensity']
         Measure.errorbar(ax,inc_pow,diff_eff,ls='',marker='s',label=files[filename])
         print(f"max diffraction efficiency for {filename} : {diff_eff.max()*100} at {inc_pow[np.argmax(diff_eff)]}")
 
     ax.set_lims()
-    ax.vlines(29.6,-1,2,colors='black',linestyles='--',label="theoritical maxima : 918mW")
+    ax.vlines(29.6,-1,2,colors='black',linestyles='--',label="AOM specified optimum power (29.63dBm)")
     ax.set_xlabel("incoming RF power (dBm)")
     ax.set_ylabel("diffraction efficiency (%)")
     secax = ax.secondary_xaxis('top',functions=(lambda x:x+1.4-40.9, lambda x:x-1.4+40.9))
