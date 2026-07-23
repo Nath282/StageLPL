@@ -23,8 +23,8 @@ if __name__ == "__main__":
     typ_gain = gain[1:11].mean()
     
     ax = Axes()
-    M.errorbar(ax, inc_pow, amp_pow, label='amplified signal', ls=':')
-    M.errorbar(ax, inc_pow, gain, label='gain', ls='')
+    M.errorbar(ax, inc_pow, amp_pow, label='amplified signal', ls='', marker='s')
+    M.errorbar(ax, inc_pow, gain, label='gain', ls='',marker='s')
     ax.set_lims()
     M.hlines(ax, typ_gain, -30, 30, label=f'gain typique = {typ_gain} dB',ls='--',color='C1')
     ax.set_labels("amplitude du signal d'entré (dBm)", 'amplitude/gain (dBm/dB)')

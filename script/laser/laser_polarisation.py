@@ -41,7 +41,7 @@ if __name__ == "__main__":
     M.errorbar(ax1, theta, r, label='data', ls='', marker='s')
     args = M.curve_fit(Intensity, theta, r, guess=[.31,1.63], N=100, ax=ax1)
     ax1.set_labels('Half-waveplate angle (degrees)', 'Power ratio (%)')
-    ax1.save('fit_pol_laser')
+    ax1.save('fit_pol_laser',bbox_inches="tight",pad_inches=0.05)
 
     ax2 = Axes()
     t = np.linspace(0,2*pi,100)

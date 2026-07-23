@@ -18,3 +18,78 @@ comment est ce que tu fais ça pour la correction ? je trouve ça vraiment pas m
 
 specified
 
+----------
+
+biblio pour configurations double double-passage dans des manip d'atomes froids de sodium
+
+fit polarisation, comment en parler sous detailler tout le fit qui serait trop long et pas forcement interessant
+
+en vrai hsp quoi rajouter dans la partie sur le retroreflecteur. je peux detailler le protocole d'alignement mais j'ai pas vraiment de regard critique sur la qualité de mon montage. 
+
+est ce que ça sert à qch de parler des ampli 23dB et 1W ? ils n'apportent rien cote résultats donc est ce que il vadrait pas mieux les supprimer ? Surtout que ça commence à faire juste niveau place.
+
+au final j'ai fusionn" enjeux et objectifs parce que je trouvais ça bizarre, a voir
+
+check - retravailler parties data logger
+
+ajouter biblio BEC
+
+check - ajouter capture sodium lab grafana 
+
+rajouter une phrase pour dire ce que ça m'a apporté, afin d'y placer ce que j'ai pu faire à coté (college de france, festivale double science)
+
+annexe Measurement class
+
+gestion du placement des figures
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========
+
+Intro : 3 Sous-parties : - contexte général scientifique 
+- enjeux du stages, problématiques
+- objectifs du stage ex : etapes intermédiaires
+
+Méthodes utilisées pour répondre à la question, et sur quoi on s’appuie pour faire notre stage (normalement partie la plus dense en citations)
++Montage expérimental utilisé / algo utilisés
+(très grosse partie)
+
+Résultats obtenus, présentation, analyse, interprétation 
+Un premier paragraphe sur quels sont les résultats, 
+Un deuxième paragraphe sur l’interprétation des résultats
+Attention à bien séparer
+
+Conclusion (attention à ne pas bacler, c’est un signe pour les personnes qui lisent votre rapport que vous l’avez fait proprement)
+Résumé de ce qu’on a fait, principaux résultats qu’on a obtenus, mise en évidence des limites, perspectives (= qu’est ce que j’aurais fait si j’avais eu plus de temps et de moyens)
+
+Biblio

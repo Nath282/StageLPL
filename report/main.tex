@@ -92,21 +92,18 @@ La préparation du condensat débute avec l'insertion de cubes solides de Sodium
   \includegraphics[height=8cm]{figures/NaLevels_Manon.png}
   \caption{Structure hyperfine de la transition \(D_2\) du Sodium, avec le détail des transitions sur lesquelles sont accordées chacun des laser de l'expérience, tiré de~\cite{ballu_production_2024}}\label{fig:hyperfine_structure}
 \end{figure}
-Les règles de selection confère le caractère cyclant à cette transition, car les atomes dans l'état \(f'=3\) ne peuvent se désexciter que dans l'état \(f=2\).
+Les règles de selection confère le caractère cyclant à cette transition, car les atomes dans l'état \(f'=3\) ne peuvent se désexciter que dans l'état \(f=2\). Un gradient de champ magnétique permet alors, par effet Zeeman, de compenser l'effet Doppler pour que le laser reste accordé sur toute la longueur du ralentisseur.
 
-Un gradient de champ magnétique permet alors, par effet Zeeman, de compenser l'effet Doppler pour que le laser reste accordé sur toute la longueur du ralentisseur. Les atomes ralentis peuvent alors être piégés dans un Piège Magnéto-Optique (Magneto-Optical Trap, MOT) constitué de 6 lasers contra-propageant et d'un champ magnétique quadripolaire. Ce dispositif permet de refroidir le gaz jusqu'à la centaine de micro-Kelvin. Un transport magnétique permet alors de déplacer ce gaz dans la chambre de science, sous une puce doté de microfils d'or. Après deux cycles d'évaporation, la gaz atteint les températures suffisantes pour se condenser et former un condensat de Bose-Einstein. Les champs magnétiques générés par la puce permettent alors de comprimer le condensat dans deux directions, de façon à créer un quasi-condensat unidimensionnel. L'imagerie est réalisé par absorption en envoyant sur les atomes un faisceau laser accordé sur la transition cyclante. Les atomes vont alors absorber les photons du faisceau, et l'ombre produite permet de reconstruire la distribution spatiale du condensat (intégrée selon la direction du faisceau d'imagerie). 
+Les atomes ralentis peuvent alors être piégés dans un Piège Magnéto-Optique (Magneto-Optical Trap, MOT) constitué de 6 lasers contra-propageant et d'un champ magnétique quadripolaire. Ce dispositif permet de refroidir le gaz jusqu'à la centaine de micro-Kelvin en piégeant magnétiquement les atomes. Cependant, pour réaliser cette étape, les atomes doivent être dans l'état \(f=1\). Pour cela, un faisceau repompeur accordé sur la transition \(f=2 \rightarrow f'=2\) excite les atomes dans l'état \(f'=2\) afin qu'ils se désexcitent dans l'état \(f=1\). Un transport magnétique permet alors de déplacer ce gaz dans la chambre de science, sous une puce doté de microfils d'or. Ces microfils permettent de générer des champs magnétiques comprimant le gaz dans deux directions de l'espace, afin d'obtenir un gaz quasi-unidimensionnel. Deux cycles d'évaporation permettent alors d'atteindre les températures suffisantes pour obtenir un quasi-condensat 1D. On parle de quasi-condensat car le régime 1D ne permet pas un réelle condensation. 
 
-\subsection{Enjeux du stage}
+L'imagerie est réalisé par absorption en envoyant sur les atomes un faisceau laser accordé sur la transition cyclante. Les atomes vont alors absorber les photons du faisceau, et l'ombre produite permet de reconstruire la distribution spatiale du condensat (intégrée selon la direction du faisceau d'imagerie). Pour cela il faut repomper les atomes de l'état \(f=1\) vers \(f=2\). C'est le but du faisceau repompeur d'imagerie, qui doit être accordé sur la transition \(f=1 \rightarrow f'=2\) pour que les désexcitations permettent de repeupler l'état \(f=2\). Cette transition est décalé de 1.713GHz de la transition cyclante utilisé par le faisceau d'imagerie, c'est pourquoi le faisceau repompeur est crée à partir du faisceau d'imagerie. Pour cela, une partie de l'intensité du faisceau est récupéré à l'aide d'un séparateur de faisceau, puis passe dans un Modulateur Acousto-Optique (Acousto-Optic Modulator, AOM) qui permet de décaler le laser de 1.713GHz.
 
-L'enjeu principal de ce stage concerne le faisceau repompeur d'imagerie, qui est actuellement très peu efficace. En effet, le faisceau d'imagerie est accordé sur la transition cyclante \(f=2 \rightarrow f'=3\) (voir le schéma de la Figure~\ref{fig:hyperfine_structure}). Cependant, à la sortie du MOT, les atomes sont dans l'état \(f=1\), transparent à l'imagerie. Il faut donc les repomper dans l'état \(f=2\) avant de les imager. Pour cela, on repompe les atomes dans l'état \(f'=2\) afin qu'ils se désexcite dans l'état \(f=2\). Le faisceau repmopeur doit donc être accordé sur la transition \(f=1 \rightarrow f'=2\), qui est décalé de 1.713GHz de la transition cyclante. Actuellement ce décalage est réalisé par un modulateur électro-optique qui permet de créer ce faisceau repompeur à partir du faisceau d'imagerie, mais il ne possède que quelques pourcents d'efficacité. L'objectif de ce stage est donc de réaliser et optimiser un montage optique en effectuant plusieurs passages dans des Modulateurs Acousto-Optiques (AOM) à 428MHz, dans le but d'obtenir un système optique plus efficace. 
+\subsection{Enjeux et objectifs du stage}
 
-Un autre enjeu de ce stage concerne la difficulté d'accès aux valeurs de températures du four. Celui-ci est en effet composé de 3 parties distinctes, chauffées à des températures différentes. Chaque partie est muni d'un thermocouple d'asservissement, servant à stabiliser la température, et d'un thermocouple de contrôle. Cependant les mesures de ces thermocouples de contrôle ne sont  accessibles qu'en lisant la valeur sur un appareil à l'autre bout de la pièce. De plus l'appareil en question ne peut être branché qu'à un seul thermocouple à la fois. Un objectif secondaire de ce stage est de configurer un data logger permettant de visualiser en direct l'évolution des températures du four depuis les ordinateurs de l'expérience. Cela est d'autant plus utile qu'à terme, des thermocouples de contrôle seront aussi installés sur les différentes bobines de l'expérience.
+L'enjeu principal du stage concerne le faisceau repompeur d'imagerie. Réaliser un décalage de 1.713GHz avec un seul AOM est difficile, et le montage actuel de l'expérience permet d'obtenir un faisceau avec seulement quelques pourcents de l'intensité du faisceau initiale. Cela est due au fait que l'efficacité de diffraction pour ce genre d'AOM est très faible. Certaines expériences d'atomes ultrafroids de Sodium préfèrent utiliser des AOMs de 428MHz, beaucoup plus efficaces, et réaliser quatre passages du laser à travers ces AOM. Plusieurs configurations sont possible, mais les plus usités utilisent deux AOMs montés en double-passage~\cite{BEC_sodium_double-pass} ou un seul AOM monté en quadruple-passage~\cite{lu_four-pass_2017}. L'objectif de ce stage est de réaliser et optimiser un montage de type double double-passage avec deux AOMs à 428MHz, dans le but d'obtenir un système optique plus efficace et demandant moins d'intensité incidente.
 
-\subsection{Objectifs du stage}
-
-Comme mentionné dans la partie précedente, l'objectif principal de ce stage consiste en la réalisation et l'optimisation d'un système optique permettant de réaliser un décalage de 1.713GHz d'un laser à l'aide d'AOM de 428MHz. Pour cela, le faisceau laser doit passer quatre fois dans les AOM, qui possèdent une efficacité maximale de 92\% (d'après le fabricant). Le but serait d'utiliser deux AOM à la suite dans des configurations assez commune, dite de double-passage~\cite{donley_double-pass_2005}, qui permet de faire passer le faisceau deux fois le faisceau dans chaque AOM. Si le temps le permet, une autre possibilté serait de réaliser une configuration de quadruple-passage dans un seul AOM~\cite{donley_double-pass_2005}.
-
-Un objectif secondaire de ce stage consiste en la configuration d'un data logger pour la visualisation des températures du four. Le but serait d'utiliser un script Python pour piloter le data logger et récuperer les données, une base de données InfluxDB pour le stockage et le logiciel Grafana pour la visualisation.
+Un autre enjeu de ce stage concerne la mesure des températures des différentes parties du four permettant de chauffer les cubes de Sodium solides. Celui-ci est composé de trois parties distinctes, chauffées à des températures différentes. Chacune de ces parties est muni d'un thermocouple d'asservissement, servant à stabiliser la température, et d'un thermocouple de contrôle. Actuellement, ces mesures de contrôle sont peu accessibles et seulement visibles momentanément. Un objectif secondaire de ce stage consiste en la configuration d'un data logger permettant d'extraire ces données, les stocker et les visualiser. Le but est d'utiliser un script Python pour piloter le data logger et récuperer les données, une base de données InfluxDB pour le stockage et le logiciel Grafana pour la visualisation, afin d'obtenir un processus facilement extensible. Cela permettrait 
+d'obtenir une vision de long terme sur ces données, tout en pouvant facilement rajouter les données d'autre capteurs, comme les températures des nombreuses bobines de l'expérience ou le nombre d'atomes dans le quasi-condensat. 
 
 \section{Montage optique repompeur}\label{sec:opticsetup}
 
@@ -116,70 +113,77 @@ Dans cette partie, je vais dans un premier temps apporter quelques détails sur 
 
 \subsubsection{Fonctionnement}\label{subsubsec:AOMth}
 
-Les Modulateurs Acousto-Optiques (AOM) sont la pièce principale de mon montage. Ce sont eux qui permettent de décaler en fréquence le laser, pour à bout parvenir aux 1.713GHz. Leur fonctionnement repose sur des intéractions photons-phonons qui permettent de faire diffracter le faisceau laser. Pour cela l'AOM doit être alimenté par un signal radio (RF) qui sera transmis sous formes d'ondes acoustiques dans un cristal par un transducteur. Ces ondes créent des fluctuations d'indice optique qui diffractent le faisceau laser passant dans le cristal. De plus chaque ordre de diffraction voit la fréquence du faisceau laser modifié selon la relation~\ref{eq:freq_laser}:
-\begin{equation}\label{eq:freq_laser}
-  \nu_m = \nu_{inc} + m*f
-\end{equation}
-où \(\nu_m\) est la fréquence laser de l'ordre de diffraction \(m\), \(\nu_{inc}\) est la fréquence laser incicente et \(f\) est la fréquence des ondes acoustiques. L'angle formé par le faisceau diffracté (par rapport à au faisceau incident) est donnée par la loi de Bragg~\cite{donley_double-pass_2005} qui peut s'approximer (pour les premiers ordres) en la relation~\ref{eq:Bragg_angle}:
+Les Modulateurs Acousto-Optiques (Acousto-Optic Modulators, AOMs) sont la partie principale du montage. Ce sont ces dispositifs qui permettent de réaliser un décalage en fréquence du faisceau incident. Ils reposent sur des interférences entre des ondes électro-magnétiques et acoustiques (autrement dit sur des interactions photons-phonons) dans un cristal. Pour cela l'AOM doit être alimenté en Radio Fréquences (RF) qui, à l'aide d'un transducteur, sont transférés en ondes acoustiques au sein du cristal. Elles interfèrent avec le faisceau laser, le faisant diffracter et modifient la fréquence de chaque ordre selon la relation~\ref{eq:freq_shift_AOM}:
+\begin{equation}\label{eq:freq_shift_AOM}
+  \nu_m = \nu_\mathrm{inc} + mf
+\end{equation} 
+où \(\nu_m\) est la fréquence du faisceau diffracté à l'ordre \(m\), \(\nu_\mathrm{inc}\) est la fréquence laser incidente et \(f\) est la fréquence des ondes acoustiques. L'angle formé par le faisceau diffracté et le faisceau incident est quand à lui donné par la relation de Bragg, qui peut être approximé pour les premiers ordres par la relation~\ref{eq:Bragg_angle}~:
 \begin{equation}\label{eq:Bragg_angle}
-  \theta_m \approx \frac{m*\lambda}{n*\Lambda}
+  \theta_m \approx \frac{m\lambda}{n\Lambda}
 \end{equation}
-où \(\lambda\) est la longueur d'onde de la lumière incidente, \(\Lambda\) est la longueur d'onde acoustique et où \(n\) est l'indice optique du milieu. La grande particularité des AOM est que en modifiant l'angle d'incidence du faisceau par rapport aux ondes acoustiques, on peut concentrer la majorité de la lumière dans un ordre en particulier. Autrement dit, simplement en tournant l'AOM sur lui-même, on peut focaliser la lumière dans un ordre en particulier. C'est ce qui permet de réaliser des décalages en fréquence de grande efficacité. Par exemple, les AOM que j'ai utilisé peuvent atteindre jsuqu'à 92\% d'efficacité dans les ordre \(\pm1\) d'après le fabricant.
+où \(\lambda\) est la longueur d'onde de la lumière incidente, \(\Lambda\) est la longueur d'onde acoustique et où \(n\) est l'indice optique du cristal. En particulier, cela signifie que l'angle des faisceaux diffractés change lorsque la fréquence RF est modifiée. Une grande particularité des AOMs est que la répartition d'intensité dans les différents ordres est modifiée lorsque l'angle entre le faisceau laser incident et les plans d'onde acoustiques varie. En pratique, cela signifie qu'en tournant légèrement l'AOM sur lui-même, on peut focaliser la majorité de l'intensité dans un ordre particulier. Le rapport entre l'intensité incidente et l'intensité maximale atteingable dans un ordre est appelée efficacité de diffraction, est peut être très élevée. Dans les ordres \(\pm1\), on peut atteindre des efficacités de diffraction supérieures à 90\%. C'est cette particularité qui devrait permettre de réaliser un montage efficace.
 
 \subsubsection{Montage en double-passage}\label{subsubsec:AOMDP}
 
-Une utilisation très courante des AOM dans les expériences de refroidissement par laser et de piégeage est une configuration en double-passage~\cite{donley_double-pass_2005}. Cette configuration est très utile car elle permet d'effecteur deux passages du faisceau dans le même AOM quelque soit la fréquence du signal RF. En effet, à cause de la relation~\ref{eq:Bragg_angle}, l'angle du faisceau diffracté dépend de la fréquence RF et peut donc se désaligner lors de balayage de fréquence. On peut s'en affranchir à l'aide d'une configuration double-passage comme celle sur la Figure~\ref{fig:AOM_DP}.
+Une utilisation très courante des AOM dans les montages de refroidissement par laser et de piégeage est une configuration en double-passage~\cite{donley_double-pass_2005}. Cette configuration permet d'effecteur deux passages du faisceau dans le même AOM, et donc de doubler le décalage fréquentiel, et ce quelque soit la fréquence RF. En effet, due à la relation~\ref{eq:Bragg_angle}, l'angle du faisceau diffracté dépend de la fréquence RF et peut donc se désaligner lors de balayage de fréquence. On peut s'en affranchir à l'aide d'une configuration double-passage avec un rétroflecteur dit \og oeil-de-chat\fg. Un montage type est présent sur la Figure~\ref{fig:AOM_DP}.
 \begin{figure}[ht]
   \centering
   \includegraphics{figures/schemaDP.png}
-  \caption{Montage typique d'un AOM en configuration double-passage}\label{fig:AOM_DP}
+  \caption{Exemple de montage d'un AOM en configuration double-passage}\label{fig:AOM_DP}
 \end{figure} 
-Le faisceau polarisé linéairement (horizontalement sur le schéma) passe alors dans les différentes parties du système optique:
+Cette configuration necessite une polarisation du faisceau incidente linéaire. Sur la Figure~\ref{fig:AOM_DP}, elle est horizontale car transmise par le PBS (Polarising Beam Splitter). Le faisceau passe alors dans les différentes parties du système optique: 
 \begin{itemize}
-  \item un PBS (Polarising Beam Splitter) qui permet de séparer un faisceau entre ses parties de polarisation verticale et horizontale. Le faisceau entrant, déjà polarisé linéairement, est entièrement transmis mais le faisceau retour, dont la polarisation aura été tourné, sera réfléchi. Cela permet de séparer le faisceau entrant et sortant.
-  \item une lunette astronomique qui permet d'ajuster le waist du faisceau aux caractéristiques de l'AOM tout en restant compact. Il est constitué d'une lentille convexe suivi d'une lentille concave éloigné d'une distance égale à la somme des focale. Cela permet d'ajuster le waist minimum du faisceau pour optimiser l'efficacité de diffraction, dont la valeur optimum est généralement assez faible (\(150 \mu m\) pour les AOM que j'utilise).
+  \item un PBS (Polarising Beam Splitter) qui permet de séparer le faisceau entre ses composantes de polarisation verticales et horizontales. Il permet de transmettre le faisceau incident, polarisé horizontalement, et refléchir le faisceau sortant, polarisé verticalement, et donc de séparer l'entrée de la sortie.
   \item l'AOM qui doit être placé sur le minimum de waist du faisceau afin d'avoir des faisceaux le plus parallèle possible au sein du cristal 
-  \item un rétroflecteur type oeil de chat qui permet de renvoyer le faisceau au sein de l'AOM quelque soit l'angle du faisceau en sortie de l'AOM\@. Il est constitué d'une lentille placé à égale distance de l'AOM et d'un miroir plan (distance qui doit être égale à la focale de la lentille). 
-  \item une lame \(\lambda/4\) placé au sein du rétroreflecteur permet (vu que le faisceau y passe deux fois) d'agir comme une lame \(\lambda/2\) et de tourner la polarisation de \(90\) degrés pour que le faisceau soit réfléchi sur la PBS en sortie.
+  \item une lame quart d'onde permettant de tourner la polarisation de \ang{90} car le faisceau y fait deux passages
+  \item un bloqueur de faisceau permettant de bloquer l'ordre zéro
+  \item un rétroreflecteur dit \og oeil-de-chat\fg permettant de réflechir le faisceau dans l'AOM quelque soit l'angle du faisceau diffracté. Son premier constituant est une lentille de focale \(f\), espacé de l'AOM d'une distance \(f\) pour conjuguer le faisceau à l'infini quelque que soit l'angle du faisceau diffracté. Son deuxième constituant est un miroir plan espacé de la lentille d'une distance \(f\), de sorte à réflechir le faisceau vers l'AOM avec le même waist. 
 \end{itemize}
-Selon~\cite{donley_double-pass_2005}, cette configuration a permis d'obtenir une efficacité de diffraction de \(75\%\) en double-passage pour une efficacité de \(85\%\) en simple-passage. Cela suggère que l'efficacité du deuxième passage est plus élevée que celle du premier passage, car si les deux étaient identiques on attendrai l'efficacité de simple-passage au carré, soit \(72\%\). Cette configuration est donc prometteuse pour obtenir une décalage fréquentiel avec une efficacité élevée. Pour réaliser un faisceau repompeur, j'aurai donc à réaliser deux configurations double-passage à la suite pour obtenir les \(1.71\)GHz de décalage. 
+Ce type de montage permet de réaliser un double décalage en fréquence tout en conservant une bonne efficacité. Par exemple,~\cite{donley_double-pass_2005} a obtenu une efficacité de \(75\%\) avec ce genre de montage, grâce à un AOM possèdant une efficacité de diffraction de \(85\%\). De plus, cela suggère que l'efficacité de diffraction du retour est plus élevée que l'aller, car des passages identiques reviendrait à mettre au carré l'efficacité de diffraction de simple-passage, soit \(72\%\). Cette configuration est donc prometteuse pour obtenir une décalage fréquentiel avec une efficacité élevée.
 
 \subsection{Montage expérimental}\label{subsec:expsetup}
 
-Le montage complet que j'ai réalisé pour étudier l'AOM en double-passage est schématisé dans la figure~\ref{fig:full_setupDP}
+Le montage complet que j'ai réalisé pour étudier l'AOM en double-passage est schématisé dans la Figure~\ref{fig:full_setupDP}.
 \begin{figure}[ht]
   \centering
   \includegraphics{figures/fullsetupDP.png}
-  \caption{Système optique complet}\label{fig:full_setupDP}
+  \caption{Système optique complet, permettant de mesurer l'intensité sortante du laser après un double-passage dans l'AOM}\label{fig:full_setupDP}
 \end{figure}
 Chaque partie du montage et des équipements ont été étudiées et calibrées pour avoir une efficacité de diffraction maximale.
 
+\subsubsection{Caractéristiques techniques de l'AOM}\label{subsubsec:AOM}
+
+L'AOM que j'ai utilisé est un AOM de l'entreprise AA opto-electronic, spécifié à 428MHz comme fréquence d'efficacité de diffraction maximale avec une bande passante de 50MHz. Il est spécifié que le waist entrant doit être compris entre \(100\mu m\) et \(160 \mu m\), et que la polarisation incidente doit être verticale (plus précisement orthogonale au support sur lequel l'AOM est posé). La fiche technique indique une efficacité de diffraction maximale dans l'ordre 1 de 92\% pour un signal RF de puissance 31.14dBm. Ces performances ont été obtenues pour un un laser de 633nm et de waist \(150 \mu m\). De plus, la fiche technique donne la relation~\ref{eq:opt_pow} reliant les puissances optimalse à deux longueur d'onde données:
+\begin{equation}\label{eq:opt_pow}
+  P_\mathrm{RF}(\lambda_1) \approx {(\frac{\lambda_1}{\lambda_2})}^2 \times P_\mathrm{RF}(\lambda_2)
+\end{equation}  
+ce qui permet d'en déduire une puissance optimale théorique pour 532nm de 29.63dBm.
+
+Afin de ne pas endommager l'AOM, il est important de ne pas envoyer trop de puissance RF. AA spécifie une puissance RF maximale de 1.3W afin de ne pas endommager le transducteur. J'ai fait l'experécience que ce type d'AOM à haute fréquence y est particluièrement sensible. Suite à un erreur de manipulation, j'ai envoyé à l'AOM un signal de 2.75W pendant 2 à 3 secondes, ce qui a suffi à faire baisser l'efficacité de diffraction et une trace noire est apparu sur le cristal. Il est donc particulièrement important de faire attention à la puissance RF envoyé, d'utiliser un potentiomètre et augmenter lentement la puissance. Une sécurité peut aussi être mis en place en rajoutant des atténuatuers après la source RF, afin de ne jamais envoyer de signal trop puissant dans l'amplificateur et l'AOM.
+
 \subsubsection{Laser}\label{subsubsec:laser}
 
-Étant placé dans une salle de test loin de l'expérience, je ne pouvais pas utiliser le laser principal de l'expérience Sodium à \(589\)nm. Les lasers vert étant beaucoup plus commun, c'est ce type de laser à \(532\)nm que j'ai utilisé (SDL-532-XXXT Shangai Dream Lasers Technology). C'est un laser qui possède sa propre alimentation et sur lequel je n'avait aucun controle. En temps normal, son intensité pouvait varier de \(50\) à \(90\)mW et pouvait monter jusqu'à \(150\)mW juste après l'allumage. Malgré une plage d'intensité très large, l'intensité se stabilisait autour de valeurs sur des périodes de temps suffisemment longue pour que je puisse prendre des mesures, avec des fluctuations de l'ordre de \(0.2\)mW. Cependant à plusieurs moments durant le stage le laser commençait à fluctuer et à drifter de façon importante, rendant impossible la prise de mesures. Les mesures d'intensité ont été réalisé avec un puissance-mètre possèdant une précision de \(0.1\)mW (Thorlabs PM100D2).
+Étant placé dans une salle de test loin de l'expérience, je ne pouvais pas utiliser le laser principal de l'expérience Sodium à 589nm. Les lasers verts à 532nm étant beaucoup plus commun, c'est ce type de laser que j'ai utilisé pour le montage, précisement le modèle SDL-532-XXXT de Shangai Dream Lasers Technology. Ce laser possède sa propre alimentation qui ne peut pas être contrôlé. Il possède une intensité pouvant varier de 50 à 90mW (qui peut monter jusqu'à 150mW à l'allumage). Malgré une plage d'intensité très large, l'intensité se stabilisait autour de valeurs sur des périodes de temps suffisamment longues pour que je puisse prendre des mesures, avec des fluctuations de l'ordre de 0.2mW. Cependant il est arrivé plusieurs fois que le laser drift et fluctue pendant plusieurs heures, empêchant toute prise de mesure. Les mesures d'intensité lumineuse durant ce stage ont été réalisé avec un puissance-mètre Thorlabs PM100D2 possèdant une précision de 0.1mW dans la gamme d'intensité que je mesurais. La précision des mesures depend donc des fluctuations d'intensité laser et non pas de la précision des instruments de mesure. 
 
-En ajoutant une lame \(\lambda/2\) suivi d'un PBS (Polarising Beam Splitter) à la suite du laser, j'ai pu mesurer la polarisation du laser en réalisant un fit avec l'intensité des faisceaux sortants du PBS\@. En effet, en mesurant les ratios de puissance transmises et reflechi par le PBS pour différents angles de la lame \(\lambda/2\), j'ai pu réaliser un fit avec la fonction~\ref{eq:fit_pol} et reconstruire la polarisation du laser comme le montre la figure~\ref{fig:polarisation_laser}.
-\begin{equation}
-  f : x \mapsto 
-\end{equation}
+En plaçant une lame demi-onde suivi d'un PBS à la suite du laser, j'ai mesuré des rapports entre les intensités réfléchie et incidente qui m'ont permis de reconstruire la polarisation du laser. La courbe de fit est présente sur la Figure~\ref{subfig:fit_pol} et une visualisation de la polarisation correspondante est présente sur la Figure~\ref{subfig:pol}.
 \begin{figure}[ht]
   \centering
   \begin{subfigure}[t]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/fit_pol_laser.pdf}
-    \caption{Fit entre, d'une part, le rapport d'intensité des polarisations horizontales et verticales, et d'autre part l'angle (relatif à l'axe rapide) de la lame quart-d'onde}\label{fig:fitpol}
+    \caption{Fit entre, d'une part, le rapport d'intensité entre la part de polarisation verticale du faisceau et l'intensité incidente, et d'autre part l'angle (relatif à l'axe rapide) de la lame quart-d'onde}\label{subfig:fit_pol}
   \end{subfigure}
   \hfil
   \begin{subfigure}[t]{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{figures/pol_laser.pdf}
-    \caption{Visualisation de la polarisation du faisceau laser reconstruite à partir du fit~\ref{fig:fitpol}}\label{fig:pol}
+    \includegraphics[width=\linewidth,trim={3.5cm 0 3.5cm 2.5cm},clip]{figures/pol_laser.pdf}
+    \caption{Visualisation de la polarisation du faisceau laser reconstruite à partir du fit~\ref{subfig:fit_pol}}\label{subfig:pol}
   \end{subfigure}
   \caption{Reconstruction de la polarisation du laser}
 \end{figure}
-On peut y voir que le faisceau du laser est cohérent et possède une polarisation globale, sous la forme d'une ellipse allongé. Néanmoins ce n'est pas suffisant car l'AOM nécessite d'avoir une polarisation linéaire en entrée. J'ai donc gardé la lame \(\lambda/2\) suivi du PBS car cela me permet d'avoir une polarisation linéaire (verticale car le PBS est utilisé en réflection) très pure pour la suite. De plus, cela me permet de régler la puissance du laser à ma guise en tournant la lame \(\lambda/2\) et donc de baisser la puissance laser (suffisemment élevée pour faire mal aux yeux sans lunettes de protections). 
+On peut y voir que la polarisation du faisceau est une ellipse allongé. On ne peut cependant pas conclure quand à la cohérence du faisceau, qui pourrait être seulement partiellement polarisé. Afin d'obtenir une polarisation verticale très pure et de pouvoir régler la puissance laser, j'ai conservé la lame demi-onde et le PBS dans le montage. 
 
-J'ai aussi pu mesurer le waist du faisceau grâce à une caméra (WincamD LCM) et le logiciel DataRay. En réalisant des mesures du waist à différentes distances du laser, j'ai pu grâce à un fit avec l'expression~\ref{eq:gaussian_waist} théorique d'un faisceau gaussien calculer le waist minimal et sa position. La courbe obtenue est visible sur la figure~\ref{fig:fit_waist_laser}.
+J'ai aussi mesuré le waist du faisceau grâce à une caméra (WincamD LCM) et le logiciel DataRay. En réalisant des mesures du waist à différentes distances du laser, j'ai pu grâce à un fit avec l'expression~\ref{eq:gaussian_waist} théorique d'un faisceau gaussien calculer le waist minimal et sa position. La courbe obtenue est visible sur la figure~\ref{fig:fit_waist_laser}.
 \begin{equation}\label{eq:gaussian_waist}
   w(z) = w_0 \sqrt{1+\frac{z^2}{z_0^2}}
 \end{equation}
@@ -188,204 +192,204 @@ J'ai aussi pu mesurer le waist du faisceau grâce à une caméra (WincamD LCM) e
   \includegraphics[height=7cm]{figures/fit_waist_laser.pdf}
   \caption{Fit de différentes valeurs de waist du faisceau laser avec l'expression théorique du waist d'un faisceau gaussien explicité à la relation~\ref{eq:gaussian_waist}}\label{fig:fit_waist_laser}
 \end{figure}
-Avec ce fit j'obtiens un waist minimal du laser à \(w_0 = 411(2) \mathrm{\mu m}\), situé à \(7(2)\)cm du laser. Due à la difficulté de faire des mesures précises, les barres d'erreur sont grandes ce qui résultent en un fit assez imprécis. On le retrouve dans les incertitudes, en particulier sur la valeur de \(z_0\) mais c'est surtout la valeur du waist qui est importante, et qui est quand à elle assez précise. 
+Avec ce fit j'obtiens un waist minimal du laser de \(w_0 = 411(2) \mathrm{\mu m}\), situé à \(7(2)\)cm de la sortie du laser. Due à la difficulté de faire des mesures précises, les barres d'erreur sont grandes. Cela se traduit par des incertitudes élevées dans les paramètres du fit, en particulier sur \(z_0\).
 
-\subsubsection{Lunette astronomique}\label{subsubsec:telescope}
+\subsubsection{Télescope}\label{subsubsec:telescope}
 
-Comme on l'a vu ci-dessus, le laser possède un waist minimal de \(411(2) \mu\)m. Cependant le waist optimum pour l'AOM est compris entre \(110 \mu\)m et \(160 \mu\)m d'après le constructeur, ce qui est bien plus petit. Pour cette raison j'ai eu besoin d'un dispositif qui permet de réduire le waist du faisceau. Utiliser une lentille simple n'aurait pas été pratique, car il aurait fallu une lentille convergente de focale 300mm ce qui est peu commun et at aurait nettement agrandi le montage car la position de waist minimum aurait été à 30cm de la lentille. Pour cette raison je me suis tourné vers une lunette astronomique composé d'une lentille convergente de focale \(f_1=150\)mm et d'une lentille concave de focale \(f_2=-50\)mm. De cette façon j'obtiens un rapport de grandissement de 3 ce qui me donne un waist théorique à \(137 \mu\)m avec un montage beaucoup plus compact, car le minimum de waist est situé à quelques centimètres de la lentille. En pratique, comme le télescope n'est pas placé au minimum de waist du faisceau, le waist résultant était un peu trop grand. J'ai donc augmenté légèrement la distance entre les deux lentilles (12.2cm au lieu de 10) pour diminuer le waist.
+L'AOM spécifie que la waist du faisceau incident doit être compris entre \um{100} et \um{160}. Cependant le waist minimal du laser mesure \um{411(2)} (cf~\ref{subsubsec:laser}), ce qui est trop grand. Pour réduire ce waist, j'ai opté pour un télescope composé d'une lentille convergente de focale \(f_1=150\)mm suivi d'une lentille divergente de \(f_2=-50\)mm. Ce dispositif possède un facteur de grandissement de \(\frac{1}{3}\), résultant théoriquement en un waist de \um{137} tout en restant compact: les lentilles sont espacées de \(f_1+f_2\) soit 100mm, et le waist minimal à la sortie du telescope est situé à quelques millimètres de la lentille divergente. 
+En pratique, le télescope ne pouvait pas être placé au waist minimal du faisceau, résultant en un waist légèrement trop grand (\(\lesssim\) \um{160}). Écarter les lentilles de 122mm au lieu de 100mm m'a permis d'obtenir un waist satisfaisant de l'ordre de \um{140}.
 
 \subsubsection{Alimentation en Radio-Fréquence}\label{subsubsec:RFline}
 
-Pour fonctionner, l'AOM a besoin d'être alimenté d'un signal radio de puissance élevée. En effet, pour les AOM que j'utilise à \(532\)nm, la puissance optimal est (d'après le constructeur) \(918\)mW soit \(29.6\)dBm. Cependant la source RF que j'utilise (MARCONI INSTRUMENTS avionics signal generator 2030) ne permet pas de génerer des puissances aussi élevées (jusqu'à \(13\)dBm) donc j'ai eu besoin d'installer un amplificateur de signal entre la source et l'AOM\@, comme on peut le voir sur la Figure~\ref{fig:RFline}.
+Pour fonctionner, l'AOM a besoin d'être alimenté d'un signal RF de puissance élevée (de l'ordre du Watt). Pour un laser à 532nm, la puissance RF optimale spécifié par le fabricant est de 918mW soit 29.63dBm (cf~\ref{subsubsec:AOM}). Or la source que j'utilisais ne pouvait pas générer de signaux de puissances supérieures à 13dBm. J'ai donc installé un amplificateur entre la source RF et l'AOM, comme on peut le voir sur la Figure~\ref{fig:RFline}:
 \begin{figure}[ht]
   \centering
   \includegraphics{figures/RF_line.pdf}
   \caption{Schéma de l'alimentation en Radio-Fréquence de l'AOM}\label{fig:RFline}
 \end{figure}
-Avant de calibrer les amplificateurs, j'ai d'abord du calibrer la source RF\@. 
 
 \paragraph{Source RF} 
-À l'aide d'un analyseur de spectre (Rohde \(\&\) Schwarz FPC 1000), j'ai pu voir que la source avait quelques erreurs de calibration. L'erreur sur la fréquence est négligeable (\(0.02\)MHz à \(428\)MHz alors que l'appareil est supposé avoir jusqu'à \(1\)Hz de résolution) mais pas l'erreur sur la puissance. En mesurant la différence de puissance réelle/affichée pour différente valeurs, j'obtiens la courbe de la Figure~\ref{fig:cal_Markoni}.
+La source de signaux RF que j'utilise (MARCONI INSTRUMENTS avionics signal generator 2030) est spécifié comme pouvant générer des signaux de 10kHz à 1.35GHz avec une résolution de 0.1Hz, de puissance jusqu'à +13dBm avec une résolution de 0.1dB. Cependant à l'aide d'un analyseur de spectre (Rohde \(\&\) Schwarz FPC 1000), j'ai mesuré quelques erreurs de calibrations. L'erreur sur la fréquence est de 0.02MHz à 428MHz, ce qui est négligeable pour mon utilisation. Cependant l'erreur sur la puissance ne l'est pas. En mesurant la différence de puissance réelle/affichée à différentes valeurs, j'obtiens la courbe de la Figure~\ref{fig:cal_Markoni}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm, trim={5cm 2cm 0 0},clip]{figures/cal_Markoni.pdf}
-  \caption{Courbe de calibration en puissance de la source RF. La courbe bleu correspond à la différence entre la puissance affichée et la puissance réelle. La droite rouge correspond à la moyenne de cette différence, autrement dit la correction à apporter pour calculer la puissance réelle. La zone rouge correspond à l'incertitude sur cette moyenne (mean \(\pm\) sigma).}\label{fig:cal_Markoni}
+  \includegraphics[height=7cm, trim={0 0 0 2cm},clip]{figures/cal_Markoni.pdf}
+  \caption{Courbe de calibration en puissance de la source RF. La courbe bleu correspond à la différence entre la puissance affichée et la puissance réelle. La droite rouge correspond à la moyenne de cette différence. La zone rouge correspond aux barres d'erreur sur cette moyenne, determiné par mean \(\pm\) sigma.}\label{fig:cal_Markoni}
 \end{figure}
-En moyenne, la différence de puissance est de \(-2.65(2)\)dB. Les fluctuations de la différence de puissance étant petite, je les ai négligées et ai choisis la valeur moyenne comme correction de la puissance affichée sur la source. De plus, les fluctuations de correction sont pris en compte dans l'incertitude, donc toute l'information n'est pas complètement perdu. 
+On peut en déduire une correction moyenne de \(-2.65(2)\)dB sur l'intervalle \([2,13]\)~dBm soit: 
+\begin{equation*}
+  P_{\text{dBm, réelle}} = P_{\text{dBm, affichée}} - 2.65(2)
+\end{equation*}
+Les fluctuations autour de cette valeur moyenne étant petites, elles sont négligées par la suite (mais pris en compte dans les calculs d'incertitude).
 
-\paragraph{Attenuateur}
-La puissance du signal en sortie de l'amplificateur est trop élevée pour l'analyseur de spectre, donc j'ai du rajouter un attenuateur pour faire la calibration. J'ai utilisé un attenuateur à \(40\)dB, même si après quelques mesures je me suis rendu compte que l'attenuation reelle était plus proche de \(39.5\)dB. Sachant que cette difference s'attenuait lorsque la puissance du signal incident augmentait, et que je n'ai pu le tester que sur la bande passante de la source (bien inférieure aux puissances sortant des ampli), j'ai supposé que l'attenuation pour les plages de puissance qdes ampli était de \(40\)dB. J'ai tout de même conservé une incertitude élevée à \(0.5\)dB pour en tenir compte par la suite. 
+\paragraph{Atténuateur}
+Pour calibrer l'amplificateur, un atténuateur est nécessaire afin de ne pas endommager l'analyseur de spectre. Pour cela j'ai utilisé un atténuateur spécifié à 40dB. En le calibrant, j'ai mesuré une atténuation réelle moyenne de 39.5dB sur l'intervalle \([2,13]\)~dBm. De plus cette différence diminuait à mesure que la puissance augmentait. Sachant qu'il m'était impossible de calibrer cet atténuateur à haute puissance, je suppose une atténuation de 40dB sur la bande bassante de l'amplificateur. J'ai tout de même conservé une incertitude élevée de 0.5dB pour tenir compte de ces disparités. 
 
 \paragraph{Amplificateur 23dB}
-Le premier amplificateur que j'ai pu utiliser est un petit amplificateur étiqueté à 23dB (Mini-Circuits amplifier ZFL-2500VH+). En connectant la source à l'ampli, l'ampli à l'atténuateur et l'atténuateur à l'analyseur de spectre, j'ai pu obtenir la courbe de calibration de la Figure~\ref{fig:cal_ampli23DB}
+L'amplificateur utilisé initialement est spécifié à 23dB (Mini-Circuits amplifier ZFL-2500VH+). À l'aide du montage suivant: 
+\begin{equation*}\label{schema:cal_RF}
+  \text{Source RF} \rightarrow \text{Amplificateur} \rightarrow \text{Atténuateur} \rightarrow \text{Analyseur de spectre}
+\end{equation*}
+j'ai mesuré la puissance signal amplifié et le gain de l'amplificateur en fonction du signal incident, ce qu'on peut voir sur la Figure~\ref{fig:cal_ampli23DB}.
 \begin{figure}[ht]
   \centering
   \includegraphics[height=7cm,trim={0cm 0cm 0cm 1.5cm},clip]{figures/cal_ampli23dB.pdf}
   \caption{Calibration de l'amplificateur Mini-Circuits à 23dB. La courbe bleu correspond à la puissance du signal amplifié et son gain en orange, le tout en fonction de la puissance du signal d'entrée. La droite orange correspond au gain maximal moyen (moyenne sur toutes les valeurs du palier).}\label{fig:cal_ampli23DB}
 \end{figure}
-On peut y voir que le gain typique est plus élevée que prévu (24.7(2) au lieu de 23) mais surtout que l'ampli sature pour des signaux incidents de puissance supérieures à 2dBm. La puissance RF du signal amplifié ne peut pas dépasser 27.5dBm (soit 560mW) ce qui est trop faible pour atteindre une efficacité de diffraction maximale (qui est de 918mW annoncé). J'ai donc dû utiliser un ampli plus puissant. 
+On peut y voir que le gain atteint un palier entre -18.5 et 1.5dBm, et on peut calculer que le gain moyen sur ce palier est de \(24.7(2)\)dBm. Le gain maximal de l'amplificateur est donc plus élevée que prévu. Cependant, on peut voir que l'amplificateur sature pour des signal incident de puissance supérieur à 2dBm, et que le signal en sortie ne dépasse pas 27.5dBm. Ce n'est pas suffisant pour atteindre la puissance optimale de l'AOM (spécifié à 29.6dBm cf~\ref{subsubsec:AOM}). Je n'ai donc quasiment pas utilisé cet amplificateur, et me suit tourné vers un amplificateur plus puissant. 
 
 \paragraph{Amplificateur 1W}
-Le second amplificateur que j'ai utilisé est un amplificateur 1W de la manip Sodium. Avec le même protocol, j'ai aussi pu réaliser une courbe de calibration, visible sur la figure\ref{fig:cal_ampli1W}
+Le second amplificateur que j'ai utilisé est un amplificateur 1W assemblé par l'atelier d'électronique. Avec le même montage que précedemment (voir~\ref{schema:cal_RF}), j'ai obtenu la courbe présente sur la Figure~\ref{fig:cal_ampli1W}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={0cm 0cm 0cm 0cm},clip]{figures/cal_ampli1W.pdf}
-  \caption{Calibration de l'amplificateur 1W. Voir la Figure~\ref{fig:cal_ampli23DB} pour le code couleur. La courbe rouge indique la limite de puissance à ne pas dépasser pour ne pas endommager les AOM. L'échelle supérieure de l'axe des abscisses correspond à la puissance affichée sur l'amplificateur.}\label{fig:cal_ampli1W}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 2cm},clip]{figures/cal_ampli1W.pdf}
+  \caption{Calibration de l'amplificateur 1W. Voir la Figure~\ref{fig:cal_ampli23DB} pour le code couleur. La courbe rouge indique la limite de puissance à ne pas dépasser afin de ne pas endommager l'AOM.}\label{fig:cal_ampli1W}
 \end{figure}
-On peut y voir aussi une saturation de l'ampli vers -5dBm mais avec un gain typique bien plus élevée (jusqu'a \(39.0(5)\)dB) qui permet donc d'obtenir des signaux RF de puissance suffisante. On peut aussi y lire un certain nombre de valeurs caractéristiques:
+On peut y voir que l'amplificateur sature pour des puissances incidentes supérieures à -5dBm, mais avec un gain suffisemment élevée (pouvant atteindre \(39.0(5)\)dB) pour obtenir des signaux de puissance suffisante. On peut en déduire que:
 \begin{itemize}
-  \item pour obtenir un signal de puissance 918mW, il faut que le signal incident ait une puissance de -6.9dBm soit une valeur affichée sur la source de -4.27dBm
-  \item le seuil de puissance à ne pas depasser pour ne pas endommager l'AOM (annoncé à 1.3W par le constructeur) donne une puissance incidente maximale de -6.49dBm soit -3.84dBm affiché sur la source
+  \item pour un signal sortant de puissance optimale à 29.63dBm, l'amplificateur doit recevoir un signal de -6.9dBm
+  \item afin de ne pas endommager l'AOM, la puissance du signal sortant ne doit pas dépasser 31.14dBm, donc la puissance du signal incident ne dois pas dépasser -6.49dBm
 \end{itemize}
-Cependant je me suis rendu compte que l'amplificateur disfonctionnait, que à haute puissance il générait des oscillations de puissance qui faisait clignoter la figure de diffraction. Le plus étonnant est que ces oscillations n'étaient pas visibles à l'analyseur de spectre ou à l'oscilloscope donc j'ai dû en changer. 
+Cependant cet amplificateur a commencé à dysfonctionner lors de mon stage. À haute puissance, il générait des oscillations de puissance faisant clignoter la figure de diffraction en sortie de l'AOM. Pour ces raisons, j'ai de nouveau changé d'amplificateur. 
 
 \paragraph{Amplificateur 2W}
-Le troisième amplificateur que j'ai utilisé est un amplificateur 2W de la manip Sodium. De nouveau, j'ai traçé la courbe de calibration avec le même protocol, qui est visible sur la Figure~\ref{fig:cal_ampli2W}
+Le troisième amplificateur que j'ai utilisé est un amplificateur 2W assemblé par l'atelier d'électronique. Toujours avec le même montage (voir~\ref{schema:cal_RF}) et le même protocol, j'ai obtenu la courbe de la Figure~\ref{fig:cal_ampli2W}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm]{figures/cal_ampli2W.pdf}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 2cm},clip]{figures/cal_ampli2W.pdf}
   \caption{Calibration de l'ampli 2W. Le code couleur et légendes sont exactement les mêmes que pour les Figures~\ref{fig:cal_ampli23DB} et~\ref{fig:cal_ampli1W}.}\label{fig:cal_ampli2W}
 \end{figure}
-On y voit que l'ampli possède un palier de gain bien plus stable que l'ampli précedent, qui commence à saturer à -10dBm. Étant donné que l'ampli indiquait que la puissance du signal incident ne devait pas dépasser 0dBm et que les puissances obtenues étaient plus que suffisante, je n'ai continué la courbe pour ne pas endommager l'ampli. De nouveau on peut y lire: 
+On y voit que l'ampli possède un palier de gain bien plus stable que l'ampli précedent, qui commence à saturer à -10dBm. On peut de nouveau en déduire: 
 \begin{itemize}
-  \item la valeur de puissance optimale (théorique): -11.3dBm de puissance incidente soit -9.9dBm affiché sur la source
-  \item la valeur de puissance à ne pas depasser: -9.7dBm incident soit -8.3dBm affiché
+  \item la valeur de puissance optimale (théorique): -11.3dBm de puissance incidente 
+  \item la valeur de puissance à ne pas depasser: -9.7dBm de puissance incidente
 \end{itemize}
 C'est avec cette source que j'ai réalisé la majorité de mes mesures d'efficacité.
 
-Un autre point à noter est de faire attention aux fils qu'on utilise. J'ai remarqué que selon les câbles utilisés, je pouvais obtenir jusqu'à 1.1dB de perte de puissance RF\@.
+On notera que selon les câbles utilisés, on peut générer jusqu'à 1.1dB de perte de puissance. Il est donc important d'utiliser des câbles adaptées aux hautes puissance, en particulier après l'amplificateur. 
 
 \subsubsection{Aligement de l'AOM}\label{subsubsec:AOMalignment}
 
-L'alignement de l'AOM m'a posé plusieurs problèmes. L'efficacité de diffraction est très sensible à l'angle de rotation de l'AOM pour permettre de focalise dans l'ordre 1, mais les vis de réglages fin de la monture permettent d'atteindre le maximum pour une position donnée. Cependant l'efficacité est aussi assez sensible à la position de l'AOM sur la table (jusqu'à 5\% de différences) ce qui obligeait de réaliser l'alignement à tâton. De cette façon j'ai pu obtenir jusqu'à 86.5(4)\% d'efficacité de diffraction dans l'ordre 1 (en simple passage). Cela reste un peu bas considérant que d'après le constructeur, l'efficacité pouvait monter jusqu'à 92\% mais c'est plus que suffisant. 
+L'alignement de l'AOM pose plusieurs problèmes. L'efficacité de diffraction depend fortement de l'angle de rotation mais aussi de la position de l'AOM sur la table optique. Bien que les vis de réglage fin de la monture permettent d'ajuster finement l'angle, je ne disposais pas de dispositif équivalent pour la position de la monture sur la table optique. J'ai donc procédé à tâton, testant différentes positions afin de chercher la configuration optimale. De cette façon, j'ai mesuré une efficacité de diffraction maximale de 86.5(4)\% en simple-passage. Cette efficacité est suffisante dans le cadre de mon objectif, mais reste inférieur aux 92\% spécifiés par le fabricant. 
 
-\subsubsection{Rétroreflecteur oeil de chat}\label{subsubsec:catseye}
+\subsubsection{Rétroreflecteur dit \og oeil de chat\fg}\label{subsubsec:catseye}
 
-Pour le rétroreflecteur, j'ai choisi d'utiliser une lentille de focale \(f=100mm\) afin d'avoir la place de mettre la lame \(\lambda/4\) entre l'AOM et la lentille. Cependant théoriquement la valeure de la focale ne change rien donc en utilisant autre chose que des pieds standards on pourrait rendre le montage plus compact. Autrement, c'est surtout la qualité de l'alignement qui va compter pour l'efficité de l'oeil de chat.
-
-\subsubsection{Problèmes rencontrés et incidents}\label{subsubsec:problems}
-
-Comme je l'ai déjà mentionné dans sa partie dédiée, les fluctuations du laser m'ont posé un certains nombre de problèmes, jusqu'à m'empecher de prendre des mesures certaines journées. 
-
-Cependant, ce qui m'a le plus bloqué pendant le stage est due au fait que j'ai cassé un des deux AOM sur lesquels se basaient mon montage. Après avoir changé l'ampli de 23dB pour l'ampli de 1W, j'essayais de mesurer l'efficacité de diffraction pour différentes valeurs de puissance RF\@. Sans le faire exprès et suite à une mauvaise utilsation de la source de ma part, j'ai envoyé un signal RF de puissance 34.4dBm soit 2.75W pendant deux à trois secondes. Suite à cela, l'efficacité de diffraction a nettement baissé et la figure de diffraction à commencer à clignoter. De plus, après inspection visuelle on pouvait voir une trace noire sur le cristal.
-
-La trace noire est probablement due à une pulvérisation de matière du transducteur qui a surchauffé. Cependant on s'est rendu compte après coup (en observant les mêmes pulsations sur le deuxième AOM) que le clignotement était due non pas à l'AOM mais à l'amplificateur. Les dégâts de l'AOM sont donc potentiellement moins grave que ce que l'on pensait, mais à ce jour on n'a pas eu de confirmation du constructeur. 
-
-Cet incident a modifié le déroulement de mon stage, car même si j'avais toujours un AOM fonctionnel, je n'ai pu étudier que le simple et double-passage. Je n'ai donc pas pu effectuer le shift de 1.7GHz. L'autre piste était d'effectuer un montage en quadruple-passage, mais je n'ai pas pu le réaliser due à l'absence de certaines pièces indispensables. C'est pour cette raison que la fin de mon stage a pris un autre tournant et que je me suis intéressé au data logger permettant la visualisation en temps réelle des températures du four, qui sera détaillé dans la partie 3.
+Pour le rétroréflecteur, j'ai choisi d'utiliser une lentille de focale \(f=100mm\) afin d'avoir la place de mettre la lame \(\lambda/4\) entre l'AOM et la lentille. On pretera une attention particulière à l'alignement du rétroreflecteur, dont l'efficacité du second passage dans l'AOM dépend fortement. Pour ce faire, j'ai réalisé le protocole suivant:
+\begin{itemize}
+  \item on commence par placer la lentille convergente. Afin de la placer à la distance focale de l'AOM, il faut s'aider de la distance entre les faisceaux de la figure de diffraction. Les distances entre ces faisceaux après la lentille ne doivent pas varier car la lentille les conjugent à l'infini. 
+  \item on place ensuite la lame quart-d'onde entre l'AOM et la lentille et le bloqueur de faisceau pour bloquer l'ordre 0.
+  \item finalement on place le miroir plan. Les vis de réglage fin de la monture permettent un ajustement précis de l'orientation du miroir. Il faut ensuite procéder à tâton afin de trouver la position qui maximise l'efficacité du montage
+\end{itemize}
 
 \subsection{Résultats}\label{subsec:results}
 
+Dans cette partie je présente les différents résultats que j'ai pu obtenir grâce au montage détaillé dans la partie précédente. Je commence par les caractérisation de l'AOM en simple passage, dans l'ordre +1 et +2. Ensuite je détaille les résultats obtenues pour le double-passage. 
+
 \subsubsection{Caractérisation de l'AOM en simple-passage}\label{subsubsec:cAOMSP}
 
-Dans un premier temps, j'ai cherché à caractériser l'AOM en simple passage grâce au montage schématisé à la Figure~\ref{fig:setupSP}.
+Dans un premier temps, j'ai caractérisé l'AOM en simple passage grâce au montage de la Figure~\ref{fig:setupSP}.
 \begin{figure}[ht]
   \centering
   \includegraphics[height=6cm]{figures/setupSP.png}
   \caption{Montage en simple passage}\label{fig:setupSP}
 \end{figure}
-Avec ce montage et différent protocoles, j'ai pu caractériser le comportement de l'efficacité de diffraction pour différents paramètres. 
+Avec ce montage et différents protocoles, j'ai pu caractériser le comportement de l'efficacité de diffraction pour différents paramètres. 
 
 \paragraph{Caractérisation en puissance}
 En mesurant la puissance diffracté pour différentes valeurs de puissance du signal RF, j'ai pu obtenir la courbe de la Figure~\ref{fig:PDE.SP}: 
 \begin{figure}[ht]
   \centering
   \includegraphics[height=7cm]{figures/PDE.SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF. La courbe bleu correspond aux données mesurés avec l'amplificateur à 23dB et la courbe orange avec l'amplificateur à 2W.}\label{fig:PDE.SP}
+  \caption{Caractérisation de l'efficacité de diffraction de l'AOM en simple-passage en fonction de la puissance RF. La courbe bleu correspond aux données mesurés avec l'amplificateur à 23dB et la courbe orange avec l'amplificateur à 2W.}\label{fig:PDE.SP}
 \end{figure}
-On peut y voir que malgré les différences d'amplificateur, les courbes se superposent bien. L'ampli 23dB saturant à haute amplitude, je n'ai pas pu avoir la suite de la courbe. La bande passante de l'AOM vaut alors \(8.4(4)\)dBm (calculé aux points ou l'efficacité de diffraction valait l'efficacité maximale divisé par \(\sqrt{2}\) en supposant la courbe symétrique). 
-
-On peut aussi voir que le maxima est très bien aligné sur la valeur théorique et compris dans les barres d'erreur (le maxima a été mesuré à \(29.7(2)\)dBm pour une valeur théorique à 29.6dBm). Avec cette configuration, on a pu atteindre jusqu'à 73.6(2)\% d'efficacité de diffration. Cette valeur est assez basse comparé aux 92\% annoncé et sera amélioré par la suite avec un meilleur alignement et une meilleure gestion du waist. 
+On peut y voir que malgré les différences d'amplificateur, les courbes se superposent bien. L'ampli 23dB saturant à haute amplitude, je n'ai pas pu avoir la suite de la courbe. On peut aussi voir que le maximum est très bien aligné sur la valeur théorique et compris dans les barres d'erreur (le maximum a été mesuré à \(29.7(2)\)dBm pour une valeur théorique à 29.6dBm). Au cours de la calibration, j'ai mesuré jusqu'à 73.6(2)\% d'efficacité de diffration. Cette valeur est assez basse comparé aux 92\% annoncé et sera amélioré par la suite avec un meilleur alignement et une meilleure gestion du waist. 
 
 \paragraph{Caractérisation en fréquence}
-Pour mesurer le comportement fréquentiel de l'efficacité de diffraction, je fixais d'abord la valeur de fréquence RF sur la source, puis j'augmentais petit à petit la puissance du signal RF jusqu'à obtenir le maximum d'efficacité, et ce pour chaque point. En effet la puissance optimale dépend sensiblement de la fréquence, avec des variations jusqu'à 5dB donc elle doit être identifié à chaque mesure. Ce protocole m'a permis d'obtenir la courbe de la Figure~\ref{fig:FDE.SP}.
+Afin de caractériser la dépendance en fréquence de l'efficacité de diffraction, j'ai cherché la puissance RF optimale pour chaque mesure. En effet ce paramètre dépend fortement de la fréquence (avec des variations allant jusqu'à 5dB) et doit donc être identifié à chaque point. Pour cela, je fixais la fréquence RF puis j'augmentais petit à petit la puissance jusqu'à obtenir la valeur optimale. Ce protocole m'a permis d'obtenir la courbe de la Figure~\ref{fig:FDE.SP}.
 \begin{figure}[ht]
   \centering
   \includegraphics[height=7cm,trim={0 0 0 1cm},clip]{figures/FDE.SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la fréquence radio}\label{fig:FDE.SP}
+  \caption{Caractérisation de l'efficacité de diffraction maximale de l'AOM en simple-passage en fonction de la fréquence RF.}\label{fig:FDE.SP}
 \end{figure}
-On peut y voir que le maximum d'efficacité de diffraction est bien centré à 428MHz, et que l'efficacité de diffraction ne varie pas de plus de quelques pourcents pour des variations de fréquences de l'ordre de la dizaine de MHz. Concernant la bande passante théorique donnée par le constructeur, je n'ai pas reussi à determiner à quoi correspondait elle correspondait. 
+On peut y voir que le maximum d'efficacité de diffraction est bien centré à 428MHz, la fréquence optimale spécifiée par le fabricant. On peut aussi y voir que l'efficacité de diffraction diminue de l'ordre de 5\% sur la bande passante spécifiée par le fabricant, soit \(428 \pm 25\)MHz
+
 
 \paragraph{Caractérisation en polarisation}
-En jouant sur l'angle d'une lame \(\lambda/2\) devant la lunette, j'ai aussi pu caractériser l'efficacité de diffraction en polarisation. La courbe obtenue est visible sur la Figure~\ref{fig:PolDE.SP} fitté avec une fonction sinusoidale:
+En jouant sur l'angle d'une lame \(\lambda/2\) placé devant le telescope, j'ai carcatérisé l'efficacité de diffraction en polarisation. La courbe obtenue est visible sur la Figure~\ref{fig:PolDE.SP}, ajustée avec une fonction sinusoidale:
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/PolDE.SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la polarisation}\label{fig:PolDE.SP}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 2cm},clip]{figures/PolDE.SP.pdf}
+  \caption{Caractérisation de l'efficacité de diffraction de l'AOM en simple-passage en fonction de l'angle de la polarisation linéaire incidente. L'angle \ang{0} (et \ang{180}) correspond à une polarisation verticale et \ang{90} correspond à une polarisation horizontale. Cette rotation a été effectué en tournant l'axe rapide d'une lame demi-onde. La courbe bleue correspond aux valeurs mesurées et la courbe orange au fit avec une fonction sinusoidale}\label{fig:PolDE.SP}
 \end{figure}
-On peut y voir que le maximum correspond bien aux angles 0 et 90 soit à une polarisation verticale. On s'aperçoit aussi qu'il n'y a que 2.4\% de différence entre une polarisation verticale et horizontale. Sachant qu'au second passage du faisceau dans l'AOM dans la configuration second passage, la polarisation a été tourné de 90 degrés, l'efficacité théorique du double-passage devrait être de 72.3(4)\%.
-
-
-Le maximum d'efficacité correspondait bien à une polarisation verticale comme annoncé par le constructeur, mais une polarisation horizontale est tout aussi efficace à 0.3\% près.
-De manière générale, les pertes due à la rotation de la polarisation linéaire ne dépassait pas 2\% par rapport à une polarisation verticale. Ce n'est donc pas déreangeant qu'au second passage la polarisation soit horizontale et non pas verticale. 
+On peut y voir que le maximum correspond bien aux angles \ang{0} et \ang{180} soit à une polarisation verticale. On s'aperçoit aussi qu'il n'y a que 2.4\% de différence entre une polarisation verticale et horizontale. En double-passage, le faisceau réflechi voit sa polarisation tourné de \ang{90} par la lame quart-d'onde. Au second passage dans l'AOM, le faisceau ne sera donc plus polarisé verticalement mais horizontalement. Avec cet alignement, l'efficacité théorique du double-passage est donc 72.3(4)\%.
 
 \subsubsection{Caractérisation de l'AOM au second ordre}\label{subsubsec:cAOMSO}
 
-Une idée que j'ai eu pendant mon stage fut de tester l'AOM au deuxième ordre plutôt qu'au premier. Mes encadrants n'avaient pas d'ordres de grandeur en tête sur ce que l'on pouvait atteindre comme efficacité et utiliser le second ordre pourrait beaucoup simplifier le montage et le rendre bien plus compact. J'ai donc mesuré l'efficacité de diffraction en fonction de la puissance RF au second ordre de diffraction en simple passage. Cette mesure est visible sur la Fgure~\ref{fig:ADE.SO.SP} à côté de la courbe obtenu au premier ordre pour comparaison.
+Durant le stage, j'ai eu l'idée de tester l'efficacité de diffraction de l'AOM au second ordre. Dépendant des valeurs obtenues, utiliser un AOM en double-passage au second ordre plutot que deux AOMs en double-passage au premier ordre pourrait être compétitif avec un montage bien plus compact. Cette mesure m'a permis d'obtenir la courbe bleue de la Figure~\ref{fig:ADE.SO.SP}. À des fins de comparaison, j'ai aussi affiché la mesure correspondante pour l'ordre +1 et celle de l'ordre +1 au carré pour symboliser le double-passage. 
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 3cm 2cm},clip]{figures/ADE.SO.SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF}\label{fig:ADE.SO.SP}
+  \includegraphics[height=7cm,trim={0 0 0cm 2cm},clip]{figures/ADE.SO.SP.pdf}
+  \caption{Caractérisation de l'efficacité de diffraction de l'AOM en simple-passage en fonction de la puissance du signal RF. La courbe bleu correspond à l'efficacité dans l'ordre +2, tandis que la courbe bleu correspond à l'ordre +1 et la courbe verte à l'ordre +1 au carré (symbolisant le double-passage dans l'ordre +1).}\label{fig:ADE.SO.SP}
 \end{figure}
-On peut y voir que la courbe bleu correspondant au second ordre est décalé en puissance par rapport au premier ordre. Afin de ne pas endommager l'AOM, je n'ai pas envoyé de signaux avec des puissances trop élevées mais on ne peut donc pas mesurer le maximum. Lors de cette mesure, j'ai pu arriver jusqu'à 15.83(8)\% d'efficacité de diffraction. Lors de test avec un signal de puissance un peu plus élevée, j'ai pu monter jusqu'à 31.5\%, ce qui montre que l'on est encore loin du maximum d'efficacité. Cependant dans l'état actuel, utiliser le second n'est pas compétitif, car beaucoup trop bas comparé au premier, qui atteint jusqu'à 86.5(2)\% d'efficacité en simple, soit 74.8(7)\% en double passage en supposant le retour identique. Je n'ai donc pas continué sur cette piste, mais si le transducteur de l'AOM était plus solide et que le maximum d'efficacité au second ordre est suffisemment haut, cela pourrait devenir une option viable. 
+On peut voir qu'il faudrait une puissance bien supérieure pour atteindre le maximum d'efficacité. Cependant on est limité par l'AOM qui risque d'être endommagé si on augmente trop la puissance. Lors de tests avec des signaux de puissance légèrement plus élevées, j'ai mesuré une efficacité de diffracton dans l'ordre 2 de 31.5\%. Cependant dans l'état actuel des choses, ces résultats ne sont pas compétitifs par rapport à un double-passage dans l'ordre 1. On peut voir sur la Figure~\ref{fig:ADE.SO.SP} que l'efficacité théorique de deux passages dans un AOM réglé à l'ordre +1 atteint 52.4(3)\%, ce qui est bien supérieur. De plus, avec un meilleur montage, on a pu calculer dans la partie~\ref{subsubsec:cAOMSP} une efficacité théorique en double-passage encore plus élevée, de 72.3(4)\%. Je n'ai donc pas continué sur cette piste. Cependant, si le transducteur de l'AOM était plus solide et que le maximum d'efficacité au second ordre est suffisemment haut, cela pourrait devenir une option viable. 
 
 \subsubsection{Caractérisation de l'AOM en double-passage}\label{subsubsec:cAOMDP}
 
-Après avoir réalisé le montage détaillé à la Figure~\ref{fig:full_setupDP}, j'ai pu caractériser l'efficacité de diffraction en double-passage en fonction de la fréuqence RF\@. En suivant le même protocole que pour le simple passage, j'ai pu obtenir la coubre visible sur la Figure~\ref{fig:FDE.DP}
+Après avoir réalisé le montage détaillé à la Figure~\ref{fig:full_setupDP}, j'ai pu caractériser l'efficacité de diffraction en double-passage en fonction de la fréquence RF\@. En suivant le même protocole que pour le simple passage, j'ai pu obtenir la courbe visible sur la Figure~\ref{fig:FDE.DP}
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/FDE.DP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF en double passage}\label{fig:FDE.DP}
+  \includegraphics[height=7cm,trim={0cm 0cm 0cm 2cm},clip]{figures/FDE.DP.pdf}
+  \caption{Caractérisation de l'efficacité de diffraction maximale de l'AOM en double-passage en fonction de la fréquence RF. Les trois séries de points correspondent à trois séries de mesures prises à des moments différents et montre que la mesure est reproductible.}\label{fig:FDE.DP}
 \end{figure}
-On peut voir que les courbes ne sont pas centrées sur 428MHz. Ce décalage apparaissant aussi sur d'autres mesures de simple passage réalisés plus tard, je suspecte un problème dans l'alimentation RF qui décale la fréquence du signal envoyé à l'AOM\@. J'imagine que c'est due à un décalage de la source, mais aucune anomalie n'est visible sur l'analyseur de spectre. Néanmoins au vu des symptomes, c'est très peu probable que la fréquence optimale de l'AOM se soit décalé, c'est pourquoi certaines de ces courbes pourront être recentré par la suite. 
+On peut voir que les courbes ne sont pas centrées sur la fréquence spécifiée de l'AOM, 428MHz. Pourtant ce décalage n'apparait pas sur des mesures antérieures tel que la Figure~\ref{fig:FDE.SP}. Je suspecte soit un problème de calibration de la source, soit un décalage de la fréquence optimale de l'AOM. Cependant, les deux sont censés être très robuste et je n'ai pas eu le temps de réaliser de tests supplémentaires permettant de conclure. À des fins de clarté, j'ai par la suite recentré certaines courbes sur 428MHz.
 
-J'ai pu atteindre des efficacité de diffraction atteignant jusqu'à 64.6(5)\% en double-passage. Cette valeur est nettement plus basse que les 72.3(4)\% théoriques calculés à la partie~\ref{subsubsec:cAOMSP}. Cependant l'alignement de l'AOM pour réaliser ces courbes est différent, et ne permet pas d'obtenir des efficacités aussi élevées que 86.5(4)\%. Pour pouvoir mieux comparer, j'ai aussi affiché sur la Figure~\ref{fig:FDE.DP_SP} la courbe obtenue en simple passage pour cet alignement. Pour plus de clarté, les courbes ont été recentrées sur 428MHz.
+J'ai mesuré des efficacités de diffraction atteignant jusqu'à 64.6(5)\% en double-passage. Cette valeur est nettement plus basse que les 72.3(4)\% théoriques calculés à la partie~\ref{subsubsec:cAOMSP}. Cependant l'alignement de l'AOM pour réaliser ces courbes est différent, et ne permet pas d'obtenir des efficacités aussi élevées que 86.5(4)\%. Pour pouvoir mieux comparer, j'ai aussi affiché sur la Figure~\ref{fig:FDE.DP_SP} la courbe obtenue en simple passage pour cet alignement. Pour plus de clarté, les courbes ont été recentrées sur 428MHz.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/FDE.DP+SP.pdf}
-  \caption{Caractérisation de l'efficacité de diffraction en fonction de la puissance RF en double passage}\label{fig:FDE.DP_SP}
+  \includegraphics[height=7cm,trim={0 0 0 2cm},clip]{figures/FDE.DP+SP.pdf}
+  \caption{Caractérisation de l'efficacité de diffraction maximale de l'AOM en fonction de la fréquence RF. La courbe orange correspond au double-passage, tandis que la courbe violette correspond à l'efficacité de diffration en simple-passage au carré, autrement dit la prédiction théorique du double-passage. Les deux courbes ont été réalisées avec le même alignement de l'AOM et ont été recentré avec le maximum à 428MHz afin de compenser le drift en fréquence RF.}\label{fig:FDE.DP_SP}
 \end{figure}
-On peut voir sur la Figure~\ref{fig:FDE.DP_SP} que les courbes obtenues en double-passsage sont très similaire à la courbe de simple passage au carré. Cela signifie qu'il n'y a pas de pertes supplémentaires due au montage propre au double passage, et que tout se passe comme si le faisceau passait dans deux AOM distincts (avec le même alignement). Due à la difficulté de mesurer avec précision l'intensité laser (qui depend fortement de la position et de l'inclinaison du puissance-mètre), les mesures possède des incertitudes trop élevée pour pouvoir identifier si les pertes au second passage sont réellement plus basse que les pertes au premier, comme le suggérait~\cite{donley_double-pass_2005}.
+On peut voir sur la Figure~\ref{fig:FDE.DP_SP} que les courbes obtenues en double-passsage sont très similaire à la courbe de simple passage au carré. Cela signifie qu'il n'y a pas de pertes supplémentaires due au montage propre au double passage, et que tout se passe comme si le faisceau passait dans deux AOM distincts (avec le même alignement).
 
-Il est aussi important de noter que la puissance du signal RF maximisant l'efficacité de diffraction dépendait fortement de la fréquence, avec des variations jusqu'à 5dB. De plus ces fluctuations ne sont pas forcément constantes, comme on peut le voir sur la Figure~\ref{fig:OptPow}.
+Il est aussi important de noter que la puissance du signal RF maximisant l'efficacité de diffraction dépend fortement de la fréquence, avec des variations jusqu'à 5dB. De plus ces fluctuations ne sont pas forcément reproductibles, comme on peut le voir sur la Figure~\ref{fig:OptPow}.
 \begin{figure}[ht]
   \centering
-  \includegraphics[height=7cm,trim={2cm 1cm 0cm 0cm},clip]{figures/OptPow.pdf}
-  \caption{Optimum displayed RF power for different frequencies}\label{fig:OptPow}
+  \includegraphics[height=7cm,trim={0 0 0 2cm},clip]{figures/OptPow.pdf}
+  \caption{Puissance RF maximisant l'efficacité de diffraction en fonction de la fréquence RF. La puissance mesurée est la puissance affichée par la source (et ne prend en compte ni le correctif de la source ni l'amplificateur) et pas la puissance incidente. Les différentes séries de points correspondent à différentes mesures en simple et double-passage. Les deux séries avec les couleurs les plus sombres, dénommées SP, correspondent à des mesures en simple-passage et les trois autres, dénommées DP, à des mesures en double-passage. Ces mesures ont été réalisé à des instants et des alignements de l'AOM différents.}\label{fig:OptPow}
 \end{figure}
-On peut distinguer des oscillations de 360MHz à 440MHz, mais de 440 à 500MHz les mesures deviennent décorrélées. Ces variation sont probablement due à des effets de résonances dans les fils et les différents appareils de l'alimentation RF, mais je n'explique pas la raison pourquoi les mesures deviennent décorrélées au dessus de 500MHz. En pratique, pour l'utilisation du montage, ce n'est pas dérangeant sachant que la fréquence sera fixé à 428MHz et n'en bougera pas. Néanmoins cela peut devenir un problème si l'on veut réaliser des balayages ou des changements de fréquences. 
-
-\subsection{Conclusion}\label{subsec:AOMconcl}
-
-
+On peut distinguer des oscillations de 360MHz à 440MHz, mais de 440 à 500MHz les mesures sont décorrélées. Ces variations sont probablement due à des effets de résonances dans les câbles et les différents appareils de l'alimentation RF, mais la non reproductibilité des mesures au delà de 440MHz sont difficile à interpréter. En pratique, pour l'utilisation du montage, ce n'est pas dérangeant sachant que la fréquence sera fixé à 428MHz et n'en bougera pas. Néanmoins cela peut être gênat si l'on veut réaliser des balayages ou des changements de fréquences.
 
 \section{Logger de températures}\label{sec:datalogger}
 
-Sur l'expérience Sodium, le four est la toute première étape du processus préparant les condensats. Il permet de vaporiser des cubes solides de Sodium afin d'otbenir un gaz d'atome de Sodium. Il est constitué de trois parties chauffées de façon indépendantes dont on peut faire varier la température. Pour être stable dans le temps, chaque partie est muni d'un d'un asservissement en température. Le signal d'asservissement est fourni par un thermocouple, un capteur utilisant la différence de tension généré entre deux fils par une différence de température pour mesurer la température. Pour des raisons de contrôles, chaque partie est aussi munie d'un deuxième thermocouple permettant de contrôler la température hors-asservissement. Cependant, au début de mon stage, le seul moyen d'accéder à cette valeur était de brancher le thermocouple correspondant dans un capteur fait-pour. Cela était très peu pratique car il fallait aller à l'arrière de la manip, et qu'on ne pouvait brancher qu'un seul thermocouple à la fois. De plus, les mesures étaient seulement affiché momentanément, donc on ne pouvait pas visualiser l'évolution sur une journée ou une semaine par exemple. Afin de pouvoir visualiser en direct l'évolution des températures, j'ai configuré un data logger (PicoTech TC-08) pour collecter les données de températures et les exporter dans une base de donnée InfluxDB\@. J'ai alors pu y connecter un logiciel de visualisation appelée Grafan qui accède aux données contenues dans la base et les afficher. Ce fonctionnement est schématisé sur la Figure~\ref{fig:datalogger_scheme}.
+Dans cette partie, je vais dans un premier temps détailler le fonctionnement de chacune des parties du processus de collecte et affichage des données, qui est schématisé sur la Figure~\ref{fig:datalogger_scheme}. Je détaillerai ensuite le travail que j'ai réalisé pour assembler ces parties en un processus automatisé. Finalement, je présenterai l'utilisation de ce processus après qu'il soit installé sur les ordinateurs de l'expérience. 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=.95\textwidth]{figures/data_logger_scheme.pdf}
-  \caption{Schéma de fonctionnement de l'affichage des températures}\label{fig:datalogger_scheme}
+  \caption{Schéma de fonctionnement du processus d'affichage des températures}\label{fig:datalogger_scheme}
 \end{figure}
 
-\subsection{Description}
+\subsection{Description des composants du processus}
 
 \subsubsection{Data Logger PicoTech TC-08}\label{subsubsec:TC08}
 
-Le data logger que j'ai configuré est le modèle TC-08 de l'entreprise PicoTechnology. Il possède huit canaux, permettant de brancher jusqu'à huit thermocouples et est capable de réaliser jusqu'à 10 mesures par secondes. Il vient avec un driver permettant sa gestion à l'aide d'un script Python. Ce driver se présente sous la forme d'une bibliothèque logicielle (un ensemble de fonctions pré-compilées en C) qui permettent de piloter l'appareil. Pour utiliser ces fonctions, un package Python permet de wrapper ces fonctions à un objet Python suos forme de méthodes. Cela signifie qu'en pratique, on dispose d'un objet Python (une instance de classe) auquelle sont associées des méthodes qui permettent d'appeler les fonctions de la bibliothèque logicielle et de piloter l'appareil. De cette façon, on va pouvoir piloter le data logger grâce à un script Python.
+Le data logger que j'ai configuré est le modèle TC-08 de l'entreprise PicoTechnology. Il possède huit canaux, permettant de brancher jusqu'à huit thermocouples et est capable de réaliser jusqu'à 10 mesures par secondes. Il est donc adapté pour notre objectif. Pour le piloter avec Python, il faut installer le driver PicoSDK. Ce driver consiste en un fichier pré-compilé appelé bibliothèque logicielle, contenant des fonctions codés en C qui permettent de piloter l'appareil. Pour l'utiliser avec Python, il faut installer le package pico-sdk. Ce package fourni un objet Python doté de fonctions wrapper, c'est à dire des méthodes qui permettent d'appeler les fonctions de la bibliothèque logicielle. C'est l'utilisation de ces méthodes qui permettent de piloter le data logger.
 
 \subsubsection{InfluxDB}
 
-InfluxDB est une un type de base de donnée spécialisant dans le traitement et le stockage de données temporelles (où tout point est associé à une date spécifique). C'est ce qui va permettre de stocker les données de températures, y compris sur des durées longues. Pour cela j'ai utilisé la version InfluxDB3-Core qui correspond à la dernière version de Influxdb qui est installé localement sur l'ordinateur. Un package permet alors de générer un client Python permettant d'intéragir avec la base de donnée locale, notamment d'exporter des données. C'est grâce à ce package que je vais pouvoir exporter les données de températures vers la base de données.
+InfluxDB est un type de base de données spécialisé dans les données temporelles. C'est dans cette base de données que vont être stocké les données de températures. J'ai choisi d'utiliser la version locale de InfluxDB, appelée InfluxDB3 Core, car utiliser la version Cloud demande un abonnement payant et ne possède pas de gros avantage. L'interaction avec cette base de donnée sera réalisé directement dans Python, avec le package correspondant. Ce package permet de créer un client InfluxDB qui permet d'intéragir avec la base de données directement depuis un script. C'est ce qui va me permettre d'exporter les mesures de températures vers la base de données. 
 
-\subsubsection{Grafana}
+\subsubsection{Grafana Cloud et agent PDC}
 
-Grafana est un logiciel de visualisation de données. Dans notre cas, il va permettre d'accéder aux données stockées dans InfluxDB et de les visualiser. J'ai choisi d'utiliser la version Cloud de Grafana pour qu'il soit possible de voir l'évolution des températures du four à distance. Cependant pour que la version Cloud de Grafana puisse accéder à la base de donnée locale, j'ai eu besoin d'installer un agent PDC (Private Datasource Connect) sur l'ordinateur pour qu'il puisse faire le lien entre les deux. Grafana permet alors de visualiser en direct les données dans une belle interface, pratique et hautement customisable.
+Grafana est un logiciel de visualisation de données. L'intérêt de ce logiciel et qu'il possède une interface facile, pratique et hautement customisable. De plus, il possède un plug-in pour fonctionner directement avec une base de donnée InfluxDB. Le rôle de Grafana va être d'accéder et de lire les données contenu dans la base de donnée et de les afficher. Afin que l'on puisse accéder aux données à distance, j'ai choisi d'utiliser la version Cloud de Grafana dont la version gratuite est suffisante pour les besoins de l'expérience. Cependant pour pouvoir se connecter à une base de donnée locale, Grafana Cloud a besoin d'un intermédiaire. C'est le rôle de l'agent PDC (Private Datasource Connect), un programme qui doit être installé localement, démarré depuis un terminal, et qui permet de faire le lien entre la source de donnée (ici InfluxDB) et le Cloud de Grafana. 
 
-\subsection{Fonctionnement}
+\subsection{Fonctionnement du processus}
+
+\subsubsection{Encapsulation du driver natif du data logger}
+
+Le driver natif proposé avec le data logger, bien que fonctionnel, n'est pas très clair et assez déroutant à utiliser. De plus, plusieurs étapes successives sont nécessaires pour démarrer et connecter le driver. Afin de faciliter son utilisation, j'ai décidé de créer une classe Python encapsulant le fonctionnement du driver Python. Elle permet de piloter le data logger sans s'approcher du fonctionnement déroutant du driver natif, explicité dans la partie~\ref{subsubsec:TC08}. De plus, j'y ai inclus une gestion des erreurs et des logs, clarifiant les messages en cas d'erreur et facilitant le debuggage.
 
 \subsubsection{Script d'extraction et exportation des données}
 
-La collecte des données et l'exportation vers la base de donnée InfluxDB est centralisé dans un script Python, dont le fonctionnement est résumé en pseudo-code ci dessous.
+La collecte des données et l'exportation vers la base de donnée InfluxDB est centralisé dans un script Python, dont le fonctionnement est résumé en pseudo-code ci-dessous.
 
 \begin{algorithm}[ht]
   \DontPrintSemicolon\SetAlgoLined
@@ -404,7 +408,7 @@ La collecte des données et l'exportation vers la base de donnée InfluxDB est c
   \caption{Main.py}
 \end{algorithm}
 
-Il est possible de modifier les différents canaux qui sont reliés à un thermocouple en modifiant la variable \texttt{ENABLED\_CHANNELS} et de modifier le temps entre deux mesures avec la variable \texttt{WAITING\_TIME}. Le client InfluxDB est crée grace au package influxdb3-python. Cependant l'utilisation du driver python du data logger TC-08 était très peu clair, notamment due au fait que les fonctions de la librairie logicielle sont nativement écrites en \texttt{C} et que plusieurs étapes sont nécessaires pour initialiser l'appareil. Pour ces raisons, j'ai créé une classe Python qui encapsule le fonctionnement du driver, permettant de beaucoup simplifier son utilisation. Cette classe permet aussi d'encapsuler la gestion des erreurs et des logs pour clarifier les erreurs et faciliter le debuggage. 
+Le code est facilement customisable et extensible. Il suffit de modifier une variable pour rajouter des thermocouples ou modifier la fréquence des mesures. De plus, on peut facilement y intégrer d'autre sources de données pour exporter vers InfluxDB. Par exemple vers la fin de mon stage, mon encadrant a pu inclure dans le code la collecte et l'export de deux capteurs Arduino permettant de mesurer la température et l'humidité de la pièce. J'ai prêté une attention particulière aux logs, qui sont stockés dans un fichier auxiliare et qui permettent de simplifier le debuggage. 
 
 \subsubsection{Visualisation avec Grafana}
 
@@ -412,36 +416,23 @@ Pour visualiser les données avec Grafana, il faut lancer l'agent Grafana-PDC in
 
 \subsubsection{Automatisation avec un fichier batch}
 
-Afin d'automatiser le processus, j'ai développé un script batch (un type de fichier permettant d'executer des commandes dans un terminal sur Windows) permettant de démarrer InfluxDB, l'agent Grafana PDC et de lancer le script python main.py. De plus, je l'ai ajouté au planificateur de tâche Windows de tel sorte qu'il soit executé automatiquement au démarrage de l'ordinateur. Pour être précis, le script lance InfluxDB et l'agent Grafana PDC sur des terminaux dédiés et cachés. Les logs de chacun sont récupérés et stockées dans des fichiers dédiées. Le script Python, quand à lui, est executé dans un terminal visible de tel sorte à ce qu'il puisse être démarré et éteint manuellement afin de pouvoir modifier certains paramètres sans tout éteindre. 
+Afin d'automatiser le processus, j'ai développé un script batch (un type de fichier permettant d'exécuter des commandes dans un terminal sur Windows) permettant de démarrer InfluxDB, l'agent Grafana PDC et de lancer le script python main.py. De plus, je l'ai ajouté au planificateur de tâche Windows de tel sorte qu'il soit exécuté automatiquement au démarrage de l'ordinateur. Pour être précis, le script lance InfluxDB et l'agent Grafana PDC sur des terminaux dédiés et cachés. Les logs de chacun sont récupérés et stockées dans des fichiers dédiées. Le script Python, quant-à-lui, est exécuté dans un terminal visible de tel sorte à ce qu'il puisse être démarré et éteint manuellement afin de pouvoir modifier certains paramètres sans tout éteindre. 
 
 \subsection{Résultats}
 
-Après avoir tout installé et configuré sur les ordinateurs de l'expérience, j'ai pu mettre le programme en marche et vérifier que tout marchait bien. J'ai quand même eu quelques problèmes de connexion entre Grafana et InfluxDB, mais après les avoir réglé tout marchait bien. Depuis, le data logger tourne en quasi-continu et permet de visualiser les températures du four. Deux aperçus de ce que l'on peut voir sur Grafana est visible sur la Figure~\ref{fig:grafana}.
+Après avoir tout installé et configuré sur les ordinateurs de l'expérience, j'ai pu mettre le programme en marche et vérifier que tout fonctionnait comme prévu. Depuis, le data logger tourne en quasi-continu et permet de visualiser les températures du four. Un aperçu de l'interface Grafana est visible sur la Figure~\ref{fig:grafana}.
 \begin{figure}[ht]
   \centering
-  \begin{subfigure}{.49\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/GrafanaScreenshot1.png}
-  \end{subfigure}
-  \begin{subfigure}{.49\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/GrafanaScreenshot2.png}
-  \end{subfigure}
-  \caption{Exemple d'affichage avec Grafana}\label{fig:grafana}
+  \includegraphics[width=\linewidth]{figures/exGrafana.png}
+  \caption{Exemple d'affichage avec Grafana. Les trois courbes du graphe de gauche correspondent aux températures des différentes parties du four. Le graphe en haut à droite montrent les mesures de températures obtenues par les deux capteurs Arduino, et celui en bas à droitte les mesures d'humidté obtenues par ces même capteurs.}\label{fig:grafana}
 \end{figure}
-Le premier aperçu est une vue sur 12h alors que le four est n'était pas allumé. On peut y voir les oscillations due à la climatisation. Le deuxième est vue sur 2 jours, alors que le four était allumé pendant la journée et éteint la nuit. 
+On peut y distinguer à la fois le graphe avec les courbes des températures du four à gauche, ainsi que les données de températures et humidités de la pièce obtenues par les deux capteurs Arduino à droite. 
 
 \section{Conclusion}
 
-Au cours de mon stage, j'ai pu caractériser les AOM à 428MHz que j'avais à disposition dans des configurations en simple et double-passage. En simple passage, j'ai pu obtenir jusqu'à 86.5(2)\% d'efficacité de diffraction à 428MHz pour un signal RF de puissance \(29.7(2)\)dBm soit 933mW. J'ai calculé une bande passante en puissance de \(8.4(4)\)dBm, et que l'efficacité de diffraction vaire de quelques pourcents sur la bande passante en fréquence donné par le constructeur (50MHz). En double passage, j'ai pu obtenir jusqu'à 64.6(5)\% d'efficacité de diffraction pour un alignement de l'AOM un peu moins bon. Néanmoins on s'aerçoit qu'aux incertitudes, les mesures obtenues en double-passage et les mesures de simple-passage au carré pour le même alignement coincide relativement bien. Cela signifie qu'il n'y a pas de pertes supplémentaires associées au deuxième passage relativement au passage dans un deuxième AOM\@. Avec ce montage, en supposant que rajouter une deuxième AOM en double-passage génère des pertes identiques, on devrait pouvoir atteindre une efficacité de 41.7(6)\% après avoir décalé le faisceau de 1.7GHz. Cela représenterait une amélioration notable sur l'expérience, où l'efficacité actuelle est de l'orde de quelques pourcents. 
+Au cours de mon stage, j'ai pu caractériser les AOM à 428MHz que j'avais à disposition dans des configurations en simple et double-passage. En simple passage, j'obtiens jusqu'à 86.5(2)\% d'efficacité de diffraction à la fréquence spécifiée 428MHz pour un signal RF de puissance \(29.7(2)\)dBm soit 933mW. Cela réprésente une différence relative de 6\% avec l'efficacité de diffraction maximale spécifié par le fabricant, qui est de 92\%. Je mesure une baisse de l'ordre de 5\% sur la bande passante en fréquence spécifiée, qui est de 50MHz (centré sur 428MHz). J'obtiens en double-passage une efficacité maximale de 64.6(5)\%. Rapporté aux mesures de simple-passage correspondant à cet alignement, cela indique une efficacité de diffraction identique au second passage. En extrapolant pour un montage en double double-passage, on obtient une efficacité globale du système optique de 41.7(6)\% pour un décalage de 1.71GHz. Cela représenterait une amélioration notable sur l'expérience, où l'efficacité du montage actuelle est de l'ordre de quelques pourcents.  
 
-Néanmoins, due au fait que j'ai cassé un des deux AOM, je n'ai pas pu réaliser le montage complet avec deux double-passages. Une autre possibilté de montage aurait été de réaliser une configuration en quadruple-passage avec un seul AOM, comme présenté dans l'article~\cite{lu_four-pass_2017}, mais faute des pièces nécessaires je n'ai pu non plus réaliser ce montage. 
-
-C'est pour cette raison que pour la fin du stage, je me suis consacré à la mise en place d'un data logger permettant de suivre en direct l'évolution des températures du four, En effet j'ai pu mettre au point un processus permettant de récuperer, stocker et afficher les valeurs de températures des différentes parties du four à l'aide d'un data logger (PicoTech TC-08). La récupération des données est réalisé grâce à un script Python et le driver du data logger. Le stocakge est réalisé par une base de donnée InfluxDB spécialisé dans les données temporelles. La visualisation est réalisé grâce au logiciel Grafana qui accède à la base de donnée pour afficher les mesures. Le tout est automatisé par l'intermédiaire d'un fichier batch qui permet de faire tourner le processus en continu. Ce processus est aussi facilement modifiable de telle sorte que l'on puisse rajouter des appareils de mesure. Par exemple, pendant que je rédigeai mon rapport, mon encadrant a pu y inclure les données d'un capteur Arduino mesurant la température et l'humidité de la pièce. Il devrait aussi permettre, à terme, d'afficher les températures des différentes bobines de l'expérience. De plus tout cela est accessible à distance vie le Cloud Grafana tant que l'ordinateur de l'expérience est allumé. 
-
-
-
-
+J'ai également mis en place un data logger permettant de suivre en temps réelle l'évolution des températures du four et de stocker ces données. J'ai développé un processus automatisé permettant de récupérer les valeurs de températures grâce à un data logger (PicoTech TC-08), les stocker sur une base de donnée InfluxDB, et les afficher à l'aide du logiciel Grafana. J'ai écris un script Python où je definis une classe encapsulant le driver Python natif du data logger pour faciliter son utilisation. L'extraction des données et l'exportation est réalisé dans un autre programme, facilement modifiable pour pouvoir y inclure d'autre données. La connexion entre InfluxDB et Grafana est effectué par les plug-in correspondants. Le tout est automatisé par un fichier batch permettant de démarrer l'entièreté du processus, qui est exécuté automatiquement au démarrage de l'ordinateur. De plus les données sont visualisables à distance grâce à la version Cloud de Grafana. Le processus est facilement modifiable, de telle sorte que mon encadrant a pu y inclure les données de deux capteurs Arduino mesurant la tempéarture et l'humidité de la pièce. À terme, cet outil peut devenir une aide précieuse pour l'expérience. En effet, surveiller en continue les nombreuses et différentes conditions expérimentales d'une expérience aussi complexe aide à identifier et résoudre rapidement les fréquentes avaries. Corréler une variable expérimentale (comme une température) avec une observable (comme le nombre d'atomes dans le condensat) peut pointer vers la source d'un problème, mais aussi aider à faire le tri dans des prises de données expérimentales pouvant durer des semaines.
 
 \newpage
 

@@ -42,8 +42,8 @@ if __name__ == "__main__":
     ax.set_xlabel("Incoming RF power (dBm)")
     ax.set_ylabel("amplified signal power/gain (dBm/dB)")
 
-    secax = ax.secondary_xaxis('top', functions=(lambda x:x-marc_corr.value, lambda x:x+marc_corr.value))
-    secax.set_xlabel("displayed incoming power (dBm)")
+    #secax = ax.secondary_xaxis('top', functions=(lambda x:x-marc_corr.value, lambda x:x+marc_corr.value))
+    #secax.set_xlabel("displayed incoming power (dBm)")
 
     ax.save('cal_ampli2W')
     Axes.show()

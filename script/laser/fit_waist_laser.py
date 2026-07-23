@@ -28,7 +28,7 @@ if __name__ == "__main__":
     w = two_w/2
 
     ax = Axes()
-    M.errorbar(ax, z, w, ls='', label='data')
+    M.errorbar(ax, z, w, ls='', label='data', marker='s')
     args = M.curve_fit(waist, z, w, guess=[400,-10], ax=ax, N=100)
     [w0,z0] = args
     zr = pi*(w0*1e-6)**2/(532e-9)*1e2

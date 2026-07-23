@@ -26,7 +26,7 @@ if __name__ == "__main__":
     files = {'SP3' : {'label':'single pass squared', 'color':colors[1], 'ls':''},
              #'DP1' : {'label':'double pass 1', 'color':colors[4], 'ls':''},
              #'DP2' : {'label':'double pass 2', 'color':colors[5], 'ls':''},
-             'DP3' : {'label':'double pass 3', 'color':colors[6], 'ls':''}
+             'DP3' : {'label':'double pass', 'color':colors[6], 'ls':''}
              }
     
     for filename,kwargs in files.items() : 

@@ -3,7 +3,11 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{subcaption}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{fancyhdr} % customization of footers and headers
 \usepackage{tabularx} % customization of tables
 \usepackage[
@@ -34,3 +38,6 @@
     \renewcommand{\headrulewidth}{0.4pt}
     \renewcommand{\footrulewidth}{0.4pt}
 }
+
+% Commands 
+\newcommand{\um}[1]{\SI{#1}{\micro\meter}}

@@ -28,14 +28,14 @@ if __name__ == "__main__":
     gain = out_pow-inc_power
     print(gain.max())
 
-    M.errorbar(ax,inc_power,out_pow,label='amplified signal',color='C0',ls='--')
-    M.errorbar(ax,inc_power,gain,label='gain',color='C1',ls=':')
+    M.errorbar(ax,inc_power,out_pow,label='amplified signal',color='C0',ls='',marker='s')
+    M.errorbar(ax,inc_power,gain,label='gain',color='C1',ls='',marker='s')
     ax.set_lims()
     ax.hlines(31.1,xmin=-30,xmax=20,label='AOM specified limit power (31.14dBm)', color='r')
     ax.set_labels("incoming power (dBm)", "amplified power/gain (dBm/dB)")
 
-    secax = ax.secondary_xaxis('top', functions=(lambda x:x-marconi_corr.value, lambda x:x+marconi_corr.value))
-    secax.set_xlabel("displayed source power (dBm)")
+    #secax = ax.secondary_xaxis('top', functions=(lambda x:x-marconi_corr.value, lambda x:x+marconi_corr.value))
+    #secax.set_xlabel("displayed source power (dBm)")
 
     ax.save('cal_ampli1W')
     Axes.show()
